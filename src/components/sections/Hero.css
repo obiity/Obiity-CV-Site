@@ -341,16 +341,17 @@ button {
   }
 
   .hero-title {
-    /* Large enough to be impactful, small enough to never overflow */
-    font-size: clamp(1.9rem, 8.5vw, 3.2rem);
-    word-break: break-word;
-    overflow-wrap: break-word;
+    font-size: clamp(1.85rem, 6.8vw, 3rem);
+    word-break: normal;
+    overflow-wrap: normal;
+    white-space: normal;
   }
 
   .title-line-wrapper {
-    /* More breathing room on mobile */
-    padding-bottom: 0.18em;
+    padding-bottom: 0.2em;
     line-height: 1.2;
+    height: auto;
+    overflow: visible;
   }
 
   .hero-cta-group {
@@ -363,9 +364,9 @@ button {
   }
 }
 
-/* Small mobile */
-@media (max-width: 420px) {
+/* Small mobile (≤ 390px) */
+@media (max-width: 390px) {
   .hero-title {
-    font-size: clamp(1.6rem, 9vw, 2.6rem);
+    font-size: clamp(1.65rem, 6.8vw, 2.4rem);
   }
 }
