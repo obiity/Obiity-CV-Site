@@ -333,15 +333,3 @@
     display: none;
   }
 }
-
-/* Performance: disable scanline animation on mobile */
-@media (max-width: 768px) {
-  .portrait-scanline {
-    display: none;
-  }
-
-  /* Simplify portrait filter — grayscale+contrast are compositing triggers */
-  .portrait-img {
-    filter: none;
-  }
-}

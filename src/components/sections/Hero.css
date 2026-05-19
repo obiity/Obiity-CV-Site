@@ -341,17 +341,16 @@ button {
   }
 
   .hero-title {
-    font-size: clamp(1.85rem, 6.8vw, 3rem);
-    word-break: normal;
-    overflow-wrap: normal;
-    white-space: normal;
+    /* Large enough to be impactful, small enough to never overflow */
+    font-size: clamp(1.9rem, 8.5vw, 3.2rem);
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .title-line-wrapper {
-    padding-bottom: 0.2em;
+    /* More breathing room on mobile */
+    padding-bottom: 0.18em;
     line-height: 1.2;
-    height: auto;
-    overflow: visible;
   }
 
   .hero-cta-group {
@@ -364,25 +363,9 @@ button {
   }
 }
 
-/* Small mobile (≤ 390px) */
-@media (max-width: 390px) {
+/* Small mobile */
+@media (max-width: 420px) {
   .hero-title {
-    font-size: clamp(1.65rem, 6.8vw, 2.4rem);
-  }
-}
-
-/* Performance: disable heavy visual effects on mobile */
-@media (max-width: 768px) {
-  /* Orbs and grid are GPU-intensive — not visible at low opacity anyway */
-  .hero-orb,
-  .hero-grid-bg,
-  .hero-orb--cyan::after {
-    display: none;
-  }
-
-  /* Remove will-change on mobile to avoid unnecessary compositing layers */
-  .hero-slider,
-  .hero-slide {
-    will-change: auto;
+    font-size: clamp(1.6rem, 9vw, 2.6rem);
   }
 }

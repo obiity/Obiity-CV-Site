@@ -13,17 +13,10 @@ const Hero: React.FC = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  // On mobile load only the first slide — avoids downloading 6–12 MB of hero images
-  const isMobileDevice = typeof window !== 'undefined' && window.innerWidth < 768;
-  const slides = isMobileDevice
-    ? ['/hero_bg_1.png']
-    : ['/hero_bg_1.png', '/hero_bg_2.png', '/hero_bg_3.png'];
+  const slides = ['/hero_bg_1.png', '/hero_bg_2.png', '/hero_bg_3.png'];
 
   useEffect(() => {
-    // Skip GPU parallax on touch devices — scroll events fire too frequently
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return;
-
+    // Performant passive GPU parallax effect
     const handleScroll = () => {
       if (sliderRef.current) {
         const scrolled = window.scrollY;
@@ -35,7 +28,6 @@ const Hero: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (slides.length <= 1) return; // no timer needed for single slide on mobile
     const slideTimer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);

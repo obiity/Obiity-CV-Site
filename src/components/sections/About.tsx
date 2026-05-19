@@ -89,7 +89,7 @@ const About = () => {
           <div className="identity-portrait-card glass-panel">
             <div className="portrait-wrapper">
               <div className="portrait-glow"></div>
-              <img src="/PP.png" alt="Ousmane Biteye" className="portrait-img" loading="lazy" decoding="async" />
+              <img src="/PP.png" alt="Ousmane Biteye" className="portrait-img" />
               <div className="portrait-scanline"></div>
               <div className="portrait-borders">
                 <span className="corner tl"></span>

@@ -2,16 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import './CustomCursor.css';
 
-const isTouchDevice = typeof window !== 'undefined' &&
-  ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-
 const CustomCursor: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const followerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isTouchDevice) return;
-
     const onMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       
@@ -57,8 +52,6 @@ const CustomCursor: React.FC = () => {
       });
     };
   }, []);
-
-  if (isTouchDevice) return null;
 
   return (
     <>
