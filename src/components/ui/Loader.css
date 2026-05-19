@@ -1,0 +1,121 @@
+.loader-container {
+  position: fixed;
+  inset: 0;
+  background: #0A0A0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Warm radial glow behind logo */
+.loader-container::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 122, 47, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: loaderPulse 2s ease-in-out infinite;
+}
+
+@keyframes loaderPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+/* Scan line animation */
+.loader-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-secondary), transparent);
+  animation: scanDown 2.5s linear forwards;
+  opacity: 0.7;
+}
+
+@keyframes scanDown {
+  0%   { top: 0; }
+  100% { top: 100%; }
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+  text-align: center;
+  position: relative;
+}
+
+.loader-logo {
+  opacity: 0;
+}
+
+/* Logo image instead of text */
+.loader-logo-img {
+  width: 280px;
+  max-width: 80vw;
+  height: auto;
+  filter:
+    drop-shadow(0 0 20px rgba(255, 122, 47, 0.6))
+    drop-shadow(0 0 60px rgba(255, 122, 47, 0.25))
+    brightness(1.05);
+  animation: logoGlow 2s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(255, 122, 47, 0.6)) drop-shadow(0 0 60px rgba(255, 122, 47, 0.25)) brightness(1.05);
+  }
+  50% {
+    filter: drop-shadow(0 0 35px rgba(255, 179, 71, 0.8)) drop-shadow(0 0 80px rgba(255, 122, 47, 0.4)) brightness(1.12);
+  }
+}
+
+.loader-subtitle {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.loader-bar-track {
+  width: 220px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loader-bar-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-tertiary), var(--accent-primary), var(--accent-secondary));
+  transform-origin: left;
+  transform: scaleX(0);
+  box-shadow: 0 0 12px var(--accent-primary), 0 0 25px rgba(255, 122, 47, 0.4);
+}
+
+/* Corner decorations — orange */
+.loader-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  animation: cornerPulse 1.8s ease-in-out infinite;
+}
+
+.loader-corner--tl { top: 2rem; left: 2rem; border-top: 1px solid var(--accent-primary); border-left: 1px solid var(--accent-primary); }
+.loader-corner--tr { top: 2rem; right: 2rem; border-top: 1px solid var(--accent-primary); border-right: 1px solid var(--accent-primary); }
+.loader-corner--bl { bottom: 2rem; left: 2rem; border-bottom: 1px solid var(--accent-primary); border-left: 1px solid var(--accent-primary); }
+.loader-corner--br { bottom: 2rem; right: 2rem; border-bottom: 1px solid var(--accent-primary); border-right: 1px solid var(--accent-primary); }
+
+@keyframes cornerPulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; box-shadow: 0 0 8px rgba(255, 122, 47, 0.4); }
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/Favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>Obiity | Ousmane Biteye — Artiste 3D, VFX & Développeur Créatif</title>
+    <meta name="description" content="Portfolio premium d'Ousmane Biteye (Obiity) — Artiste hybride spécialisé en 3D, VFX, Motion Design, XR/VR/AR, IA Générative et Développement Web interactif. Basé à Dakar, Sénégal." />
+    <meta name="keywords" content="3D artist, VFX, motion design, XR, VR, AR, IA générative, portfolio, Dakar, Sénégal, Obiity, Ousmane Biteye, Blender, Unreal Engine, Three.js" />
+    <meta name="author" content="Ousmane Biteye" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="Obiity | Ousmane Biteye — Artiste 3D & Développeur Créatif" />
+    <meta property="og:description" content="Expériences visuelles immersives à l'intersection de la 3D, VFX, XR et IA générative." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://obiity.com" />
+    <meta property="og:image" content="https://obiity.com/og-image.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Obiity | Ousmane Biteye" />
+    <meta name="twitter:description" content="Portfolio créatif premium — 3D, VFX, XR, IA, Motion Design." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <!-- Theme init: runs before React to prevent flash of wrong theme -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('obiity-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
