@@ -370,3 +370,19 @@ button {
     font-size: clamp(1.65rem, 6.8vw, 2.4rem);
   }
 }
+
+/* Performance: disable heavy visual effects on mobile */
+@media (max-width: 768px) {
+  /* Orbs and grid are GPU-intensive — not visible at low opacity anyway */
+  .hero-orb,
+  .hero-grid-bg,
+  .hero-orb--cyan::after {
+    display: none;
+  }
+
+  /* Remove will-change on mobile to avoid unnecessary compositing layers */
+  .hero-slider,
+  .hero-slide {
+    will-change: auto;
+  }
+}

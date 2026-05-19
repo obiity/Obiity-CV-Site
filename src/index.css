@@ -326,3 +326,38 @@ html.theme-transitioning *::after {
 [data-theme="light"] .footer {
   border-top-color: rgba(0, 0, 0, 0.08);
 }
+
+/* ============================================================
+   MOBILE PERFORMANCE — global optimizations ≤ 768px
+   ============================================================ */
+@media (max-width: 768px) {
+  /* backdrop-filter: blur() triggers GPU compositing layers —
+     replaced with solid/semi-solid backgrounds on mobile */
+  .contact-form-premium,
+  .store-card,
+  .cv-download-btn,
+  .glass-panel {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Stop the hologram glow pulse — pure GPU overhead on mobile */
+  .hologram-glow {
+    display: none;
+  }
+
+  /* Kill logo loop animation in FabStore — runs even off-screen */
+  .store-official-logo {
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  /* Reduce transition durations site-wide — snappier feel on touch */
+  .service-card,
+  .portfolio-item,
+  .store-card,
+  .tech-item,
+  .identity-portrait-card {
+    transition-duration: 0.2s !important;
+  }
+}

@@ -90,12 +90,15 @@ const FabStore: React.FC = () => {
       }
     );
 
+    const isMobile = window.innerWidth < 768;
     gsap.fromTo(
       grid.querySelectorAll('.store-card'),
-      { opacity: 0, y: 50, scale: 0.95 },
+      { opacity: 0, y: isMobile ? 30 : 50, scale: 0.95 },
       {
-        opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 1.1,
-        ease: 'elastic.out(1, 0.8)',
+        opacity: 1, y: 0, scale: 1,
+        stagger: isMobile ? 0.05 : 0.1,
+        duration: isMobile ? 0.5 : 1.1,
+        ease: isMobile ? 'power3.out' : 'elastic.out(1, 0.8)',
         scrollTrigger: { trigger: grid, start: 'top 80%', toggleActions: 'play none none reverse' }
       }
     );
@@ -139,7 +142,7 @@ const FabStore: React.FC = () => {
           {storeProducts.map((product) => (
             <div key={product.id} className="store-card">
               <div className="store-card-image-container">
-                <img src={product.image} alt={product.title} className="store-card-image" />
+                <img src={product.image} alt={product.title} className="store-card-image" loading="lazy" decoding="async" />
                 <div className="store-card-overlay">
                   <span className="store-card-badge">{product.badge}</span>
                   <div className="store-card-price">{product.price}</div>

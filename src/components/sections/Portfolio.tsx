@@ -163,14 +163,15 @@ const Portfolio: React.FC = () => {
     );
 
     const items = sectionRef.current.querySelectorAll('.portfolio-item');
+    const isMobile = window.innerWidth < 768;
     if (items.length > 0) {
       gsap.fromTo(items,
-        { y: 80, opacity: 0, scale: 0.95 },
+        { y: isMobile ? 40 : 80, opacity: 0, scale: 0.95 },
         {
           y: 0, opacity: 1, scale: 1,
-          duration: 1.2,
-          stagger: 0.15,
-          ease: 'power4.out',
+          duration: isMobile ? 0.6 : 1.2,
+          stagger: isMobile ? 0.05 : 0.15,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: galleryRef.current,
             start: 'top 85%',
@@ -181,6 +182,7 @@ const Portfolio: React.FC = () => {
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if ('ontouchstart' in window) return;
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -223,7 +225,7 @@ const Portfolio: React.FC = () => {
             onMouseLeave={handleMouseLeave}
           >
             <div className="portfolio-image-wrapper">
-              <img src={project.image} alt={project.title} className="portfolio-image" />
+              <img src={project.image} alt={project.title} className="portfolio-image" loading="lazy" decoding="async" />
               <div className="portfolio-overlay">
                 <div className="portfolio-overlay-content">
                   <div className="project-meta">
