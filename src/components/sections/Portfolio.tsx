@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
@@ -6,168 +7,24 @@ import './Portfolio.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  {
-    id: 1,
-    title: 'Publicité pour les climatiseurs Airton',
-    client: 'OBIITY',
-    location: 'Dakar - 2026',
-    image: '/Publicité pour les climatiseurs Airton.png',
-    link: 'https://obiity.com/publicite-climatiseurs-airton',
-    size: 'large'
-  },
-  {
-    id: 2,
-    title: 'Lancer Javelot - Jeu VR',
-    client: 'OBIITY',
-    location: 'Dakar - 2026',
-    image: '/Lancer Javelot.png',
-    link: 'https://obiity.com/lancer-javelot-jeu-vr',
-    size: 'medium'
-  },
-  {
-    id: 4,
-    title: 'ARCHI 3D',
-    client: 'OBIITY',
-    location: 'Dakar - 2026',
-    image: '/PLAN ARCHI 3D.png',
-    link: 'https://obiity.com/plan-archi-3d',
-    size: 'medium'
-  },
-  {
-    id: 5,
-    title: 'DEVENIR AGRI-ENTREPRENEUR',
-    client: 'KTM ACADEMY',
-    location: 'Dakar - 2026',
-    image: '/DEVENIR AGRI-ENTREPRENEUR.png',
-    link: 'https://obiity.com/devenir-agri-entrepreneur',
-    size: 'large'
-  },
-  {
-    id: 6,
-    title: 'BOOSTGI-JOBS',
-    client: 'ENCAF - KTM ADVANCE SN',
-    location: 'Dakar - 2025',
-    image: '/BOOSTGI-JOBS.jpeg',
-    link: 'https://obiity.com/boostgi-jobs',
-    size: 'medium'
-  },
-  {
-    id: 7,
-    title: 'PROJET DE DIGITALISATION',
-    client: 'DER - KTM ADVANCE SN',
-    location: 'Dakar - 2025',
-    image: '/PROJET DE DIGITALISATION.png',
-    link: 'https://obiity.com/digitalisation',
-    size: 'medium'
-  },
-  {
-    id: 8,
-    title: 'ERROR 404',
-    client: 'OBIITY',
-    location: 'Dakar - 2025',
-    image: '/ERROR 404.png',
-    link: 'https://obiity.com/error-404',
-    size: 'large'
-  },
-  {
-    id: 9,
-    title: 'KING OF ARENA',
-    client: 'DAMEL STUDIO',
-    location: 'Dakar - 2025',
-    image: '/KING OF ARENA.png',
-    link: 'https://obiity.com/king-of-arena',
-    size: 'medium'
-  },
-  {
-    id: 10,
-    title: 'FULANI',
-    client: 'DAMEL STUDIO',
-    location: 'Dakar - 2023',
-    image: '/FULANI.png',
-    link: 'https://obiity.com/fulani',
-    size: 'medium'
-  },
-  {
-    id: 11,
-    title: 'LAST LOADOUT - SURF SCOP',
-    client: 'SAIPEM',
-    location: 'Dakar - 2024',
-    image: '/LAST LOADOUT - SURF SCOP.png',
-    link: 'https://obiity.com/last-loadout',
-    size: 'large'
-  },
-  {
-    id: 12,
-    title: 'CLEAN UP DAY',
-    client: 'SAIPEM',
-    location: 'Dakar - 2024',
-    image: '/CLEAN UP DAY.png',
-    link: 'https://obiity.com/clean-up-day',
-    size: 'medium'
-  },
-  {
-    id: 13,
-    title: 'SAIPEM TRAINING CAMP',
-    client: 'SAIPEM',
-    location: 'Dakar - 2024',
-    image: '/SAIPEM TRAINING CAMP.jpg',
-    link: 'https://obiity.com/training-camp',
-    size: 'medium'
-  },
-  {
-    id: 15,
-    title: 'FEMMES SOUS UN BAOBAB',
-    client: 'UNICEF',
-    location: 'Dakar - 2023',
-    image: '/FEMMES SOUS UN BAOBAB.png',
-    link: 'https://obiity.com/femmes-sous-un-baobab',
-    size: 'large'
-  },
-  {
-    id: 14,
-    title: 'SHORT ANIMATION (TEST)',
-    client: 'OBIITY',
-    location: 'Dakar - 2023',
-    image: '/SHORT ANIMATION (TEST).png',
-    link: 'https://obiity.com/short-animation',
-    size: 'medium'
-  },
-  {
-    id: 17,
-    title: 'DOLCE FRUITI (PUB)',
-    client: 'OBIITY',
-    location: 'Dakar - 2026',
-    image: '/DOLCE FRUITI (PUB).png',
-    link: 'https://obiity.com/dolce-fruiti',
-    size: 'medium'
-  },
-  {
-    id: 16,
-    title: 'WNPWY - DIP DOUNDOU GUISS',
-    client: 'OBIITY',
-    location: 'Dakar - 2024',
-    image: '/WNPWY - DIP DOUNDOU GUISS.JPG',
-    link: 'https://obiity.com/wnpwy',
-    size: 'large'
-  },
-  {
-    id: 18,
-    title: 'XÉÉR',
-    client: 'OBIITY',
-    location: 'Dakar - 2023',
-    image: '/XÉÉR.png',
-    link: 'https://obiity.com/xeer',
-    size: 'medium'
-  },
-  {
-    id: 19,
-    title: 'CORNICHE',
-    client: 'OBIITY',
-    location: 'Dakar - 2023',
-    image: '/CORNICHE.png',
-    link: 'https://obiity.com/corniche',
-    size: 'medium'
-  }
+  { id: 1,  title: 'Publicité pour les climatiseurs Airton', client: 'OBIITY',             location: 'Dakar - 2026', image: '/Publicité pour les climatiseurs Airton.png', slug: 'airton-climatiseurs',      size: 'large'  },
+  { id: 2,  title: 'Lancer Javelot - Jeu VR',               client: 'OBIITY',             location: 'Dakar - 2026', image: '/Lancer Javelot.png',                         slug: 'lancer-javelot-vr',        size: 'medium' },
+  { id: 4,  title: 'ARCHI 3D',                              client: 'OBIITY',             location: 'Dakar - 2026', image: '/PLAN ARCHI 3D.png',                          slug: 'archi-3d',                 size: 'medium' },
+  { id: 5,  title: 'DEVENIR AGRI-ENTREPRENEUR',             client: 'KTM ACADEMY',        location: 'Dakar - 2026', image: '/DEVENIR AGRI-ENTREPRENEUR.png',              slug: 'devenir-agri-entrepreneur',size: 'large'  },
+  { id: 6,  title: 'BOOSTGI-JOBS',                          client: 'ENCAF · KTM ADVANCE',location: 'Dakar - 2025', image: '/BOOSTGI-JOBS.jpeg',                          slug: 'boostgi-jobs',             size: 'medium' },
+  { id: 7,  title: 'PROJET DE DIGITALISATION',              client: 'DER · KTM ADVANCE',  location: 'Dakar - 2025', image: '/PROJET DE DIGITALISATION.png',               slug: 'digitalisation',           size: 'medium' },
+  { id: 8,  title: 'ERROR 404',                             client: 'OBIITY',             location: 'Dakar - 2025', image: '/ERROR 404.png',                              slug: 'error-404',                size: 'large'  },
+  { id: 9,  title: 'KING OF ARENA',                         client: 'DAMEL STUDIO',       location: 'Dakar - 2025', image: '/KING OF ARENA.png',                          slug: 'king-of-arena',            size: 'medium' },
+  { id: 10, title: 'FULANI',                                client: 'DAMEL STUDIO',       location: 'Dakar - 2023', image: '/FULANI.png',                                 slug: 'fulani',                   size: 'medium' },
+  { id: 11, title: 'LAST LOADOUT - SURF SCOP',              client: 'SAIPEM',             location: 'Dakar - 2024', image: '/LAST LOADOUT - SURF SCOP.png',               slug: 'last-loadout',             size: 'large'  },
+  { id: 12, title: 'CLEAN UP DAY',                          client: 'SAIPEM',             location: 'Dakar - 2024', image: '/CLEAN UP DAY.png',                           slug: 'clean-up-day',             size: 'medium' },
+  { id: 13, title: 'SAIPEM TRAINING CAMP',                  client: 'SAIPEM',             location: 'Dakar - 2024', image: '/SAIPEM TRAINING CAMP.jpg',                   slug: 'saipem-training-camp',     size: 'medium' },
+  { id: 15, title: 'FEMMES SOUS UN BAOBAB',                 client: 'UNICEF',             location: 'Dakar - 2023', image: '/FEMMES SOUS UN BAOBAB.png',                  slug: 'femmes-sous-un-baobab',    size: 'large'  },
+  { id: 14, title: 'SHORT ANIMATION (TEST)',                 client: 'OBIITY',             location: 'Dakar - 2023', image: '/SHORT ANIMATION (TEST).png',                 slug: 'short-animation',          size: 'medium' },
+  { id: 17, title: 'DOLCE FRUITI (PUB)',                    client: 'OBIITY',             location: 'Dakar - 2026', image: '/DOLCE FRUITI (PUB).png',                     slug: 'dolce-fruiti',             size: 'medium' },
+  { id: 16, title: 'WNPWY - DIP DOUNDOU GUISS',             client: 'OBIITY',             location: 'Dakar - 2024', image: '/WNPWY - DIP DOUNDOU GUISS.JPG',              slug: 'wnpwy',                    size: 'large'  },
+  { id: 18, title: 'XÉÉR',                                  client: 'OBIITY',             location: 'Dakar - 2023', image: '/XÉÉR.png',                                   slug: 'xeer',                     size: 'medium' },
+  { id: 19, title: 'CORNICHE',                              client: 'OBIITY',             location: 'Dakar - 2023', image: '/CORNICHE.png',                               slug: 'corniche',                 size: 'medium' },
 ];
 
 const Portfolio: React.FC = () => {
@@ -267,14 +124,12 @@ const Portfolio: React.FC = () => {
                     <span className="project-location">{project.location}</span>
                   </div>
                   <h3 className="project-title">{project.title}</h3>
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <Link
+                    to={`/projects/${project.slug}`}
                     className="view-project-btn"
                   >
                     Explorer le projet <ArrowUpRight size={18} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

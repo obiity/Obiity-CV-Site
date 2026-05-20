@@ -1,4 +1,5 @@
 import { useState, useEffect, useLayoutEffect, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import Loader from './components/ui/Loader';
@@ -13,6 +14,7 @@ import TechStack from './components/sections/TechStack';
 import CV from './components/sections/CV';
 import Contact from './components/sections/Contact';
 import CustomCursor from './components/ui/CustomCursor';
+import ProjectPage from './pages/ProjectPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,7 +50,7 @@ function useViewportFix() {
   }, []);
 }
 
-function App() {
+function MainLayout() {
   const [loading, setLoading] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
   const isTouch = isTouchDevice();
@@ -63,12 +65,8 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // After content mounts, refresh ScrollTrigger so it recalculates
-  // positions correctly for the actual mobile viewport
   useEffect(() => {
     if (!isMounted) return;
-
-    // Double RAF ensures DOM has fully painted before refresh
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         ScrollTrigger.refresh(true);
@@ -82,21 +80,14 @@ function App() {
         <Loader />
       ) : (
         <div className="app-container">
-          {/* Custom cursor only on non-touch devices */}
           {!isTouch && <CustomCursor />}
-
           <Header />
-
           <main>
-            {/* Scène 3D de fond (fixe, z-index: -1) — désactivée sur mobile
-                pour économiser GPU et éviter les bugs de resize canvas */}
             {!isTouch && (
               <Suspense fallback={null}>
                 <HeroScene />
               </Suspense>
             )}
-
-            {/* Contenu scrollable */}
             <div className="content-overlay">
               <Hero />
               <About />
@@ -111,6 +102,15 @@ function App() {
         </div>
       )}
     </>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<MainLayout />} />
+      <Route path="/projects/:slug" element={<ProjectPage />} />
+    </Routes>
   );
 }
 
