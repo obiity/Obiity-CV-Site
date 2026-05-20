@@ -353,6 +353,17 @@
 
   .header__hamburger {
     display: flex;
+    margin-left: 0; /* theme-btn handles the auto push */
+  }
+
+  /* Push theme toggle + hamburger together to the right */
+  .header__theme-btn {
+    margin-left: auto;
+  }
+
+  /* Tighter gap between the two right-side icons */
+  .header__nav {
+    gap: 0.75rem;
   }
 }
 

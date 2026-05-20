@@ -122,14 +122,36 @@
   }
 }
 
-/* Mobile padding */
+/* Mobile */
 @media (max-width: 768px) {
   .services-section {
     padding: 70px 5vw;
   }
+
   .services-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
     margin-top: 2.5rem;
+  }
+
+  /* Center all card content on mobile */
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .service-icon-wrapper {
+    margin-bottom: 1.2rem;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .service-desc {
+    max-width: 38ch;
   }
 }
