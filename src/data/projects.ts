@@ -413,6 +413,9 @@ export const projects: Project[] = [
     heroImage: "/WNPWY - DIP DOUNDOU GUISS.JPG",
     gallery: [
       { src: "/WNPWY - DIP DOUNDOU GUISS.JPG", alt: "WNPWY — Dip Doundou Guiss" },
+      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=2800,h=1577,fit=crop/b2ne8m116DM5kp91/img_3710-LvLTva10JDIDRRJI.JPG", alt: "WNPWY — image 1" },
+      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=531,fit=crop/b2ne8m116DM5kp91/img_3700-hT1L0jomuE65swtz.JPG", alt: "WNPWY — image 2" },
+      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=512,fit=crop/b2ne8m116DM5kp91/img_3705-m99KmkQ1dASRerdM.JPG", alt: "WNPWY — image 3" },
     ],
     videos: [{ type: "vimeo", id: "1983500229" }],
   },
