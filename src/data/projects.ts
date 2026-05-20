@@ -34,16 +34,16 @@ export const projects: Project[] = [
     client: "OBIITY",
     year: "2026",
     category: "3D · Motion Design · Publicité",
-    tags: ["3D", "Motion Design", "VFX", "IA Générative", "Publicité"],
+    tags: ["3D", "Motion Design", "VFX", "Publicité", "Rendu Photoréaliste"],
     description:
-      "Création d'une campagne publicitaire 3D premium pour la marque Airton, alliant rendu photoréaliste et motion design cinématique pour valoriser le produit dans un univers visuel moderne, dynamique et accrocheur.",
+      "Conception et réalisation d'une publicité 3D pour les climatiseurs Airton. Chaque plan est modélisé, éclairé et animé à la main — un travail artisanal de précision qui allie rendu photoréaliste, motion design et direction artistique soignée pour donner vie au produit dans un univers visuel fort.",
     context:
-      "Ce projet illustre la capacité d'OBIITY à produire des contenus publicitaires de haute qualité en combinant modélisation 3D, éclairage avancé et animation de produit — le tout optimisé avec les outils d'IA générative les plus récents pour accélérer la chaîne de production créative.",
+      "Ce projet témoigne du savoir-faire technique et créatif d'OBIITY en production 3D publicitaire. De la modélisation du produit à la colorimétrie finale, chaque étape a été pensée et exécutée manuellement pour garantir un résultat à la hauteur des exigences d'une communication de marque premium.",
     objectives: [
-      "Mettre en valeur le produit avec un rendu photoréaliste",
-      "Créer une identité visuelle forte et mémorable",
-      "Produire un contenu publicitaire prêt à diffuser sur les plateformes digitales",
-      "Optimiser le workflow via l'intégration de l'IA générative",
+      "Modéliser et texturer le produit avec fidélité et précision",
+      "Concevoir un éclairage cinématique valorisant chaque angle du climatiseur",
+      "Animer le produit avec fluidité pour un rendu dynamique et accrocheur",
+      "Livrer une publicité prête à diffuser, cohérente avec l'identité visuelle de la marque",
     ],
     heroImage: "/Publicité pour les climatiseurs Airton.png",
     gallery: [
