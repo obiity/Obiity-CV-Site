@@ -247,21 +247,49 @@
   background: var(--accent-primary);
 }
 
-/* Mobile Menu */
+/* ─── Mobile Menu — compact right-panel ─────────────────────────────── */
+/*
+ * Layout: fixed panel attached to the right edge, starting just below the header.
+ * No full-screen overlay = no height math needed. Panel height is driven by content.
+ * Header heights: non-scrolled = 1.6rem×2 + 38px logo ≈ 90px
+ *                 scrolled     = 0.85rem×2 + 38px logo ≈ 65px
+ *
+ * Item sizing proof (portrait, any phone):
+ *   font-size 0.82rem (13.12px) + line-height 1 + padding 0.62rem×2 (9.92px×2)
+ *   → 33.76px / item (+ 1px border between items)
+ *   8 items + 7 borders = 8×33.76 + 7 = 277.1px
+ *   Panel padding top+bottom = 1rem+1.25rem = 36px
+ *   Total panel ≈ 313px — fits on every portrait phone (SE: 568-90=478px avail)
+ *   Landscape SE (375px avail=285px): overflow-y:auto handles the 28px overflow cleanly
+ */
 .mobile-menu {
   position: fixed;
-  top: 0;
-  left: 0;
+  /* Start just below the non-scrolled header */
+  top: 90px;
   right: 0;
-  bottom: 0;
+  z-index: 999;
+  width: 210px;
+  max-height: calc(100dvh - 90px - max(0px, env(safe-area-inset-bottom)));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: rgba(8, 5, 2, 0.97);
   backdrop-filter: blur(24px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateX(100%);
-  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-  z-index: 999;
+  -webkit-backdrop-filter: blur(24px);
+  border-left: 1px solid rgba(255, 122, 47, 0.22);
+  border-bottom: 1px solid rgba(255, 122, 47, 0.14);
+  border-radius: 0 0 0 14px;
+  padding: 1rem 1.4rem 1.25rem;
+  box-shadow: -8px 8px 32px rgba(0, 0, 0, 0.7),
+              0 0 20px rgba(255, 122, 47, 0.04);
+  /* Slides in from the right */
+  transform: translateX(110%);
+  transition: transform 0.38s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* When header is in scrolled/compact state, drop menu lower to match */
+.header--scrolled .mobile-menu {
+  top: 66px;
+  max-height: calc(100dvh - 66px - max(0px, env(safe-area-inset-bottom)));
 }
 
 .mobile-menu--open {
@@ -270,26 +298,51 @@
 
 .mobile-menu ul {
   list-style: none;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  width: 100%;
+}
+
+/* Hairline separator between items */
+.mobile-menu ul li + li {
+  border-top: 1px solid rgba(255, 122, 47, 0.07);
+}
+
+/* Shared type styles for links and Collaborer button */
+.mobile-menu ul a,
+.mobile-menu__collab {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 0.62rem 0;
+  display: block;
+  width: 100%;
+  text-align: right;
+  transition: color 0.18s ease;
 }
 
 .mobile-menu ul a {
   text-decoration: none;
   color: var(--text-light);
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .mobile-menu ul a:hover {
   color: var(--accent-primary);
-  text-shadow: 0 0 20px rgba(255, 122, 47, 0.5);
+}
+
+/* "Collaborer" — orange accent, same size */
+.mobile-menu__collab {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--accent-primary);
+}
+
+.mobile-menu__collab:hover {
+  color: var(--accent-secondary);
 }
 
 @media (max-width: 900px) {
@@ -319,9 +372,15 @@
 }
 
 [data-theme="light"] .mobile-menu {
-  background: rgba(248, 244, 239, 0.97);
+  background: rgba(248, 244, 239, 0.98);
+  border-color: rgba(255, 122, 47, 0.28);
+  box-shadow: -8px 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 [data-theme="light"] .mobile-menu ul a {
   color: #1C1610;
+}
+
+[data-theme="light"] .mobile-menu ul li + li {
+  border-top-color: rgba(255, 122, 47, 0.1);
 }

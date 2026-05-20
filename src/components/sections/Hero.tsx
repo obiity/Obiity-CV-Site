@@ -127,7 +127,7 @@ const Hero: React.FC = () => {
       <div ref={containerRef} className="hero-content container">
 
         <span ref={eyebrowRef} className="hero-eyebrow">
-          Portfolio · Obiity Studio · Dakar
+          Portfolio · Obiity · Dakar
         </span>
 
         <h1 ref={titleRef} className="hero-title">

@@ -135,6 +135,14 @@ const Header: React.FC = () => {
               </a>
             </li>
           ))}
+          <li>
+            <button
+              className="mobile-menu__collab"
+              onClick={() => { setMenuOpen(false); setModalOpen(true); }}
+            >
+              Collaborer
+            </button>
+          </li>
         </ul>
       </div>
     </header>

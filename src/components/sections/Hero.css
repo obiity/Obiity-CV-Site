@@ -365,10 +365,22 @@ button {
   }
 
   .hero-title {
-    /* Large enough to be impactful, small enough to never overflow */
-    font-size: clamp(1.9rem, 8.5vw, 3.2rem);
-    word-break: break-word;
-    overflow-wrap: break-word;
+    /*
+     * 7.5vw ensures "Artiste hybride" (15 Orbitron chars × ~0.72 width factor)
+     * fits within the container (375px − 2×5vw = 337.5px) with room to spare.
+     *   375px → 7.5vw = 28.1px → 15 × 20.2 = 303px  < 337.5px ✓
+     *   320px → clamped to 1.5rem = 24px → 15 × 17.3 = 259px  < 288px  ✓
+     */
+    font-size: clamp(1.5rem, 7.5vw, 3.2rem);
+    word-break: keep-all;
+    overflow-wrap: normal;
+    hyphens: none;
+  }
+
+  /* Lock "Artiste hybride" to a single line — prevents the space between the
+     two words from being used as a wrap point on narrow viewports. */
+  .hero-title .title-line-wrapper:first-child .title-line {
+    white-space: nowrap;
   }
 
   .title-line-wrapper {
@@ -387,9 +399,9 @@ button {
   }
 }
 
-/* Small mobile */
+/* Small mobile — keep clamp consistent, cap at 2.4rem so it stays compact */
 @media (max-width: 420px) {
   .hero-title {
-    font-size: clamp(1.6rem, 9vw, 2.6rem);
+    font-size: clamp(1.4rem, 7.5vw, 2.4rem);
   }
 }
