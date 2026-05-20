@@ -417,7 +417,7 @@ export const projects: Project[] = [
       { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=531,fit=crop/b2ne8m116DM5kp91/img_3700-hT1L0jomuE65swtz.JPG", alt: "WNPWY — image 2" },
       { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=512,fit=crop/b2ne8m116DM5kp91/img_3705-m99KmkQ1dASRerdM.JPG", alt: "WNPWY — image 3" },
     ],
-    videos: [{ type: "vimeo", id: "1983500229" }],
+    videos: [{ type: "youtube", id: "k2zen1OyUWs" }],
   },
   {
     id: 18,
