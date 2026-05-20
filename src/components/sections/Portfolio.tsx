@@ -1,148 +1,286 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 import './Portfolio.css';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { id: 1,  title: 'Publicité pour les climatiseurs Airton', client: 'OBIITY',             location: 'Dakar - 2026', image: '/Publicité pour les climatiseurs Airton.png', slug: 'airton-climatiseurs',      size: 'large'  },
-  { id: 2,  title: 'Lancer Javelot - Jeu VR',               client: 'OBIITY',             location: 'Dakar - 2026', image: '/Lancer Javelot.png',                         slug: 'lancer-javelot-vr',        size: 'medium' },
-  { id: 4,  title: 'ARCHI 3D',                              client: 'OBIITY',             location: 'Dakar - 2026', image: '/PLAN ARCHI 3D.png',                          slug: 'archi-3d',                 size: 'medium' },
-  { id: 5,  title: 'DEVENIR AGRI-ENTREPRENEUR',             client: 'KTM ACADEMY',        location: 'Dakar - 2026', image: '/DEVENIR AGRI-ENTREPRENEUR.png',              slug: 'devenir-agri-entrepreneur',size: 'large'  },
-  { id: 6,  title: 'BOOSTGI-JOBS',                          client: 'ENCAF · KTM ADVANCE',location: 'Dakar - 2025', image: '/BOOSTGI-JOBS.jpeg',                          slug: 'boostgi-jobs',             size: 'medium' },
-  { id: 7,  title: 'PROJET DE DIGITALISATION',              client: 'DER · KTM ADVANCE',  location: 'Dakar - 2025', image: '/PROJET DE DIGITALISATION.png',               slug: 'digitalisation',           size: 'medium' },
-  { id: 8,  title: 'ERROR 404',                             client: 'OBIITY',             location: 'Dakar - 2025', image: '/ERROR 404.png',                              slug: 'error-404',                size: 'large'  },
-  { id: 9,  title: 'KING OF ARENA',                         client: 'DAMEL STUDIO',       location: 'Dakar - 2025', image: '/KING OF ARENA.png',                          slug: 'king-of-arena',            size: 'medium' },
-  { id: 10, title: 'FULANI',                                client: 'DAMEL STUDIO',       location: 'Dakar - 2023', image: '/FULANI.png',                                 slug: 'fulani',                   size: 'medium' },
-  { id: 11, title: 'LAST LOADOUT - SURF SCOP',              client: 'SAIPEM',             location: 'Dakar - 2024', image: '/LAST LOADOUT - SURF SCOP.png',               slug: 'last-loadout',             size: 'large'  },
-  { id: 12, title: 'CLEAN UP DAY',                          client: 'SAIPEM',             location: 'Dakar - 2024', image: '/CLEAN UP DAY.png',                           slug: 'clean-up-day',             size: 'medium' },
-  { id: 13, title: 'SAIPEM TRAINING CAMP',                  client: 'SAIPEM',             location: 'Dakar - 2024', image: '/SAIPEM TRAINING CAMP.jpg',                   slug: 'saipem-training-camp',     size: 'medium' },
-  { id: 15, title: 'FEMMES SOUS UN BAOBAB',                 client: 'UNICEF',             location: 'Dakar - 2023', image: '/FEMMES SOUS UN BAOBAB.png',                  slug: 'femmes-sous-un-baobab',    size: 'large'  },
-  { id: 14, title: 'SHORT ANIMATION (TEST)',                 client: 'OBIITY',             location: 'Dakar - 2023', image: '/SHORT ANIMATION (TEST).png',                 slug: 'short-animation',          size: 'medium' },
-  { id: 17, title: 'DOLCE FRUITI (PUB)',                    client: 'OBIITY',             location: 'Dakar - 2026', image: '/DOLCE FRUITI (PUB).png',                     slug: 'dolce-fruiti',             size: 'medium' },
-  { id: 16, title: 'WNPWY - DIP DOUNDOU GUISS',             client: 'OBIITY',             location: 'Dakar - 2024', image: '/WNPWY - DIP DOUNDOU GUISS.JPG',              slug: 'wnpwy',                    size: 'large'  },
-  { id: 18, title: 'XÉÉR',                                  client: 'OBIITY',             location: 'Dakar - 2023', image: '/XÉÉR.png',                                   slug: 'xeer',                     size: 'medium' },
-  { id: 19, title: 'CORNICHE',                              client: 'OBIITY',             location: 'Dakar - 2023', image: '/CORNICHE.png',                               slug: 'corniche',                 size: 'medium' },
+  { id: 1,  title: 'Publicité pour les climatiseurs Airton', client: 'AIRTON',            location: 'Dakar - 2026', image: '/Publicité pour les climatiseurs Airton.png', slug: 'airton-climatiseurs'       },
+  { id: 2,  title: 'Lancer Javelot - Jeu VR',               client: 'OBIITY',             location: 'Dakar - 2026', image: '/Lancer Javelot.png',                         slug: 'lancer-javelot-vr'         },
+  { id: 4,  title: 'ARCHI 3D',                              client: 'OBIITY',             location: 'Dakar - 2026', image: '/PLAN ARCHI 3D.png',                          slug: 'archi-3d'                  },
+  { id: 5,  title: 'DEVENIR AGRI-ENTREPRENEUR',             client: 'KTM ACADEMY',        location: 'Dakar - 2026', image: '/DEVENIR AGRI-ENTREPRENEUR.png',              slug: 'devenir-agri-entrepreneur' },
+  { id: 6,  title: 'BOOSTGI-JOBS',                          client: 'ENCAF · KTM ADVANCE',location: 'Dakar - 2025', image: '/BOOSTGI-JOBS.jpeg',                          slug: 'boostgi-jobs'              },
+  { id: 7,  title: 'PROJET DE DIGITALISATION',              client: 'DER · KTM ADVANCE',  location: 'Dakar - 2025', image: '/PROJET DE DIGITALISATION.png',               slug: 'digitalisation'            },
+  { id: 8,  title: 'ERROR 404',                             client: 'OBIITY',             location: 'Dakar - 2025', image: '/ERROR 404.png',                              slug: 'error-404'                 },
+  { id: 9,  title: 'KING OF ARENA',                         client: 'DAMEL STUDIO',       location: 'Dakar - 2025', image: '/KING OF ARENA2.png',                         slug: 'king-of-arena'             },
+  { id: 10, title: 'FULANI',                                client: 'DAMEL STUDIO',       location: 'Dakar - 2023', image: '/FULANI.png',                                 slug: 'fulani'                    },
+  { id: 11, title: 'LAST LOADOUT - SURF SCOP',              client: 'SAIPEM',             location: 'Dakar - 2024', image: '/LAST LOADOUT - SURF SCOP.png',               slug: 'last-loadout'              },
+  { id: 12, title: 'CLEAN UP DAY',                          client: 'SAIPEM',             location: 'Dakar - 2024', image: '/CLEAN UP DAY.png',                           slug: 'clean-up-day'              },
+  { id: 13, title: 'SAIPEM TRAINING CAMP',                  client: 'SAIPEM',             location: 'Dakar - 2024', image: '/SAIPEM TRAINING CAMP.jpg',                   slug: 'saipem-training-camp'      },
+  { id: 15, title: 'FEMMES SOUS UN BAOBAB',                 client: 'UNICEF',             location: 'Dakar - 2023', image: '/FEMMES SOUS UN BAOBAB.png',                  slug: 'femmes-sous-un-baobab'     },
+  { id: 14, title: 'SHORT ANIMATION (TEST)',                 client: 'OBIITY',             location: 'Dakar - 2023', image: '/SHORT ANIMATION (TEST).png',                 slug: 'short-animation'           },
+  { id: 17, title: 'DOLCE FRUITI (PUB)',                    client: 'OBIITY',             location: 'Dakar - 2026', image: '/DOLCE FRUITI (PUB).png',                     slug: 'dolce-fruiti'              },
+  { id: 16, title: 'WNPWY - DIP DOUNDOU GUISS',             client: 'OBIITY',             location: 'Dakar - 2024', image: '/WNPWY - DIP DOUNDOU GUISS.JPG',              slug: 'wnpwy'                     },
+  { id: 18, title: 'XÉÉR',                                  client: 'OBIITY',             location: 'Dakar - 2023', image: '/XÉÉR.png',                                   slug: 'xeer'                      },
+  { id: 19, title: 'CORNICHE',                              client: 'OBIITY',             location: 'Dakar - 2023', image: '/CORNICHE.png',                               slug: 'corniche'                  },
+];
+
+const TOTAL        = projects.length;
+const CLONE_COUNT  = 2;
+const DRAG_THRESHOLD = 48;
+
+// Infinite loop array: [last-2, last-1, ...all originals..., first-0, first-1]
+const loopedSlides = [
+  ...projects.slice(TOTAL - CLONE_COUNT),
+  ...projects,
+  ...projects.slice(0, CLONE_COUNT),
 ];
 
 const Portfolio: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const galleryRef = useRef<HTMLDivElement>(null);
+  const trackRef   = useRef<HTMLDivElement>(null);
 
-  // Detect touch device to skip mouse parallax handlers
-  const isTouch = typeof window !== 'undefined' &&
-    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  // logical index 0…TOTAL-1  (drives counter + is-active + progress)
+  const [current, setCurrent] = useState(0);
 
+  // Mutable refs — no re-render on change
+  const dragging       = useRef(false);
+  const hasDragged     = useRef(false);   // blocks Link click after a real drag
+  const animating      = useRef(false);
+  const pointerStartX  = useRef(0);
+  const pointerDeltaX  = useRef(0);
+  const trackTranslate = useRef(0);
+  const trackIdxRef    = useRef(CLONE_COUNT); // rendered index of centered slide
+
+  /* ── Pixel offset for a rendered index ─────── */
+  const calcOffset = useCallback((ri: number): number => {
+    const track = trackRef.current;
+    if (!track) return 0;
+    const slide = track.querySelector('.carousel-slide') as HTMLElement | null;
+    if (!slide) return 0;
+    const slideW = slide.offsetWidth;
+    const gap    = parseFloat(getComputedStyle(track).gap) || 0;
+    return -(ri * (slideW + gap));
+  }, []);
+
+  /* ── Core navigator (rendered index) ────────── */
+  const goToRendered = useCallback((ri: number, instant = false) => {
+    if (animating.current && !instant) return;
+
+    const offset  = calcOffset(ri);
+    const logical = ((ri - CLONE_COUNT) % TOTAL + TOTAL) % TOTAL;
+
+    trackIdxRef.current = ri;
+    setCurrent(logical);
+
+    if (instant) {
+      trackTranslate.current = offset;
+      gsap.set(trackRef.current, { x: offset });
+      return;
+    }
+
+    animating.current = true;
+
+    gsap.to(trackRef.current, {
+      x: offset,
+      duration: 0.75,
+      ease: 'power3.out',
+      onComplete: () => {
+        // Seamless teleport: clone zone → real zone
+        let finalRi = ri;
+        if (ri < CLONE_COUNT) {
+          finalRi = ri + TOTAL;
+        } else if (ri >= CLONE_COUNT + TOTAL) {
+          finalRi = ri - TOTAL;
+        }
+
+        if (finalRi !== ri) {
+          const finalOffset = calcOffset(finalRi);
+          trackIdxRef.current    = finalRi;
+          trackTranslate.current = finalOffset;
+          gsap.set(trackRef.current, { x: finalOffset });
+        } else {
+          trackTranslate.current = offset;
+        }
+        animating.current = false;
+      },
+    });
+  }, [calcOffset]);
+
+  /* ── Pointer: down ──────────────────────────── */
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    dragging.current     = true;
+    hasDragged.current   = false;
+    pointerStartX.current  = e.clientX;
+    pointerDeltaX.current  = 0;
+    gsap.killTweensOf(trackRef.current);
+    animating.current = false;
+    (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
+  };
+
+  /* ── Pointer: move ──────────────────────────── */
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragging.current) return;
+    const delta = e.clientX - pointerStartX.current;
+    pointerDeltaX.current = delta;
+    if (Math.abs(delta) > 6) hasDragged.current = true;
+    gsap.set(trackRef.current, { x: trackTranslate.current + delta });
+  };
+
+  /* ── Pointer: up / leave ────────────────────── */
+  const handlePointerUp = () => {
+    if (!dragging.current) return;
+    dragging.current = false;
+    const delta = pointerDeltaX.current;
+
+    if (Math.abs(delta) >= DRAG_THRESHOLD) {
+      goToRendered(delta < 0 ? trackIdxRef.current + 1 : trackIdxRef.current - 1);
+    } else {
+      goToRendered(trackIdxRef.current); // snap back
+    }
+    pointerDeltaX.current = 0;
+  };
+
+  /* ── Initial position (after first paint) ───── */
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      const offset = calcOffset(CLONE_COUNT);
+      trackTranslate.current = offset;
+      gsap.set(trackRef.current, { x: offset });
+    });
+  }, [calcOffset]);
+
+  /* ── Resize: recalculate without animation ──── */
+  useEffect(() => {
+    const onResize = () => {
+      const offset = calcOffset(trackIdxRef.current);
+      trackTranslate.current = offset;
+      gsap.set(trackRef.current, { x: offset });
+    };
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => window.removeEventListener('resize', onResize);
+  }, [calcOffset]);
+
+  /* ── Keyboard navigation ─────────────────────── */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft')  goToRendered(trackIdxRef.current - 1);
+      if (e.key === 'ArrowRight') goToRendered(trackIdxRef.current + 1);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [goToRendered]);
+
+  /* ── Entrance animations ─────────────────────── */
   useEffect(() => {
     if (!sectionRef.current) return;
-
-    const setupTimeout = setTimeout(() => {
-      gsap.fromTo(sectionRef.current!.querySelector('.portfolio-header'),
+    const t = setTimeout(() => {
+      gsap.fromTo('.portfolio-header',
         { y: 50, opacity: 0 },
         {
           y: 0, opacity: 1, duration: 1, ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 88%',
-            invalidateOnRefresh: true,
-          }
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 88%', invalidateOnRefresh: true },
         }
       );
-
-      const items = sectionRef.current!.querySelectorAll('.portfolio-item');
-      if (items.length > 0) {
-        gsap.fromTo(items,
-          { y: 80, opacity: 0, scale: 0.95 },
-          {
-            y: 0, opacity: 1, scale: 1,
-            duration: 1.2,
-            stagger: 0.1,
-            ease: 'power4.out',
-            scrollTrigger: {
-              trigger: galleryRef.current,
-              start: 'top 88%',
-              invalidateOnRefresh: true,
-            }
-          }
-        );
-      }
+      gsap.fromTo('.carousel-outer',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.15,
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', invalidateOnRefresh: true },
+        }
+      );
     }, 100);
-
-    return () => clearTimeout(setupTimeout);
+    return () => clearTimeout(t);
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isTouch) return; // skip on touch devices
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const xc = rect.width / 2;
-    const yc = rect.height / 2;
-    const dx = x - xc;
-    const dy = y - yc;
-    const img = card.querySelector('.portfolio-image') as HTMLImageElement;
-    if (img) {
-      img.style.transform = `scale(1.1) translate(${dx * 0.05}px, ${dy * 0.05}px)`;
-    }
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isTouch) return; // skip on touch devices
-    const card = e.currentTarget;
-    const img = card.querySelector('.portfolio-image') as HTMLImageElement;
-    if (img) {
-      img.style.transform = `scale(1) translate(0px, 0px)`;
-    }
-  };
+  const progressPct = ((current + 1) / TOTAL) * 100;
 
   return (
-    <section ref={sectionRef} className="portfolio-section container" id="portfolio">
-      <div className="portfolio-header">
+    <section ref={sectionRef} className="portfolio-section" id="portfolio">
+
+      <div className="portfolio-header container">
         <h2 className="section-title">
           Créations <span className="text-gradient">& Projets</span>
         </h2>
       </div>
 
-      <div ref={galleryRef} className="portfolio-gallery">
-        {projects.map((project) => (
-          <div 
-            key={project.id} 
-            className={`portfolio-item ${project.size}`}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div className="portfolio-image-wrapper">
-              <img src={project.image} alt={project.title} className="portfolio-image" />
-              <div className="portfolio-overlay">
-                <div className="portfolio-overlay-content">
-                  <div className="project-meta">
-                    <span className="project-client">{project.client}</span>
-                    <span className="project-dot">•</span>
-                    <span className="project-location">{project.location}</span>
+      <div className="carousel-outer">
+        <div
+          ref={trackRef}
+          className="carousel-track"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerLeave={handlePointerUp}
+          style={{ cursor: dragging.current ? 'grabbing' : 'grab' }}
+        >
+          {loopedSlides.map((project, ri) => {
+            const logicalRi = ((ri - CLONE_COUNT) % TOTAL + TOTAL) % TOTAL;
+            const isActive  = logicalRi === current;
+            const year      = project.location.split(' - ')[1] ?? project.location;
+
+            return (
+              <div
+                key={`${ri}-${project.id}`}
+                className={`carousel-slide${isActive ? ' is-active' : ''}`}
+              >
+                <div className="carousel-card">
+                  <div className="carousel-card__img-wrapper">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="carousel-card__img"
+                      loading={ri < 5 ? 'eager' : 'lazy'}
+                      draggable={false}
+                    />
+                    <div className="carousel-card__overlay" />
                   </div>
-                  <h3 className="project-title">{project.title}</h3>
-                  <Link
-                    to={`/projects/${project.slug}`}
-                    className="view-project-btn"
-                  >
-                    Explorer le projet <ArrowUpRight size={18} />
-                  </Link>
+
+                  <div className="carousel-card__content">
+                    <div className="carousel-card__meta">
+                      <span className="carousel-card__client">{project.client}</span>
+                      <span className="carousel-card__sep">·</span>
+                      <span className="carousel-card__year">{year}</span>
+                    </div>
+                    <h3 className="carousel-card__title">{project.title}</h3>
+                    <Link
+                      to={`/projects/${project.slug}`}
+                      className="carousel-card__btn"
+                      draggable={false}
+                      onClick={(e) => { if (hasDragged.current) e.preventDefault(); }}
+                    >
+                      Explorer le projet <ArrowUpRight size={15} />
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
+            );
+          })}
+        </div>
       </div>
 
-      <div className="other-projects-section">
+      <div className="carousel-controls container">
+        <div className="carousel-counter">
+          <span className="carousel-counter__cur">{String(current + 1).padStart(2, '0')}</span>
+          <span className="carousel-counter__sep"> / </span>
+          <span className="carousel-counter__tot">{String(TOTAL).padStart(2, '0')}</span>
+        </div>
+        <div className="carousel-progress">
+          <div className="carousel-progress__bar" style={{ width: `${progressPct}%` }} />
+        </div>
+      </div>
+
+      <div className="other-projects-section container">
         <h3 className="other-projects-title">Autres projets</h3>
         <div className="other-projects-image-wrapper">
           <img src="/AUTRES PROJETS.png" alt="Autres projets" className="other-projects-image" />
         </div>
       </div>
+
     </section>
   );
 };
