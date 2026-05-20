@@ -141,12 +141,16 @@
 .pp-hero__title {
   font-family: 'Orbitron', var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.2rem, 5.5vw, 6rem);
-  line-height: 1.08;
+  font-size: clamp(1.9rem, 4.5vw, 5.5rem);
+  line-height: 1.12;
   margin-bottom: 1.8rem;
   text-shadow: 0 0 80px rgba(255, 122, 47, 0.15);
   opacity: 0;
-  overflow-wrap: break-word;
+  /* Word wrap: break only at spaces, never mid-word */
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+  max-width: 18ch;
 }
 
 .pp-hero__tags {
@@ -213,9 +217,14 @@
 /* ── Info Grid (desc + meta) ─────────────────── */
 .pp-info-grid {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 300px;
   gap: 4rem;
   align-items: start;
+}
+
+/* Proper internal padding so text never touches the glass-panel border */
+.pp-info-grid__meta {
+  padding: 1.8rem 2rem;
 }
 
 .pp-meta-list {
@@ -231,8 +240,15 @@
   border-bottom: 1px solid rgba(255, 122, 47, 0.08);
 }
 
+/* First item: no top padding so it aligns flush with the panel top-padding */
 .pp-meta-item:first-child {
   padding-top: 0;
+}
+
+/* Last item: no bottom border — panel padding provides the visual gap */
+.pp-meta-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .pp-meta-item dt {
@@ -242,32 +258,37 @@
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--accent-primary);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
 }
 
 .pp-meta-item dd {
   color: var(--text-light);
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .pp-meta-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin-top: 0.25rem;
+  margin-top: 0.3rem;
 }
 
 .pp-meta-tag {
   display: inline-block;
-  padding: 0.2rem 0.6rem;
+  padding: 0.25rem 0.65rem;
   background: rgba(255, 122, 47, 0.07);
   border: 1px solid rgba(255, 122, 47, 0.15);
   border-radius: 4px;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-family: var(--font-display);
   color: var(--text-muted);
   letter-spacing: 0.05em;
+  /* Wrap long tags cleanly */
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* ── Objectives ──────────────────────────────── */
@@ -574,8 +595,17 @@
 
 @media (max-width: 1024px) {
   .pp-info-grid {
-    grid-template-columns: 1fr 280px;
-    gap: 3rem;
+    grid-template-columns: 1fr 260px;
+    gap: 2.5rem;
+  }
+
+  .pp-info-grid__meta {
+    padding: 1.5rem 1.6rem;
+  }
+
+  .pp-hero__title {
+    font-size: clamp(1.8rem, 4vw, 4.5rem);
+    max-width: 22ch;
   }
 }
 
@@ -585,12 +615,21 @@
   }
 
   .pp-hero__title {
-    font-size: clamp(1.8rem, 7vw, 3.5rem);
+    font-size: clamp(1.6rem, 6.5vw, 3rem);
+    max-width: none;          /* let it fill the container width */
+    word-break: keep-all;
+    overflow-wrap: normal;
+    hyphens: none;
+    line-height: 1.18;
   }
 
   .pp-info-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .pp-info-grid__meta {
+    padding: 1.4rem 1.5rem;
   }
 
   .pp-gallery--2,
@@ -628,7 +667,10 @@
 
 @media (max-width: 480px) {
   .pp-hero__title {
-    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    font-size: clamp(1.35rem, 7vw, 2.2rem);
+    word-break: keep-all;
+    overflow-wrap: normal;
+    hyphens: none;
   }
 
   .pp-hero__content {
@@ -637,6 +679,10 @@
 
   .pp-navbar {
     padding: 0.85rem 4vw;
+  }
+
+  .pp-info-grid__meta {
+    padding: 1.2rem 1.3rem;
   }
 }
 
