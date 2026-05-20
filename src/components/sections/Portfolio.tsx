@@ -143,29 +143,29 @@ const projects = [
   },
   {
     id: 16,
-    title: 'TRADITIONAL AFRICAN DJEMBE DRUM',
+    title: 'Publicité pour les climatiseurs Airton',
     client: 'OBIITY',
     location: 'Dakar - 2024',
-    image: '/Traditional African Djembe Drum.png',
-    link: 'https://obiity.com/traditional-african-djembe-drum',
+    image: '/Publicité pour les climatiseurs Airton.png',
+    link: 'https://obiity.com/publicite-climatiseurs-airton',
     size: 'large'
   },
   {
     id: 17,
-    title: 'SENEGALESE CAR RAPIDE',
+    title: 'Lancer Javelot - Jeu VR',
     client: 'OBIITY',
     location: 'Dakar - 2024',
-    image: '/Senegalese Car Rapide.png',
-    link: 'https://obiity.com/senegalese-car-rapide',
+    image: '/Lancer Javelot.png',
+    link: 'https://obiity.com/lancer-javelot-jeu-vr',
     size: 'medium'
   },
   {
     id: 18,
-    title: 'AFRICAN TRIBAL MASK',
+    title: 'PLAN ARCHI 3D',
     client: 'OBIITY',
     location: 'Dakar - 2024',
-    image: '/African Tribal Mask.png',
-    link: 'https://obiity.com/african-tribal-mask',
+    image: '/PLAN ARCHI 3D.png',
+    link: 'https://obiity.com/plan-archi-3d',
     size: 'medium'
   }
 ];
@@ -285,7 +285,7 @@ const Portfolio: React.FC = () => {
       <div className="other-projects-section">
         <h3 className="other-projects-title">Autres projets</h3>
         <div className="other-projects-image-wrapper">
-          <img src="/Untitled-4.png" alt="Autres projets" className="other-projects-image" />
+          <img src="/AUTRES PROJETS.png" alt="Autres projets" className="other-projects-image" />
         </div>
       </div>
     </section>
