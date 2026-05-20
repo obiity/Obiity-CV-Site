@@ -20,18 +20,18 @@ const CyberMap: React.FC = () => {
       maxZoom: 10,
       zoomControl: false,
       attributionControl: false,
-      scrollWheelZoom: true,
+      scrollWheelZoom: false,   // disable on mobile to avoid conflicts with page scroll
       doubleClickZoom: true,
       dragging: true,
       touchZoom: true,
-      bounceAtZoomLimits: true
+      bounceAtZoomLimits: true,
     });
 
     mapRef.current = map;
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
       maxZoom: 10,
-      minZoom: 2
+      minZoom: 2,
     }).addTo(map);
 
     const senegalCoords: [number, number][] = [
@@ -40,7 +40,7 @@ const CyberMap: React.FC = () => {
       [15.02, -13.15], [14.80, -12.22], [14.45, -12.18], [13.90, -12.22],
       [12.60, -12.10], [12.38, -13.62], [12.45, -14.50], [12.30, -16.70],
       [12.45, -16.75], [13.60, -16.50], [13.60, -14.50], [13.20, -14.50],
-      [13.20, -16.50], [13.70, -16.60], [14.40, -17.15], [14.72, -17.53]
+      [13.20, -16.50], [13.70, -16.60], [14.40, -17.15], [14.72, -17.53],
     ];
 
     L.polygon(senegalCoords, {
@@ -48,7 +48,7 @@ const CyberMap: React.FC = () => {
       fillColor: '#e8904f',
       fillOpacity: 0.25,
       weight: 2,
-      className: 'senegal-highlight-glow'
+      className: 'senegal-highlight-glow',
     }).addTo(map);
 
     const dakarIcon = L.divIcon({
@@ -60,12 +60,24 @@ const CyberMap: React.FC = () => {
         <div class="dakar-orange-dot"></div>
       `,
       iconSize: [24, 24],
-      iconAnchor: [12, 12]
+      iconAnchor: [12, 12],
     });
 
     L.marker(DAKAR_COORDS, { icon: dakarIcon }).addTo(map);
 
+    // CRITICAL: Leaflet needs invalidateSize() after first paint on mobile
+    // Without this, the map stays grey/empty until the user resizes the window
+    const sizeTimer = setTimeout(() => {
+      map.invalidateSize();
+    }, 300);
+
+    // Also invalidate on window resize (orientation change)
+    const handleResize = () => map.invalidateSize();
+    window.addEventListener('resize', handleResize, { passive: true });
+
     return () => {
+      clearTimeout(sizeTimer);
+      window.removeEventListener('resize', handleResize);
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;

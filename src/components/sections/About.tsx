@@ -16,19 +16,28 @@ const About = () => {
 
     const animChildren = contentRef.current.querySelectorAll('.anim-child');
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top 70%',
-        end: 'bottom 20%',
-        toggleActions: 'play none none reverse'
-      }
-    });
+    // Small delay lets mobile Safari finish layout/paint before
+    // ScrollTrigger measures element positions
+    const setupTimeout = setTimeout(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          // start earlier on mobile to avoid elements staying invisible
+          start: 'top 85%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse',
+          // Refresh on resize/orientation change
+          invalidateOnRefresh: true,
+        }
+      });
 
-    tl.fromTo(animChildren,
-      { y: 40, opacity: 0, scale: 0.98 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out' }
-    );
+      tl.fromTo(animChildren,
+        { y: 40, opacity: 0, scale: 0.98 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out' }
+      );
+    }, 100);
+
+    return () => clearTimeout(setupTimeout);
   }, []);
 
   return (

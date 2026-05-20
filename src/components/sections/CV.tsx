@@ -29,38 +29,45 @@ const CV: React.FC = () => {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Timeline Animation
-    if (timelineRef.current) {
-      const items = timelineRef.current.querySelectorAll('.timeline-item');
-      gsap.fromTo(items,
-        { x: -50, opacity: 0 },
-        {
-          x: 0, opacity: 1, duration: 0.6, stagger: 0.2, ease: 'power2.out',
-          scrollTrigger: {
-            trigger: timelineRef.current,
-            start: 'top 80%',
+    // Small delay lets mobile Safari finish layout before ScrollTrigger measures positions
+    const setupTimeout = setTimeout(() => {
+      // Timeline Animation
+      if (timelineRef.current) {
+        const items = timelineRef.current.querySelectorAll('.timeline-item');
+        gsap.fromTo(items,
+          { x: -50, opacity: 0 },
+          {
+            x: 0, opacity: 1, duration: 0.6, stagger: 0.2, ease: 'power2.out',
+            scrollTrigger: {
+              trigger: timelineRef.current,
+              start: 'top 85%',
+              invalidateOnRefresh: true,
+            }
           }
-        }
-      );
-    }
+        );
+      }
 
-    // Skills Animation
-    if (skillsRef.current) {
-      const bars = skillsRef.current.querySelectorAll('.skill-progress-fill');
-      gsap.fromTo(bars,
-        { width: '0%' },
-        {
-          width: (_i, el) => `${el.getAttribute('data-level')}%`,
-          duration: 1.5,
-          ease: 'power4.out',
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: skillsRef.current,
-            start: 'top 80%',
+      // Skills Animation
+      if (skillsRef.current) {
+        const bars = skillsRef.current.querySelectorAll('.skill-progress-fill');
+        gsap.fromTo(bars,
+          { width: '0%' },
+          {
+            width: (_i, el) => `${el.getAttribute('data-level')}%`,
+            duration: 1.5,
+            ease: 'power4.out',
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: skillsRef.current,
+              start: 'top 85%',
+              invalidateOnRefresh: true,
+            }
           }
-        }
-      );
-    }
+        );
+      }
+    }, 100);
+
+    return () => clearTimeout(setupTimeout);
   }, []);
 
   return (

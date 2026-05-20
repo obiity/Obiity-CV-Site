@@ -81,33 +81,53 @@ const FabStore: React.FC = () => {
     const feature = featureRef.current;
     if (!section || !header || !grid || !feature) return;
 
-    gsap.fromTo(
-      header.querySelectorAll('.animate-text'),
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1, y: 0, stagger: 0.12, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: header, start: 'top 85%', toggleActions: 'play none none reverse' }
-      }
-    );
+    // Delay lets mobile Safari finish layout before ScrollTrigger measures positions
+    const setupTimeout = setTimeout(() => {
+      gsap.fromTo(
+        header.querySelectorAll('.animate-text'),
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, stagger: 0.12, duration: 1, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 88%',
+            toggleActions: 'play none none reverse',
+            invalidateOnRefresh: true,
+          }
+        }
+      );
 
-    gsap.fromTo(
-      grid.querySelectorAll('.store-card'),
-      { opacity: 0, y: 50, scale: 0.95 },
-      {
-        opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 1.1,
-        ease: 'elastic.out(1, 0.8)',
-        scrollTrigger: { trigger: grid, start: 'top 80%', toggleActions: 'play none none reverse' }
-      }
-    );
+      gsap.fromTo(
+        grid.querySelectorAll('.store-card'),
+        { opacity: 0, y: 50, scale: 0.95 },
+        {
+          opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 1.1,
+          ease: 'elastic.out(1, 0.8)',
+          scrollTrigger: {
+            trigger: grid,
+            start: 'top 88%',
+            toggleActions: 'play none none reverse',
+            invalidateOnRefresh: true,
+          }
+        }
+      );
 
-    gsap.fromTo(
-      feature,
-      { opacity: 0, y: 40, scale: 0.98 },
-      {
-        opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: feature, start: 'top 80%', toggleActions: 'play none none reverse' }
-      }
-    );
+      gsap.fromTo(
+        feature,
+        { opacity: 0, y: 40, scale: 0.98 },
+        {
+          opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: feature,
+            start: 'top 88%',
+            toggleActions: 'play none none reverse',
+            invalidateOnRefresh: true,
+          }
+        }
+      );
+    }, 100);
+
+    return () => clearTimeout(setupTimeout);
   }, []);
 
   return (

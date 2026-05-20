@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ArrowDown } from 'lucide-react';
 import './Hero.css';
@@ -14,6 +14,29 @@ const Hero: React.FC = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = ['/hero_bg_1.png', '/hero_bg_2.png', '/hero_bg_3.png'];
+
+  // Immediately make elements visible to avoid "stuck invisible" on mobile
+  // if GSAP animation is delayed too long or doesn't fire correctly
+  useLayoutEffect(() => {
+    const els = [
+      eyebrowRef.current,
+      subtitleRef.current,
+      scrollRef.current,
+      ...(ctaRef.current ? Array.from(ctaRef.current.children) : []),
+    ].filter(Boolean);
+    // Force a visible fallback — GSAP will override immediately when it runs
+    els.forEach((el) => {
+      if (el instanceof HTMLElement) {
+        el.style.opacity = '0';
+      }
+    });
+    if (titleRef.current) {
+      const lines = titleRef.current.querySelectorAll('.title-line');
+      lines.forEach((line) => {
+        if (line instanceof HTMLElement) line.style.opacity = '0';
+      });
+    }
+  }, []);
 
   useEffect(() => {
     // Performant passive GPU parallax effect

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git branch *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(Get-ChildItem -Path \"d:\\\\Obiity-CV-Site\\\\src\" -Recurse -Filter \"*.tsx\" -File)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(grep -E \"\\\\.\\(png|jpg|jpeg|svg\\)$\")",
+      "Bash(npx tsc *)",
+      "Bash(git checkout *)"
+    ]
+  }
+}

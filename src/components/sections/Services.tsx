@@ -35,21 +35,26 @@ const Services = () => {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    gsap.fromTo(cardsRef.current,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-          toggleActions: 'play none none reverse'
+    const setupTimeout = setTimeout(() => {
+      gsap.fromTo(cardsRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+            invalidateOnRefresh: true,
+          }
         }
-      }
-    );
+      );
+    }, 100);
+
+    return () => clearTimeout(setupTimeout);
   }, []);
 
   return (

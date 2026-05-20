@@ -1,6 +1,6 @@
 .services-section {
   padding: 100px 5vw;
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 
 .text-center {
@@ -110,4 +110,26 @@
   color: var(--text-muted);
   line-height: 1.6;
   font-size: 0.95rem;
+}
+
+/* On touch devices, disable hover transforms to avoid sticky states */
+@media (pointer: coarse) {
+  .service-card:hover {
+    transform: none;
+  }
+  .service-card:hover .service-icon {
+    transform: none;
+  }
+}
+
+/* Mobile padding */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 70px 5vw;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+  }
 }

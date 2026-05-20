@@ -148,50 +148,58 @@ const Portfolio: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
 
+  // Detect touch device to skip mouse parallax handlers
+  const isTouch = typeof window !== 'undefined' &&
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    gsap.fromTo(sectionRef.current.querySelector('.portfolio-header'),
-      { y: 50, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 1, ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        }
-      }
-    );
-
-    const items = sectionRef.current.querySelectorAll('.portfolio-item');
-    if (items.length > 0) {
-      gsap.fromTo(items,
-        { y: 80, opacity: 0, scale: 0.95 },
+    const setupTimeout = setTimeout(() => {
+      gsap.fromTo(sectionRef.current!.querySelector('.portfolio-header'),
+        { y: 50, opacity: 0 },
         {
-          y: 0, opacity: 1, scale: 1,
-          duration: 1.2,
-          stagger: 0.15,
-          ease: 'power4.out',
+          y: 0, opacity: 1, duration: 1, ease: 'power3.out',
           scrollTrigger: {
-            trigger: galleryRef.current,
-            start: 'top 85%',
+            trigger: sectionRef.current,
+            start: 'top 88%',
+            invalidateOnRefresh: true,
           }
         }
       );
-    }
+
+      const items = sectionRef.current!.querySelectorAll('.portfolio-item');
+      if (items.length > 0) {
+        gsap.fromTo(items,
+          { y: 80, opacity: 0, scale: 0.95 },
+          {
+            y: 0, opacity: 1, scale: 1,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: 'power4.out',
+            scrollTrigger: {
+              trigger: galleryRef.current,
+              start: 'top 88%',
+              invalidateOnRefresh: true,
+            }
+          }
+        );
+      }
+    }, 100);
+
+    return () => clearTimeout(setupTimeout);
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouch) return; // skip on touch devices
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
     const xc = rect.width / 2;
     const yc = rect.height / 2;
-    
     const dx = x - xc;
     const dy = y - yc;
-    
     const img = card.querySelector('.portfolio-image') as HTMLImageElement;
     if (img) {
       img.style.transform = `scale(1.1) translate(${dx * 0.05}px, ${dy * 0.05}px)`;
@@ -199,6 +207,7 @@ const Portfolio: React.FC = () => {
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouch) return; // skip on touch devices
     const card = e.currentTarget;
     const img = card.querySelector('.portfolio-image') as HTMLImageElement;
     if (img) {

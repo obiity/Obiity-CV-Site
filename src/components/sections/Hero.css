@@ -1,6 +1,11 @@
 .hero-section {
   position: relative;
-  height: 100vh;
+  /* Fix iOS Safari 100vh bug: use JS-computed --vh custom property */
+  height: calc(var(--vh, 1vh) * 100);
+  /* Fallback for browsers supporting dvh */
+  height: 100dvh;
+  /* Override with --vh when JS has set it */
+  height: calc(var(--vh, 1dvh) * 100);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -108,6 +113,25 @@
   left: 5%;
   animation-delay: -4s;
   animation-duration: 10s;
+}
+
+/* Reduce GPU load on mobile — simpler blur */
+@media (max-width: 768px) {
+  .hero-orb {
+    filter: blur(60px);
+  }
+  .hero-orb--cyan {
+    width: 350px;
+    height: 350px;
+  }
+  .hero-orb--violet {
+    width: 280px;
+    height: 280px;
+  }
+  /* Disable heavy pseudo-element on mobile */
+  .hero-orb--cyan::after {
+    display: none;
+  }
 }
 
 /* Third warm amber orb */

@@ -41,18 +41,37 @@
 
 html, body {
   width: 100%;
-  height: 100%;
+  /* Use --vh custom prop set by JS to fix iOS Safari 100vh bug */
+  min-height: calc(var(--vh, 1vh) * 100);
   background-color: var(--bg-primary);
   color: var(--text-light);
   font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+  /* Prevent horizontal bounce on iOS */
+  overscroll-behavior-x: none;
 }
 
 html {
   scroll-behavior: smooth;
 }
+
+/* Prevent tap highlight on mobile */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+  /* Remove 300ms click delay on mobile browsers */
+  touch-action: manipulation;
+}
+
+/* Support for iPhone notch / Dynamic Island safe areas */
+.app-container {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -106,8 +125,9 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  /* Use JS-set --vh to avoid iOS Safari toolbar bug */
+  height: calc(var(--vh, 1vh) * 100);
   z-index: -1;
   pointer-events: none;
 }
@@ -115,7 +135,7 @@ h1, h2, h3, h4, h5, h6 {
 .content-overlay {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   z-index: 1;
 }
 

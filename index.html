@@ -3,7 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/Favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Renforcé : viewport-fit=cover pour iPhone notch/Dynamic Island
+         shrink-to-fit=no évite le zoom automatique Safari
+         interactive-widget=resizes-content stabilise le layout quand le clavier s'ouvre -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, viewport-fit=cover, shrink-to-fit=no" />
+    <!-- Prevent iOS Safari from auto-formatting phone numbers / emails -->
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <!-- Prevent iOS tap highlight / bounce -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <!-- SEO -->
     <title>Obiity | Ousmane Biteye — Artiste 3D, VFX & Développeur Créatif</title>

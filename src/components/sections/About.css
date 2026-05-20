@@ -1,6 +1,7 @@
 .about-section {
   padding: 100px 5vw;
-  min-height: 100vh;
+  /* Fix iOS Safari 100vh bug */
+  min-height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
   justify-content: center;

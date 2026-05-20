@@ -19,32 +19,39 @@ const TechStack: React.FC = () => {
   useEffect(() => {
     if (!sectionRef.current || !trackRef.current) return;
 
-    // Floating animation
-    const items = trackRef.current.querySelectorAll('.tech-item');
-    items.forEach((item, i) => {
-      gsap.to(item, {
-        y: 'random(-15, 15)',
-        x: 'random(-10, 10)',
-        rotation: 'random(-5, 5)',
-        duration: 'random(3, 5)',
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: i * 0.2
-      });
-    });
+    const setupTimeout = setTimeout(() => {
+      const items = trackRef.current!.querySelectorAll('.tech-item');
 
-    // Scroll reveal
-    gsap.fromTo(items,
-      { scale: 0, opacity: 0 },
-      {
-        scale: 1, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'back.out(1.7)',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
+      // Floating animation — smaller range on mobile to avoid overflow
+      const isMobile = window.innerWidth < 768;
+      items.forEach((item, i) => {
+        gsap.to(item, {
+          y: isMobile ? 'random(-6, 6)' : 'random(-15, 15)',
+          x: isMobile ? 'random(-4, 4)' : 'random(-10, 10)',
+          rotation: isMobile ? 'random(-2, 2)' : 'random(-5, 5)',
+          duration: 'random(3, 5)',
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: i * 0.15,
+        });
+      });
+
+      // Scroll reveal
+      gsap.fromTo(items,
+        { scale: 0, opacity: 0 },
+        {
+          scale: 1, opacity: 1, duration: 0.8, stagger: 0.08, ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            invalidateOnRefresh: true,
+          }
         }
-      }
-    );
+      );
+    }, 100);
+
+    return () => clearTimeout(setupTimeout);
   }, []);
 
   return (

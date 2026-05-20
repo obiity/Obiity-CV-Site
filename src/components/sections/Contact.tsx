@@ -54,23 +54,38 @@ const Contact: React.FC = () => {
     const right = rightRef.current;
     if (!left || !right) return;
 
-    gsap.fromTo(
-      left.querySelectorAll('.c-anim'),
-      { x: -50, opacity: 0 },
-      {
-        x: 0, opacity: 1, stagger: 0.12, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: left, start: 'top 78%', toggleActions: 'play none none reverse' }
-      }
-    );
+    // Delay lets mobile Safari finish layout before ScrollTrigger measures positions
+    const setupTimeout = setTimeout(() => {
+      gsap.fromTo(
+        left.querySelectorAll('.c-anim'),
+        { x: -50, opacity: 0 },
+        {
+          x: 0, opacity: 1, stagger: 0.12, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: left,
+            start: 'top 88%',
+            toggleActions: 'play none none reverse',
+            invalidateOnRefresh: true,
+          }
+        }
+      );
 
-    gsap.fromTo(
-      right,
-      { x: 60, opacity: 0 },
-      {
-        x: 0, opacity: 1, duration: 1.1, ease: 'power3.out',
-        scrollTrigger: { trigger: right, start: 'top 78%', toggleActions: 'play none none reverse' }
-      }
-    );
+      gsap.fromTo(
+        right,
+        { x: 60, opacity: 0 },
+        {
+          x: 0, opacity: 1, duration: 1.1, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: right,
+            start: 'top 88%',
+            toggleActions: 'play none none reverse',
+            invalidateOnRefresh: true,
+          }
+        }
+      );
+    }, 100);
+
+    return () => clearTimeout(setupTimeout);
   }, []);
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
