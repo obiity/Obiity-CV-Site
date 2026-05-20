@@ -113,6 +113,9 @@
   flex-shrink: 0;
   padding: 0.6rem 1.5rem;
   font-size: 0.82rem;
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 
 /* CV download button */

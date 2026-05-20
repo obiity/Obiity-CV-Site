@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { Sun, Moon } from 'lucide-react';
 import './Header.css';
+import CollaborateModal from './CollaborateModal';
 
 const navLinks = [
   { label: 'À Propos', href: '#about' },
@@ -10,12 +11,14 @@ const navLinks = [
   { label: 'Marketplace', href: '#store' },
   { label: 'Logiciels', href: '#tech' },
   { label: 'Expériences', href: '#cv' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [isLight, setIsLight] = useState(
     () => document.documentElement.getAttribute('data-theme') === 'light'
   );
@@ -93,13 +96,12 @@ const Header: React.FC = () => {
         </ul>
 
         {/* CTA Button */}
-        <a
-          href="#contact"
+        <button
           className="header__cta btn-primary"
-          onClick={(e) => handleNavClick(e, '#contact')}
+          onClick={() => setModalOpen(true)}
         >
           Collaborer
-        </a>
+        </button>
 
         {/* Theme Toggle */}
         <button
@@ -120,6 +122,8 @@ const Header: React.FC = () => {
           <span /><span /><span />
         </button>
       </nav>
+
+      <CollaborateModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
 
       {/* Mobile Menu */}
       <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}>

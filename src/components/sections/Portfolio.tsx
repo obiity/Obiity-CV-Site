@@ -8,6 +8,33 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     id: 1,
+    title: 'Publicité pour les climatiseurs Airton',
+    client: 'OBIITY',
+    location: 'Dakar - 2026',
+    image: '/Publicité pour les climatiseurs Airton.png',
+    link: 'https://obiity.com/publicite-climatiseurs-airton',
+    size: 'large'
+  },
+  {
+    id: 2,
+    title: 'Lancer Javelot - Jeu VR',
+    client: 'OBIITY',
+    location: 'Dakar - 2026',
+    image: '/Lancer Javelot.png',
+    link: 'https://obiity.com/lancer-javelot-jeu-vr',
+    size: 'medium'
+  },
+  {
+    id: 4,
+    title: 'ARCHI 3D',
+    client: 'OBIITY',
+    location: 'Dakar - 2026',
+    image: '/PLAN ARCHI 3D.png',
+    link: 'https://obiity.com/plan-archi-3d',
+    size: 'medium'
+  },
+  {
+    id: 5,
     title: 'DEVENIR AGRI-ENTREPRENEUR',
     client: 'KTM ACADEMY',
     location: 'Dakar - 2026',
@@ -16,25 +43,25 @@ const projects = [
     size: 'large'
   },
   {
-    id: 2,
-    title: 'SHORT ANIMATION (TEST)',
-    client: 'OBIITY',
-    location: 'Dakar - 2023',
-    image: '/SHORT ANIMATION (TEST).png',
-    link: 'https://obiity.com/short-animation',
+    id: 6,
+    title: 'BOOSTGI-JOBS',
+    client: 'ENCAF - KTM ADVANCE SN',
+    location: 'Dakar - 2025',
+    image: '/BOOSTGI-JOBS.jpeg',
+    link: 'https://obiity.com/boostgi-jobs',
     size: 'medium'
   },
   {
-    id: 3,
-    title: 'DOLCE FRUITI (PUB)',
-    client: 'OBIITY',
-    location: 'Dakar - 2026',
-    image: '/DOLCE FRUITI (PUB).png',
-    link: 'https://obiity.com/dolce-fruiti',
+    id: 7,
+    title: 'PROJET DE DIGITALISATION',
+    client: 'DER - KTM ADVANCE SN',
+    location: 'Dakar - 2025',
+    image: '/PROJET DE DIGITALISATION.png',
+    link: 'https://obiity.com/digitalisation',
     size: 'medium'
   },
   {
-    id: 4,
+    id: 8,
     title: 'ERROR 404',
     client: 'OBIITY',
     location: 'Dakar - 2025',
@@ -43,7 +70,7 @@ const projects = [
     size: 'large'
   },
   {
-    id: 5,
+    id: 9,
     title: 'KING OF ARENA',
     client: 'DAMEL STUDIO',
     location: 'Dakar - 2025',
@@ -52,7 +79,7 @@ const projects = [
     size: 'medium'
   },
   {
-    id: 6,
+    id: 10,
     title: 'FULANI',
     client: 'DAMEL STUDIO',
     location: 'Dakar - 2023',
@@ -61,49 +88,13 @@ const projects = [
     size: 'medium'
   },
   {
-    id: 7,
+    id: 11,
     title: 'LAST LOADOUT - SURF SCOP',
     client: 'SAIPEM',
     location: 'Dakar - 2024',
     image: '/LAST LOADOUT - SURF SCOP.png',
     link: 'https://obiity.com/last-loadout',
     size: 'large'
-  },
-  {
-    id: 8,
-    title: 'WNPWY - DIP DOUNDOU GUISS',
-    client: 'OBIITY',
-    location: 'Dakar - 2024',
-    image: '/WNPWY - DIP DOUNDOU GUISS.JPG',
-    link: 'https://obiity.com/wnpwy',
-    size: 'medium'
-  },
-  {
-    id: 9,
-    title: 'SAIPEM TRAINING CAMP',
-    client: 'SAIPEM',
-    location: 'Dakar - 2024',
-    image: '/SAIPEM TRAINING CAMP.jpg',
-    link: 'https://obiity.com/training-camp',
-    size: 'medium'
-  },
-  {
-    id: 10,
-    title: 'BOOSTGI-JOBS',
-    client: 'ENCAF - KTM ADVANCE SN',
-    location: 'Dakar - 2025',
-    image: '/BOOSTGI-JOBS.jpeg',
-    link: 'https://obiity.com/boostgi-jobs',
-    size: 'large'
-  },
-  {
-    id: 11,
-    title: 'FEMMES SOUS UN BAOBAB',
-    client: 'UNICEF',
-    location: 'Dakar - 2023',
-    image: '/FEMMES SOUS UN BAOBAB.png',
-    link: 'https://obiity.com/femmes-sous-un-baobab',
-    size: 'medium'
   },
   {
     id: 12,
@@ -116,15 +107,51 @@ const projects = [
   },
   {
     id: 13,
-    title: 'PROJET DE DIGITALISATION',
-    client: 'DER - KTM ADVANCE SN',
-    location: 'Dakar - 2025',
-    image: '/PROJET DE DIGITALISATION.png',
-    link: 'https://obiity.com/digitalisation',
+    title: 'SAIPEM TRAINING CAMP',
+    client: 'SAIPEM',
+    location: 'Dakar - 2024',
+    image: '/SAIPEM TRAINING CAMP.jpg',
+    link: 'https://obiity.com/training-camp',
+    size: 'medium'
+  },
+  {
+    id: 15,
+    title: 'FEMMES SOUS UN BAOBAB',
+    client: 'UNICEF',
+    location: 'Dakar - 2023',
+    image: '/FEMMES SOUS UN BAOBAB.png',
+    link: 'https://obiity.com/femmes-sous-un-baobab',
     size: 'large'
   },
   {
     id: 14,
+    title: 'SHORT ANIMATION (TEST)',
+    client: 'OBIITY',
+    location: 'Dakar - 2023',
+    image: '/SHORT ANIMATION (TEST).png',
+    link: 'https://obiity.com/short-animation',
+    size: 'medium'
+  },
+  {
+    id: 17,
+    title: 'DOLCE FRUITI (PUB)',
+    client: 'OBIITY',
+    location: 'Dakar - 2026',
+    image: '/DOLCE FRUITI (PUB).png',
+    link: 'https://obiity.com/dolce-fruiti',
+    size: 'medium'
+  },
+  {
+    id: 16,
+    title: 'WNPWY - DIP DOUNDOU GUISS',
+    client: 'OBIITY',
+    location: 'Dakar - 2024',
+    image: '/WNPWY - DIP DOUNDOU GUISS.JPG',
+    link: 'https://obiity.com/wnpwy',
+    size: 'large'
+  },
+  {
+    id: 18,
     title: 'XÉÉR',
     client: 'OBIITY',
     location: 'Dakar - 2023',
@@ -133,39 +160,12 @@ const projects = [
     size: 'medium'
   },
   {
-    id: 15,
+    id: 19,
     title: 'CORNICHE',
     client: 'OBIITY',
     location: 'Dakar - 2023',
     image: '/CORNICHE.png',
     link: 'https://obiity.com/corniche',
-    size: 'medium'
-  },
-  {
-    id: 16,
-    title: 'Publicité pour les climatiseurs Airton',
-    client: 'OBIITY',
-    location: 'Dakar - 2024',
-    image: '/Publicité pour les climatiseurs Airton.png',
-    link: 'https://obiity.com/publicite-climatiseurs-airton',
-    size: 'large'
-  },
-  {
-    id: 17,
-    title: 'Lancer Javelot - Jeu VR',
-    client: 'OBIITY',
-    location: 'Dakar - 2024',
-    image: '/Lancer Javelot.png',
-    link: 'https://obiity.com/lancer-javelot-jeu-vr',
-    size: 'medium'
-  },
-  {
-    id: 18,
-    title: 'PLAN ARCHI 3D',
-    client: 'OBIITY',
-    location: 'Dakar - 2024',
-    image: '/PLAN ARCHI 3D.png',
-    link: 'https://obiity.com/plan-archi-3d',
     size: 'medium'
   }
 ];

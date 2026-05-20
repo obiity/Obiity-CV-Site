@@ -1,0 +1,613 @@
+/* ============================================================
+   COLLABORATE MODAL — Premium Obiity Design
+   ============================================================ */
+
+/* ---------- Overlay ---------- */
+.collab-overlay {
+  /* Rendered via ReactDOM.createPortal at document.body — no parent transform can affect it */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  display: flex;
+  /* "safe center" prevents the panel from being clipped above the viewport on short screens */
+  align-items: safe center;
+  justify-content: center;
+  /* Symmetric padding creates the floating-card gap on all sides */
+  padding: clamp(1rem, 4vh, 2.5rem) clamp(1rem, 3vw, 2rem);
+  background: rgba(4, 2, 1, 0.76);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  /* Allow the overlay itself to scroll when the panel is taller than the safe-center zone */
+  overflow-y: auto;
+}
+
+/* ---------- Panel ---------- */
+.collab-panel {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  /*
+   * max-height = 92% of the dynamic viewport (excludes mobile browser chrome).
+   * Falls back through: svh → --vh JS variable → plain vh.
+   * The overlay padding handles the visual breathing room, so the panel
+   * itself can grow close to the full viewport without clipping.
+   */
+  max-height: min(92dvh, 92svh, calc(var(--vh, 1vh) * 92));
+  /* margin: auto keeps it centred when the overlay itself scrolls (very tall content) */
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: linear-gradient(145deg, #111008, #0e0c06);
+  border: 1px solid rgba(255, 122, 47, 0.22);
+  border-radius: 20px;
+  box-shadow:
+    0 0 0 1px rgba(255, 122, 47, 0.06),
+    0 32px 80px rgba(0, 0, 0, 0.85),
+    0 0 60px rgba(255, 122, 47, 0.08);
+}
+
+/* ---------- Scrollable body ---------- */
+.collab-panel__body {
+  flex: 1;
+  min-height: 0;        /* critical: lets flex child shrink below content size */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 122, 47, 0.3) transparent;
+}
+
+.collab-panel__body::-webkit-scrollbar { width: 4px; }
+.collab-panel__body::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--accent-primary), var(--accent-tertiary));
+  border-radius: 2px;
+}
+
+/* ---------- Close button — bare X, absolute top-right ---------- */
+.collab-panel__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 30;
+  /* 44×44 touch target, no visual shape */
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  color: rgba(245, 240, 235, 0.9);
+  cursor: pointer;
+  transition: color 0.18s ease, transform 0.2s ease;
+}
+
+.collab-panel__close:hover {
+  color: var(--accent-primary);
+  transform: rotate(90deg);
+}
+
+.collab-panel__close:focus-visible {
+  outline: none;
+  color: var(--accent-primary);
+}
+
+/* ---------- Panel Header ---------- */
+.collab-panel__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* Right padding reserves space so the title never slides under the close button */
+  padding: 1.75rem 4.5rem 1.4rem 2rem;
+  border-bottom: 1px solid rgba(255, 122, 47, 0.1);
+  flex-shrink: 0;
+  background: linear-gradient(145deg, #111008, #0e0c06);
+}
+
+.collab-panel__label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  padding: 0.25rem 0.85rem;
+  border: 1px solid rgba(255, 122, 47, 0.25);
+  border-radius: 100px;
+  background: rgba(255, 122, 47, 0.06);
+  width: fit-content;
+}
+
+.collab-panel__title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  line-height: 1.1;
+}
+
+/* ---------- Form ---------- */
+.collab-form {
+  padding: 1.5rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ---------- Fieldset ---------- */
+.collab-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-top: 1.25rem;
+}
+
+.collab-legend {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 122, 47, 0.12);
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- Row layout ---------- */
+.collab-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ---------- Field ---------- */
+.collab-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.collab-field--animate {
+  animation: fieldSlideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes fieldSlideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.collab-field label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.collab-required {
+  color: var(--accent-primary);
+  margin-left: 2px;
+}
+
+.collab-optional {
+  font-weight: 400;
+  color: rgba(154, 140, 130, 0.6);
+  font-size: 0.7rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---------- Inputs ---------- */
+.collab-form input[type="text"],
+.collab-form input[type="email"],
+.collab-form input[type="tel"],
+.collab-form input[type="url"],
+.collab-form select {
+  width: 100%;
+  padding: 0.72rem 1rem;
+  background: rgba(255, 122, 47, 0.04);
+  border: 1px solid rgba(255, 122, 47, 0.15);
+  border-radius: 10px;
+  color: var(--text-light);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  -webkit-appearance: none;
+}
+
+.collab-form select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23FF7A2F' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.collab-form select option {
+  background: #111008;
+  color: var(--text-light);
+}
+
+.collab-form input::placeholder {
+  color: rgba(154, 140, 130, 0.4);
+  font-size: 0.88rem;
+}
+
+.collab-form input:focus,
+.collab-form select:focus {
+  border-color: rgba(255, 122, 47, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 122, 47, 0.1), 0 0 16px rgba(255, 122, 47, 0.07);
+  background: rgba(255, 122, 47, 0.07);
+}
+
+.collab-form input:disabled,
+.collab-form select:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.collab-input--error {
+  border-color: rgba(239, 68, 68, 0.55) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.collab-error {
+  font-size: 0.75rem;
+  color: #f87171;
+  margin-top: 0.1rem;
+}
+
+.collab-error--checkbox {
+  display: block;
+  margin-top: -0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- Radio buttons ---------- */
+.collab-radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.collab-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 0.55rem 1rem;
+  border: 1px solid rgba(255, 122, 47, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 122, 47, 0.03);
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  user-select: none;
+}
+
+.collab-radio-label input[type="radio"] {
+  display: none;
+}
+
+.collab-radio-custom {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 122, 47, 0.35);
+  position: relative;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease;
+}
+
+.collab-radio-custom::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.collab-radio-label:has(input:checked) {
+  border-color: rgba(255, 122, 47, 0.5);
+  background: rgba(255, 122, 47, 0.1);
+  color: var(--text-light);
+}
+
+.collab-radio-label:has(input:checked) .collab-radio-custom {
+  border-color: var(--accent-primary);
+}
+
+.collab-radio-label:has(input:checked) .collab-radio-custom::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.collab-radio-label:hover:not(:has(input:disabled)) {
+  border-color: rgba(255, 122, 47, 0.35);
+  background: rgba(255, 122, 47, 0.06);
+  color: var(--text-light);
+}
+
+/* ---------- Checkbox ---------- */
+.collab-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(255, 122, 47, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 122, 47, 0.03);
+  margin-top: 0.75rem;
+  user-select: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  line-height: 1.5;
+}
+
+.collab-checkbox-label--error {
+  border-color: rgba(239, 68, 68, 0.45) !important;
+  background: rgba(239, 68, 68, 0.04) !important;
+}
+
+.collab-checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.collab-checkbox-custom {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 2px solid rgba(255, 122, 47, 0.35);
+  background: rgba(255, 122, 47, 0.04);
+  position: relative;
+  margin-top: 1px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.collab-checkbox-custom::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 5px;
+  height: 9px;
+  border-right: 2px solid var(--accent-primary);
+  border-bottom: 2px solid var(--accent-primary);
+  transform: rotate(45deg) scale(0);
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.15s ease;
+}
+
+.collab-checkbox-label:has(input:checked) .collab-checkbox-custom {
+  border-color: var(--accent-primary);
+  background: rgba(255, 122, 47, 0.12);
+}
+
+.collab-checkbox-label:has(input:checked) .collab-checkbox-custom::after {
+  transform: rotate(45deg) scale(1);
+  opacity: 1;
+}
+
+.collab-checkbox-label:has(input:checked) {
+  border-color: rgba(255, 122, 47, 0.3);
+  background: rgba(255, 122, 47, 0.06);
+  color: var(--text-light);
+}
+
+/* ---------- Submit area ---------- */
+.collab-submit-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.collab-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 2.5rem;
+  font-size: 0.88rem;
+  width: 100%;
+  justify-content: center;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.collab-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.collab-spinner {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.collab-response-time {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* ---------- Feedback states ---------- */
+.collab-feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+}
+
+.collab-feedback h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.collab-feedback p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+.collab-feedback--success svg { color: #4ade80; }
+.collab-feedback--error   svg { color: #f87171; }
+
+.collab-btn-close {
+  margin-top: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 0.85rem;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ============================================================
+   LIGHT THEME overrides
+   ============================================================ */
+[data-theme="light"] .collab-overlay {
+  background: rgba(255, 250, 245, 0.45);
+}
+
+[data-theme="light"] .collab-panel {
+  background: linear-gradient(145deg, #FFFAF5, #F5EFE6);
+  border-color: rgba(255, 122, 47, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(255, 122, 47, 0.08),
+    0 32px 80px rgba(0, 0, 0, 0.2),
+    0 0 60px rgba(255, 122, 47, 0.06);
+}
+
+[data-theme="light"] .collab-panel {
+  background: linear-gradient(145deg, #FFFAF5, #F5EFE6);
+}
+
+[data-theme="light"] .collab-panel__header {
+  background: linear-gradient(145deg, #FFFAF5, #F5EFE6);
+}
+
+[data-theme="light"] .collab-panel__close {
+  color: rgba(28, 22, 16, 0.75);
+}
+
+[data-theme="light"] .collab-panel__close:hover {
+  color: var(--accent-primary);
+}
+
+[data-theme="light"] .collab-form input[type="text"],
+[data-theme="light"] .collab-form input[type="email"],
+[data-theme="light"] .collab-form input[type="tel"],
+[data-theme="light"] .collab-form input[type="url"],
+[data-theme="light"] .collab-form select {
+  background: rgba(255, 122, 47, 0.03);
+  border-color: rgba(255, 122, 47, 0.2);
+  color: #1C1610;
+}
+
+[data-theme="light"] .collab-form select option {
+  background: #F5EFE6;
+  color: #1C1610;
+}
+
+[data-theme="light"] .collab-form input::placeholder {
+  color: rgba(107, 94, 84, 0.45);
+}
+
+[data-theme="light"] .collab-radio-label,
+[data-theme="light"] .collab-checkbox-label {
+  color: #6B5E54;
+}
+
+[data-theme="light"] .collab-radio-label:has(input:checked),
+[data-theme="light"] .collab-checkbox-label:has(input:checked) {
+  color: #1C1610;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 640px) {
+  .collab-overlay {
+    /* Bottom-sheet layout: panel anchors to the bottom edge */
+    padding: 0;
+    align-items: flex-end;
+    /* Overlay still scrollable in case of very tall content */
+    overflow-y: auto;
+  }
+
+  .collab-panel {
+    /* Fills up to 94 % of the dynamic viewport — excludes iOS browser chrome */
+    max-height: min(94dvh, 94svh, calc(var(--vh, 1vh) * 94));
+    border-radius: 20px 20px 0 0;
+    max-width: 100%;
+    margin: 0; /* override the desktop margin: auto */
+    width: 100%;
+  }
+
+  .collab-panel__header {
+    padding: 1.4rem 4rem 1.1rem 1.25rem;
+  }
+
+  .collab-panel__close {
+    top: 0.85rem;
+    right: 0.85rem;
+  }
+
+  .collab-panel__title {
+    font-size: 1.2rem;
+  }
+
+  .collab-form {
+    /* Extra bottom padding for iOS home-indicator bar */
+    padding: 1.1rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .collab-row {
+    grid-template-columns: 1fr;
+  }
+
+  .collab-radios {
+    flex-direction: column;
+  }
+
+  .collab-radio-label {
+    width: 100%;
+  }
+
+  .collab-submit-btn {
+    padding: 0.9rem 1.5rem;
+  }
+}
