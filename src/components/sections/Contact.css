@@ -441,6 +441,25 @@
   to   { transform: scale(1); opacity: 1; }
 }
 
+/* ── Error banner ── */
+.form-error-msg {
+  background: rgba(239, 68, 68, 0.07);
+  border: 1px solid rgba(239, 68, 68, 0.22);
+  color: #f87171;
+  border-radius: 10px;
+  padding: 0.8rem 1.1rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.form-error-msg a {
+  color: #f87171;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* ── FOOTER ── */
 .contact-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.05);

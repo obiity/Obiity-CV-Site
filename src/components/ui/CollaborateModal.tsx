@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import gsap from 'gsap';
 import { X, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { sendCollabEmail } from '../../lib/emailService';
 import './CollaborateModal.css';
 
 interface CollaborateModalProps {
@@ -122,11 +123,22 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
     if (!validate()) return;
 
     setStatus('loading');
-    // Simulate async submission — replace with real API call
-    await new Promise(r => setTimeout(r, 1800));
-    // 90% success for demo; wire real endpoint here
-    const ok = Math.random() > 0.05;
-    setStatus(ok ? 'success' : 'error');
+    try {
+      await sendCollabEmail({
+        fullName:          form.fullName,
+        email:             form.email,
+        phone:             form.phone,
+        company:           form.company,
+        website:           form.website,
+        budget:            form.budget === 'custom'
+                             ? (form.budgetCustom || 'À discuter')
+                             : form.budget,
+        collaborationType: form.collaborationType,
+      });
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   };
 
   const handleChange = (

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Send, MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react';
+import { sendContactEmail } from '../../lib/emailService';
 import './Contact.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -48,6 +49,7 @@ const Contact: React.FC = () => {
   const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted,    setSubmitted]    = useState(false);
+  const [hasError,     setHasError]     = useState(false);
 
   useEffect(() => {
     const left  = leftRef.current;
@@ -88,15 +90,20 @@ const Contact: React.FC = () => {
     return () => clearTimeout(setupTimeout);
   }, []);
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setHasError(false);
+    try {
+      await sendContactEmail(formState);
       setSubmitted(true);
       setFormState({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1500);
+      setTimeout(() => setSubmitted(false), 7000);
+    } catch {
+      setHasError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -184,6 +191,13 @@ const Contact: React.FC = () => {
                   <h3 className="form-title">Votre message</h3>
                   <span className="form-badge">Réponse sous 24h</span>
                 </div>
+
+                {hasError && (
+                  <div className="form-error-msg" role="alert">
+                    Une erreur est survenue lors de l'envoi. Veuillez réessayer ou me contacter directement à{' '}
+                    <a href="mailto:obiity1@gmail.com">obiity1@gmail.com</a>.
+                  </div>
+                )}
 
                 {/* Row: name + email */}
                 <div className="form-row-duo">
