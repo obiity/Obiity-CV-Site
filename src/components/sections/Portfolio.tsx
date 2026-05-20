@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ExternalLink, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import './Portfolio.css';
-
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
@@ -141,6 +140,33 @@ const projects = [
     image: '/CORNICHE.png',
     link: 'https://obiity.com/corniche',
     size: 'medium'
+  },
+  {
+    id: 16,
+    title: 'TRADITIONAL AFRICAN DJEMBE DRUM',
+    client: 'OBIITY',
+    location: 'Dakar - 2024',
+    image: '/Traditional African Djembe Drum.png',
+    link: 'https://obiity.com/traditional-african-djembe-drum',
+    size: 'large'
+  },
+  {
+    id: 17,
+    title: 'SENEGALESE CAR RAPIDE',
+    client: 'OBIITY',
+    location: 'Dakar - 2024',
+    image: '/Senegalese Car Rapide.png',
+    link: 'https://obiity.com/senegalese-car-rapide',
+    size: 'medium'
+  },
+  {
+    id: 18,
+    title: 'AFRICAN TRIBAL MASK',
+    client: 'OBIITY',
+    location: 'Dakar - 2024',
+    image: '/African Tribal Mask.png',
+    link: 'https://obiity.com/african-tribal-mask',
+    size: 'medium'
   }
 ];
 
@@ -256,15 +282,11 @@ const Portfolio: React.FC = () => {
         ))}
       </div>
 
-      <div className="portfolio-footer">
-        <a 
-          href="https://obiity.com/realisations" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="fab-link"
-        >
-          Voir toutes les réalisations <ExternalLink size={18} />
-        </a>
+      <div className="other-projects-section">
+        <h3 className="other-projects-title">Autres projets</h3>
+        <div className="other-projects-image-wrapper">
+          <img src="/Untitled-4.png" alt="Autres projets" className="other-projects-image" />
+        </div>
       </div>
     </section>
   );
