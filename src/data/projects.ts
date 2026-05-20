@@ -31,14 +31,14 @@ export const projects: Project[] = [
     id: 1,
     slug: "airton-climatiseurs",
     title: "Publicité pour les climatiseurs Airton",
-    client: "OBIITY",
+    client: "AIRTON",
     year: "2026",
     category: "3D · Motion Design · Publicité",
     tags: ["3D", "Motion Design", "VFX", "Publicité", "Rendu Photoréaliste"],
     description:
       "Conception et réalisation d'une publicité 3D pour les climatiseurs Airton. Chaque plan est modélisé, éclairé et animé à la main — un travail artisanal de précision qui allie rendu photoréaliste, motion design et direction artistique soignée pour donner vie au produit dans un univers visuel fort.",
     context:
-      "Ce projet témoigne du savoir-faire technique et créatif d'OBIITY en production 3D publicitaire. De la modélisation du produit à la colorimétrie finale, chaque étape a été pensée et exécutée manuellement pour garantir un résultat à la hauteur des exigences d'une communication de marque premium.",
+      "De la modélisation du produit à la colorimétrie finale, chaque étape a été pensée et exécutée manuellement. Un travail de précision technique et créatif en production 3D publicitaire, pour garantir un résultat à la hauteur des exigences d'une communication de marque premium.",
     objectives: [
       "Modéliser et texturer le produit avec fidélité et précision",
       "Concevoir un éclairage cinématique valorisant chaque angle du climatiseur",
