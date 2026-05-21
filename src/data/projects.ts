@@ -58,6 +58,7 @@ export const projects: Project[] = [
       { src: "/Publicité pour les climatiseurs Airton1.png", alt: "Publicité Airton — rendu 2" },
       { src: "/Publicité pour les climatiseurs Airton2.png", alt: "Publicité Airton — rendu 3" },
     ],
+    videos: [{ type: 'local', src: '/Publicité pour les climatiseurs Airton.mp4' }],
   },
   {
     id: 2,
