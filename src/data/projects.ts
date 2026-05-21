@@ -253,24 +253,20 @@ export const projects: Project[] = [
     title: "Accès au financement aux producteurs de FA",
     client: "ENDEV",
     year: "2025",
-    category: "Vidéo Institutionnelle · Communication · Développement",
-    tags: ["Vidéo Institutionnelle", "Communication", "Développement", "Agriculture", "Impact Social"],
+    category: "Motion Design · Vidéo · Communication Visuelle",
+    tags: ["Motion Design", "Vidéo", "Communication Visuelle", "Institutionnel", "Impact Social"],
     description:
-      "Production vidéo institutionnelle pour ENDEV, mettant en lumière le programme d'accès au financement destiné aux producteurs de Filières Agricoles. La vidéo documente les actions menées sur le terrain, les résultats obtenus et l'impact concret du programme — un outil de communication puissant au service du développement agricole local.",
+      "Conception et réalisation d'une vidéo de présentation en Motion Design pour ENDEV, mettant en lumière le programme d'accès au financement destiné aux producteurs de Filières Agricoles. La vidéo articule résultats chiffrés, actions terrain et impacts du programme à travers une narration visuelle dynamique et une direction artistique soignée.",
     context:
-      "Dans un contexte où l'accès au financement constitue un frein majeur pour le développement agricole, ce programme vise à faciliter l'accès aux ressources financières pour les producteurs locaux. La vidéo capture les témoignages, les résultats chiffrés et les dynamiques de terrain qui témoignent de l'impact transformateur du programme ENDEV sur les communautés bénéficiaires.",
+      "Ce projet illustre comment le Motion Design peut transformer des données institutionnelles complexes en une communication visuelle claire, engageante et impactante. La vidéo s'adresse aux partenaires, bailleurs et bénéficiaires du programme ENDEV, avec un message fort sur les retombées concrètes de l'initiative d'accès au financement agricole.",
     objectives: [
-      "Documenter les actions et résultats du programme d'accès au financement",
-      "Mettre en valeur l'impact concret sur les producteurs de Filières Agricoles",
-      "Créer un outil de communication institutionnel fort et crédible",
-      "Valoriser les bénéficiaires et leurs témoignages terrain",
+      "Traduire les résultats du programme en narration visuelle forte via le Motion Design",
+      "Mettre en valeur les impacts concrets sur les producteurs de Filières Agricoles",
+      "Créer un outil de communication institutionnel moderne et premium",
+      "Assurer une diffusion claire et percutante des données et résultats du programme",
     ],
     heroImage: "/Untitled-4.png",
-    gallery: [
-      { src: "/Untitled-4.png", alt: "ENDEV — accès au financement" },
-      { src: "/Untitled-5.png", alt: "ENDEV — producteurs FA" },
-    ],
-    galleryVariant: 'editorial',
+    gallery: [],
     videos: [{ type: 'local', src: '/ENDEV - Accès au financement.mov' }],
   },
   {
