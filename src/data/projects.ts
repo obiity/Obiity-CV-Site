@@ -325,6 +325,7 @@ export const projects: Project[] = [
       { src: "/Last Loadout 4.png", alt: "Last Loadout — image 4" },
       { src: "/Last Loadout 5.png", alt: "Last Loadout — image 5" },
       { src: "/Last Loadout 6.png", alt: "Last Loadout — image 6" },
+      { src: "/Last Loadout 7.png", alt: "Last Loadout — image 7" },
       { src: CDN + "capture-daa-c-cran-32-D11xFXlmll1o1hXe.png", alt: "Last Loadout — opération offshore 1" },
       { src: CDN + "capture-daa-c-cran-27-tz5vlNfJacgR1xx1.png", alt: "Last Loadout — opération offshore 2" },
     ],
@@ -376,9 +377,14 @@ export const projects: Project[] = [
       "Témoigner de l'impact social de l'initiative de formation",
     ],
     heroImage: "/SAIPEM TRAINING CAMP.jpg",
+    galleryVariant: 'editorial',
     gallery: [
       { src: CDN + "_mg_2494-DTApy5jSPILaM98K.jpg", alt: "Saipem Training Camp — cérémonie 1" },
       { src: CDN + "_mg_2588-a5oeMrHpP214Tr66.jpg", alt: "Saipem Training Camp — cérémonie 2" },
+      { src: "/SAIPEM TRAINING CAMP 1.jpg", alt: "Saipem Training Camp — image 1" },
+      { src: "/SAIPEM TRAINING CAMP 2.jpg", alt: "Saipem Training Camp — image 2" },
+      { src: "/SAIPEM TRAINING CAMP 3.jpg", alt: "Saipem Training Camp — image 3" },
+      { src: "/SAIPEM TRAINING CAMP 4.jpg", alt: "Saipem Training Camp — image 4" },
     ],
   },
   {
