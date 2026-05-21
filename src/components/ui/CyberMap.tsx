@@ -9,8 +9,6 @@ const MAP_CENTER_COORDS: [number, number] = [14.7167, -12.0];
 const CyberMap: React.FC = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
-  const hintRef = useRef<HTMLDivElement>(null);
-  const hintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
@@ -73,7 +71,6 @@ const CyberMap: React.FC = () => {
     // ── Scroll-wheel zoom: active only while cursor is on the map ──
     const enableScrollZoom = () => {
       map.scrollWheelZoom.enable();
-      showHint('Scroll pour zoomer');
     };
     const disableScrollZoom = () => {
       map.scrollWheelZoom.disable();
@@ -106,7 +103,6 @@ const CyberMap: React.FC = () => {
       container.removeEventListener('touchend',    handleTouchEnd);
       container.removeEventListener('touchcancel', handleTouchEnd);
       clearTimeout(sizeTimer);
-      if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
       window.removeEventListener('resize', handleResize);
       if (mapRef.current) {
         mapRef.current.remove();
@@ -115,21 +111,9 @@ const CyberMap: React.FC = () => {
     };
   }, []);
 
-  const showHint = (text: string) => {
-    const hint = hintRef.current;
-    if (!hint) return;
-    hint.textContent = text;
-    hint.classList.add('is-visible');
-    if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
-    hintTimerRef.current = setTimeout(() => {
-      hint.classList.remove('is-visible');
-    }, 1800);
-  };
-
   return (
     <div className="cyber-map-container">
       <div ref={mapContainerRef} className="leaflet-earth-map-canvas" />
-      <div ref={hintRef} className="cyber-map-hint" aria-hidden="true" />
     </div>
   );
 };
