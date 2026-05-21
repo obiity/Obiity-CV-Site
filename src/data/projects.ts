@@ -108,6 +108,7 @@ export const projects: Project[] = [
       { src: "/PLAN ARCHI 3D2.png", alt: "Archi 3D — visualisation 2" },
       { src: "/PLAN ARCHI 3D1.png", alt: "Archi 3D — visualisation 1" },
     ],
+    mobileGalleryOrder: [0, 2, 1],
   },
   {
     id: 5,

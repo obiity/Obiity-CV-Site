@@ -246,11 +246,16 @@ const ProjectPage = () => {
               </div>
             ) : (
               /* Grid or showcase */
+              (() => {
+                const gridImages = (editorialCols === 1 && project.mobileGalleryOrder)
+                  ? project.mobileGalleryOrder.map(idx => project.gallery[idx])
+                  : project.gallery;
+                return (
               <div
                 className={`pp-gallery${project.galleryVariant === 'showcase' ? ' pp-gallery--showcase' : ''}`}
                 data-count={project.gallery.length}
               >
-                {project.gallery.map((img: ProjectImage, i) => (
+                {gridImages.map((img: ProjectImage, i) => (
                   <button
                     key={i}
                     className="pp-gallery__item"
@@ -273,6 +278,8 @@ const ProjectPage = () => {
                   </button>
                 ))}
               </div>
+                );
+              })()
             )}
           </section>
         )}
