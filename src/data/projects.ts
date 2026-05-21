@@ -431,7 +431,7 @@ export const projects: Project[] = [
     ],
     heroImage: "/SHORT ANIMATION (TEST).png",
     gallery: [],
-    videos: [{ type: "youtube", id: "dr5xmVgbCQk" }],
+    videos: [{ type: 'local', src: '/iPhone.mp4' }],
   },
   {
     id: 17,
