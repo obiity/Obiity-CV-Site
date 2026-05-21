@@ -159,14 +159,20 @@ const Portfolio: React.FC = () => {
     let isHorizontal: boolean | null = null;
 
     const onTouchStart = (e: TouchEvent) => {
-      if ((e.target as HTMLElement).closest('.carousel-card__btn')) return;
+      // Always reset hasDragged first — a previous swipe leaves it true,
+      // which would block the next tap on the button via onClick guard.
+      hasDragged.current = false;
+
+      if ((e.target as HTMLElement).closest('.carousel-card__btn')) {
+        dragging.current = false; // ensure clean state so onTouchEnd is a no-op
+        return;
+      }
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
       isHorizontal = null;
       gsap.killTweensOf(track);
       animating.current = false;
       dragging.current  = true;
-      hasDragged.current = false;
       pointerStartX.current  = touchStartX;
       pointerDeltaX.current  = 0;
     };
