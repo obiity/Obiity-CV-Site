@@ -1,18 +1,20 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../../contexts/LanguageContext';
 import './TechStack.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const technologies = [
+const STATIC_TECHS = [
   'Blender', 'Unreal Engine', 'Unity', 'After Effects',
   'Premiere Pro', 'DaVinci Resolve', 'Photoshop', 'Illustrator',
   'Substance Painter', 'Marvelous Designer', 'Character Creator',
-  'iClone', 'Outils IA'
+  'iClone',
 ];
 
 const TechStack: React.FC = () => {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -22,7 +24,6 @@ const TechStack: React.FC = () => {
     const setupTimeout = setTimeout(() => {
       const items = trackRef.current!.querySelectorAll('.tech-item');
 
-      // Floating animation — smaller range on mobile to avoid overflow
       const isMobile = window.innerWidth < 768;
       items.forEach((item, i) => {
         gsap.to(item, {
@@ -37,7 +38,6 @@ const TechStack: React.FC = () => {
         });
       });
 
-      // Scroll reveal
       gsap.fromTo(items,
         { scale: 0, opacity: 0 },
         {
@@ -54,12 +54,14 @@ const TechStack: React.FC = () => {
     return () => clearTimeout(setupTimeout);
   }, []);
 
+  const technologies = [...STATIC_TECHS, t.tech.aiTools];
+
   return (
     <section ref={sectionRef} className="tech-section container" id="tech">
       <h2 className="section-title text-center">
-        Logiciels & <span className="text-gradient">Technologies</span>
+        {t.tech.titleBefore}<span className="text-gradient">{t.tech.titleGradient}</span>
       </h2>
-      
+
       <div className="tech-container">
         <div ref={trackRef} className="tech-track">
           {technologies.map((tech, idx) => (

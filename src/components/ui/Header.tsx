@@ -3,16 +3,7 @@ import gsap from 'gsap';
 import { Sun, Moon } from 'lucide-react';
 import './Header.css';
 import CollaborateModal from './CollaborateModal';
-
-const navLinks = [
-  { label: 'À Propos', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Marketplace', href: '#store' },
-  { label: 'Logiciels', href: '#tech' },
-  { label: 'Expériences', href: '#cv' },
-  { label: 'Contact', href: '#contact' },
-];
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null);
@@ -22,18 +13,27 @@ const Header: React.FC = () => {
   const [isLight, setIsLight] = useState(
     () => document.documentElement.getAttribute('data-theme') === 'light'
   );
+  const { lang, setLang, t } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.about,       href: '#about' },
+    { label: t.nav.services,    href: '#services' },
+    { label: t.nav.portfolio,   href: '#portfolio' },
+    { label: t.nav.marketplace, href: '#store' },
+    { label: t.nav.software,    href: '#tech' },
+    { label: t.nav.experience,  href: '#cv' },
+    { label: t.nav.contact,     href: '#contact' },
+  ];
 
   useEffect(() => {
     const el = headerRef.current;
     if (!el) return;
 
-    // Animate header in on load
     gsap.fromTo(el,
       { y: -100, opacity: 0 },
       { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 2.8 }
     );
 
-    // Apply background directly via inline style — bypasses every CSS specificity issue
     const applyScrollState = () => {
       const isScrolled = window.scrollY > 1;
       setScrolled(isScrolled);
@@ -41,9 +41,7 @@ const Header: React.FC = () => {
       el.style.backgroundColor = isScrolled ? (light ? '#FFFFFF' : '#000000') : 'transparent';
     };
 
-    // Run once immediately (handles page-refresh-at-scroll-position edge case)
     applyScrollState();
-
     window.addEventListener('scroll', applyScrollState, { passive: true });
     return () => window.removeEventListener('scroll', applyScrollState);
   }, []);
@@ -55,7 +53,6 @@ const Header: React.FC = () => {
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('obiity-theme', newTheme);
     setIsLight(!isLight);
-    // Update header bg immediately without waiting for next scroll
     const el = headerRef.current;
     if (el && window.scrollY > 1) {
       el.style.backgroundColor = newTheme === 'light' ? '#FFFFFF' : '#000000';
@@ -84,11 +81,7 @@ const Header: React.FC = () => {
         <ul className="header__links">
           {navLinks.map(link => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                className="header__link"
-                onClick={(e) => handleNavClick(e, link.href)}
-              >
+              <a href={link.href} className="header__link" onClick={(e) => handleNavClick(e, link.href)}>
                 {link.label}
               </a>
             </li>
@@ -96,12 +89,24 @@ const Header: React.FC = () => {
         </ul>
 
         {/* CTA Button */}
-        <button
-          className="header__cta btn-primary"
-          onClick={() => setModalOpen(true)}
-        >
-          Collaborer
+        <button className="header__cta btn-primary" onClick={() => setModalOpen(true)}>
+          {t.nav.collaborate}
         </button>
+
+        {/* Language Switcher */}
+        <div className="header__lang-switcher">
+          <button
+            className={`lang-btn${lang === 'fr' ? ' lang-btn--active' : ''}`}
+            onClick={() => setLang('fr')}
+            aria-label="Français"
+          >FR</button>
+          <span className="lang-sep" />
+          <button
+            className={`lang-btn${lang === 'en' ? ' lang-btn--active' : ''}`}
+            onClick={() => setLang('en')}
+            aria-label="English"
+          >EN</button>
+        </div>
 
         {/* Theme Toggle */}
         <button
@@ -140,7 +145,7 @@ const Header: React.FC = () => {
               className="mobile-menu__collab"
               onClick={() => { setMenuOpen(false); setModalOpen(true); }}
             >
-              Collaborer
+              {t.nav.collaborate}
             </button>
           </li>
         </ul>

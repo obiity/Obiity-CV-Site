@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ExternalLink, Layers, Cpu, TrendingUp } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 import './FabStore.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,7 +21,7 @@ const storeProducts: StoreProduct[] = [
     id: 1,
     title: 'Maama Africa Hair Comb',
     category: '3D Prop',
-    price: 'À partir de $9.99',
+    price: '$9.99',
     badge: 'Prop',
     image: '/Maama Africa Hair Comb.png',
   },
@@ -28,7 +29,7 @@ const storeProducts: StoreProduct[] = [
     id: 2,
     title: 'African Tribal Mask',
     category: '3D Prop · Art & Culture',
-    price: 'À partir de $12.99',
+    price: '$12.99',
     badge: 'Art & Culture',
     image: '/African Tribal Mask.png',
   },
@@ -36,7 +37,7 @@ const storeProducts: StoreProduct[] = [
     id: 3,
     title: 'Senegalese Car Rapide',
     category: 'Vehicle · Game-Ready',
-    price: 'À partir de $19.99',
+    price: '$19.99',
     badge: 'Vehicle',
     image: '/Senegalese Car Rapide.png',
   },
@@ -44,7 +45,7 @@ const storeProducts: StoreProduct[] = [
     id: 4,
     title: 'Traditional African Djembe Drum',
     category: '3D Prop · Instrument',
-    price: 'À partir de $9.99',
+    price: '$9.99',
     badge: 'Instrument',
     image: '/Traditional African Djembe Drum.png',
   },
@@ -52,7 +53,7 @@ const storeProducts: StoreProduct[] = [
     id: 5,
     title: 'Senegalese False-Lion',
     category: 'Character · Rigged',
-    price: 'À partir de $19.99',
+    price: '$19.99',
     badge: 'Character',
     image: '/Senegalese False-Lion.png',
   },
@@ -60,7 +61,7 @@ const storeProducts: StoreProduct[] = [
     id: 6,
     title: 'Traditional African Tribal Wooden Stool',
     category: '3D Prop · Furniture',
-    price: 'À partir de $14.99',
+    price: '$14.99',
     badge: 'Furniture',
     image: '/Traditional African Tribal Wooden Stool.png',
   },
@@ -69,6 +70,7 @@ const storeProducts: StoreProduct[] = [
 const FAB_STORE_URL = 'https://www.fab.com/sellers/Obiity_3D?lang=fr';
 
 const FabStore: React.FC = () => {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -142,15 +144,12 @@ const FabStore: React.FC = () => {
           <div className="store-logo-wrapper animate-text">
             <img src="/OBIITY NEW-02.png" alt="Obiity Logo" className="store-official-logo" />
           </div>
-          <span className="store-subtitle-label animate-text">Marketplace Officielle · FAB</span>
-          <h2 className="store-title animate-text">Mes Assets 3D</h2>
-          <p className="store-subtitle animate-text">
-            Modèles 3D africains authentiques — props, personnages et véhicules inspirés de la culture sénégalaise,
-            optimisés pour Unreal Engine 5 et Unity.
-          </p>
+          <span className="store-subtitle-label animate-text">{t.store.label}</span>
+          <h2 className="store-title animate-text">{t.store.title}</h2>
+          <p className="store-subtitle animate-text">{t.store.subtitle}</p>
           <a href={FAB_STORE_URL} target="_blank" rel="noopener noreferrer" className="store-top-cta animate-text">
             <ExternalLink size={13} />
-            Accéder à la boutique complète
+            {t.store.topCta}
           </a>
         </div>
 
@@ -162,7 +161,7 @@ const FabStore: React.FC = () => {
                 <img src={product.image} alt={product.title} className="store-card-image" />
                 <div className="store-card-overlay">
                   <span className="store-card-badge">{product.badge}</span>
-                  <div className="store-card-price">{product.price}</div>
+                  <div className="store-card-price">{t.store.priceFrom} {product.price}</div>
                 </div>
               </div>
               <div className="store-card-info">
@@ -179,22 +178,19 @@ const FabStore: React.FC = () => {
           <div className="store-feature-content">
             <div className="store-feature-header">
               <Layers className="store-feature-icon" />
-              <h3>Assets 3D africains, game-ready</h3>
+              <h3>{t.store.featureTitle}</h3>
             </div>
-            <p className="store-feature-text">
-              Conçus à Dakar, ces assets célèbrent la richesse culturelle africaine tout en répondant aux standards
-              techniques les plus élevés — PBR, LODs, rigging professionnel, prêts pour le temps réel et le cinéma.
-            </p>
+            <p className="store-feature-text">{t.store.featureText}</p>
             <div className="store-features-tags">
-              <span className="store-tag"><Cpu className="tag-icon" /> UE5 Ready</span>
-              <span className="store-tag"><Layers className="tag-icon" /> PBR Textures</span>
-              <span className="store-tag"><TrendingUp className="tag-icon" /> LODs inclus</span>
+              <span className="store-tag"><Cpu className="tag-icon" /> {t.store.ue5}</span>
+              <span className="store-tag"><Layers className="tag-icon" /> {t.store.pbr}</span>
+              <span className="store-tag"><TrendingUp className="tag-icon" /> {t.store.lods}</span>
             </div>
           </div>
 
           <div className="store-action-area">
             <a href={FAB_STORE_URL} target="_blank" rel="noopener noreferrer" className="store-cta-button">
-              <span>VISITER LA BOUTIQUE FAB</span>
+              <span>{t.store.visitCta}</span>
               <ExternalLink className="cta-icon" />
             </a>
           </div>

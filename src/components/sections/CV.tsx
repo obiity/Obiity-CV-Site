@@ -2,36 +2,40 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Download, ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 import './CV.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const experiences = [
-  { year: '2024 - Présent', role: 'Directeur Artistique 3D / XR', company: 'KTM Advance SN' },
-  { year: '2022 – 2024',    role: 'Lead 3D & VFX Artist',        company: 'DAMEL Studio' },
-  { year: '2021 – 2022',    role: 'Monteur vidéo',               company: 'Imagin\'Prod' },
-  { year: '2020 – 2021',    role: 'Designer graphique',          company: 'Bicom Agency' },
+const SKILL_LEVELS = [95, 90, 85, 80, 90];
+
+const EXPERIENCE_COMPANIES = [
+  'KTM Advance SN',
+  'DAMEL Studio',
+  "Imagin'Prod",
+  'Bicom Agency',
 ];
 
-const skills = [
-  { name: 'Modélisation et animation 3D', level: 95 },
-  { name: 'VFX & Compositing',             level: 90 },
-  { name: 'Motion Design',                 level: 85 },
-  { name: 'Développement web',             level: 80 },
-  { name: 'IA Générative',               level: 90 },
-];
+const EXPERIENCE_YEAR_STARTS = ['2024', '2022 – 2024', '2021 – 2022', '2020 – 2021'];
 
 const CV: React.FC = () => {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
 
+  const experiences = EXPERIENCE_YEAR_STARTS.map((yearStr, i) => ({
+    year: i === 0 ? `${yearStr} - ${t.cv.present}` : yearStr,
+    role: t.cv.roles[i],
+    company: EXPERIENCE_COMPANIES[i],
+  }));
+
+  const skills = t.cv.skillNames.map((name, i) => ({ name, level: SKILL_LEVELS[i] }));
+
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Small delay lets mobile Safari finish layout before ScrollTrigger measures positions
     const setupTimeout = setTimeout(() => {
-      // Timeline Animation
       if (timelineRef.current) {
         const items = timelineRef.current.querySelectorAll('.timeline-item');
         gsap.fromTo(items,
@@ -47,7 +51,6 @@ const CV: React.FC = () => {
         );
       }
 
-      // Skills Animation
       if (skillsRef.current) {
         const bars = skillsRef.current.querySelectorAll('.skill-progress-fill');
         gsap.fromTo(bars,
@@ -73,12 +76,12 @@ const CV: React.FC = () => {
   return (
     <section ref={sectionRef} className="cv-section container" id="cv">
       <h2 className="section-title text-center">
-        Parcours <span className="text-gradient">& Compétences</span>
+        {t.cv.titleBefore}<span className="text-gradient">{t.cv.titleGradient}</span>
       </h2>
-      
+
       <div className="cv-grid">
         <div className="cv-timeline glass-panel">
-          <h3 className="cv-subtitle">Expériences Professionnelles</h3>
+          <h3 className="cv-subtitle">{t.cv.expTitle}</h3>
           <div ref={timelineRef} className="timeline-container">
             {experiences.map((exp, idx) => (
               <div key={idx} className="timeline-item">
@@ -94,7 +97,7 @@ const CV: React.FC = () => {
         </div>
 
         <div className="cv-skills glass-panel">
-          <h3 className="cv-subtitle">Compétences Techniques</h3>
+          <h3 className="cv-subtitle">{t.cv.skillsTitle}</h3>
           <div ref={skillsRef} className="skills-container">
             {skills.map((skill, idx) => (
               <div key={idx} className="skill-item">
@@ -108,7 +111,7 @@ const CV: React.FC = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="cv-download">
             <a
               href="https://drive.google.com/file/d/1kQ2dEHjcSkTJaB_3GnSULD9v0w_3XUBE/view?usp=sharing"
@@ -118,7 +121,7 @@ const CV: React.FC = () => {
             >
               <span className="cv-download-btn__glow" aria-hidden="true" />
               <Download size={17} className="cv-download-btn__dl-icon" />
-              <span className="cv-download-btn__label">Télécharger le CV complet</span>
+              <span className="cv-download-btn__label">{t.cv.download}</span>
               <ArrowUpRight size={15} className="cv-download-btn__arrow" />
             </a>
           </div>

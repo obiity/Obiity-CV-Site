@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import gsap from 'gsap';
 import { X, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { sendCollabEmail } from '../../lib/emailService';
+import { useLanguage } from '../../contexts/LanguageContext';
 import './CollaborateModal.css';
 
 interface CollaborateModalProps {
@@ -24,24 +25,6 @@ interface FormData {
   confirmed: boolean;
 }
 
-const BUDGET_OPTIONS = [
-  { value: '', label: 'Sélectionner un budget' },
-  { value: '< $1,000', label: '< $1,000' },
-  { value: '$1,000 – $5,000', label: '$1,000 – $5,000' },
-  { value: '$5,000 – $15,000', label: '$5,000 – $15,000' },
-  { value: '$15,000 – $50,000', label: '$15,000 – $50,000' },
-  { value: '> $50,000', label: '> $50,000' },
-  { value: 'custom', label: 'Autre / À discuter' },
-];
-
-const COLLAB_TYPES = [
-  { value: 'freelance', label: 'Freelance ponctuel' },
-  { value: 'partnership', label: 'Partenariat long terme' },
-  { value: 'subcontracting', label: 'Sous-traitance' },
-  { value: 'cocreation', label: 'Co-création / Startup' },
-  { value: 'other', label: 'Autre' },
-];
-
 const INITIAL_FORM: FormData = {
   fullName: '',
   email: '',
@@ -55,13 +38,13 @@ const INITIAL_FORM: FormData = {
 };
 
 const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState<FormData>(INITIAL_FORM);
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [status, setStatus] = useState<FormStatus>('idle');
 
-  // Animate in / out
   useEffect(() => {
     const overlay = overlayRef.current;
     const panel = panelRef.current;
@@ -80,7 +63,6 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
     }
   }, [isOpen]);
 
-  // Close on Escape key
   useEffect(() => {
     if (!isOpen) return;
     const onKeyDown = (e: KeyboardEvent) => { if (e.key === 'Escape') handleClose(); };
@@ -106,14 +88,14 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
 
   const validate = (): boolean => {
     const newErrors: Partial<Record<keyof FormData, string>> = {};
-    if (!form.fullName.trim()) newErrors.fullName = 'Le nom est requis.';
+    if (!form.fullName.trim()) newErrors.fullName = t.collab.errName;
     if (!form.email.trim()) {
-      newErrors.email = "L'email est requis.";
+      newErrors.email = t.collab.errEmail;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = 'Email invalide.';
+      newErrors.email = t.collab.errEmailInvalid;
     }
-    if (!form.collaborationType) newErrors.collaborationType = 'Sélectionnez un type.';
-    if (!form.confirmed) newErrors.confirmed = 'Vous devez confirmer avant de soumettre.';
+    if (!form.collaborationType) newErrors.collaborationType = t.collab.errCollabType;
+    if (!form.confirmed) newErrors.confirmed = t.collab.errConfirmed;
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -161,63 +143,56 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal="true"
-      aria-label="Formulaire de collaboration"
+      aria-label={t.collab.title}
     >
       <div ref={panelRef} className="collab-panel">
-        {/* Close button — absolute at top-right, outside flex flow */}
-        <button className="collab-panel__close" onClick={handleClose} aria-label="Fermer le formulaire">
+        <button className="collab-panel__close" onClick={handleClose} aria-label={t.collab.close}>
           <X size={22} strokeWidth={2} />
         </button>
 
-        {/* Header */}
         <div className="collab-panel__header">
-          <span className="collab-panel__label">Collaboration</span>
-          <h2 className="collab-panel__title">Démarrons un projet</h2>
+          <span className="collab-panel__label">{t.collab.label}</span>
+          <h2 className="collab-panel__title">{t.collab.title}</h2>
         </div>
 
-        {/* Scrollable body — flex: 1 + min-height: 0 handles all overflow */}
         <div className="collab-panel__body">
 
-        {/* Success state */}
         {status === 'success' && (
           <div className="collab-feedback collab-feedback--success">
             <CheckCircle2 size={48} />
-            <h3>Demande envoyée !</h3>
-            <p>Je vous répondrai sous 24–48h. Merci pour votre confiance.</p>
+            <h3>{t.collab.successTitle}</h3>
+            <p>{t.collab.successMsg}</p>
             <button className="btn-primary collab-btn-close" onClick={handleClose}>
-              Fermer
+              {t.collab.close}
             </button>
           </div>
         )}
 
-        {/* Error state */}
         {status === 'error' && (
           <div className="collab-feedback collab-feedback--error">
             <AlertCircle size={48} />
-            <h3>Une erreur est survenue</h3>
-            <p>Veuillez réessayer ou me contacter directement par email.</p>
+            <h3>{t.collab.errorTitle}</h3>
+            <p>{t.collab.errorMsg}</p>
             <button className="btn-primary collab-btn-close" onClick={() => setStatus('idle')}>
-              Réessayer
+              {t.collab.retry}
             </button>
           </div>
         )}
 
-        {/* Form */}
         {(status === 'idle' || status === 'loading') && (
           <form className="collab-form" onSubmit={handleSubmit} noValidate>
-            {/* Section: Informations personnelles */}
             <fieldset className="collab-fieldset">
-              <legend className="collab-legend">Informations personnelles</legend>
+              <legend className="collab-legend">{t.collab.personalInfo}</legend>
               <div className="collab-row">
                 <div className="collab-field">
                   <label htmlFor="fullName">
-                    Nom & Prénom <span className="collab-required">*</span>
+                    {t.collab.nameLabel} <span className="collab-required">*</span>
                   </label>
                   <input
                     id="fullName"
                     name="fullName"
                     type="text"
-                    placeholder="Votre nom complet"
+                    placeholder={t.collab.namePlaceholder}
                     value={form.fullName}
                     onChange={handleChange}
                     className={errors.fullName ? 'collab-input--error' : ''}
@@ -228,13 +203,13 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
                 </div>
                 <div className="collab-field">
                   <label htmlFor="email">
-                    Email professionnel <span className="collab-required">*</span>
+                    {t.collab.emailLabel} <span className="collab-required">*</span>
                   </label>
                   <input
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="votre@email.com"
+                    placeholder={t.collab.emailPlaceholder}
                     value={form.email}
                     onChange={handleChange}
                     className={errors.email ? 'collab-input--error' : ''}
@@ -245,12 +220,12 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
                 </div>
               </div>
               <div className="collab-field">
-                <label htmlFor="phone">Téléphone <span className="collab-optional">(optionnel)</span></label>
+                <label htmlFor="phone">{t.collab.phoneLabel} <span className="collab-optional">({t.collab.optional})</span></label>
                 <input
                   id="phone"
                   name="phone"
                   type="tel"
-                  placeholder="+1 (000) 000-0000"
+                  placeholder={t.collab.phonePlaceholder}
                   value={form.phone}
                   onChange={handleChange}
                   disabled={status === 'loading'}
@@ -259,17 +234,16 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
               </div>
             </fieldset>
 
-            {/* Section: Informations professionnelles */}
             <fieldset className="collab-fieldset">
-              <legend className="collab-legend">Informations professionnelles</legend>
+              <legend className="collab-legend">{t.collab.professionalInfo}</legend>
               <div className="collab-row">
                 <div className="collab-field">
-                  <label htmlFor="company">Entreprise / Organisation <span className="collab-optional">(optionnel)</span></label>
+                  <label htmlFor="company">{t.collab.companyLabel} <span className="collab-optional">({t.collab.optional})</span></label>
                   <input
                     id="company"
                     name="company"
                     type="text"
-                    placeholder="Votre entreprise"
+                    placeholder={t.collab.companyPlaceholder}
                     value={form.company}
                     onChange={handleChange}
                     disabled={status === 'loading'}
@@ -277,12 +251,12 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
                   />
                 </div>
                 <div className="collab-field">
-                  <label htmlFor="website">Site web / LinkedIn <span className="collab-optional">(optionnel)</span></label>
+                  <label htmlFor="website">{t.collab.websiteLabel} <span className="collab-optional">({t.collab.optional})</span></label>
                   <input
                     id="website"
                     name="website"
                     type="url"
-                    placeholder="https://votre-site.com"
+                    placeholder={t.collab.websitePlaceholder}
                     value={form.website}
                     onChange={handleChange}
                     disabled={status === 'loading'}
@@ -292,11 +266,10 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
               </div>
             </fieldset>
 
-            {/* Section: Budget */}
             <fieldset className="collab-fieldset">
-              <legend className="collab-legend">Budget estimé</legend>
+              <legend className="collab-legend">{t.collab.budget}</legend>
               <div className="collab-field">
-                <label htmlFor="budget">Fourchette budgétaire</label>
+                <label htmlFor="budget">{t.collab.budgetRange}</label>
                 <select
                   id="budget"
                   name="budget"
@@ -304,19 +277,19 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
                   onChange={handleChange}
                   disabled={status === 'loading'}
                 >
-                  {BUDGET_OPTIONS.map(o => (
+                  {t.collab.budgetOptions.map(o => (
                     <option key={o.value} value={o.value}>{o.label}</option>
                   ))}
                 </select>
               </div>
               {form.budget === 'custom' && (
                 <div className="collab-field collab-field--animate">
-                  <label htmlFor="budgetCustom">Précisez votre budget</label>
+                  <label htmlFor="budgetCustom">{t.collab.budgetCustomLabel}</label>
                   <input
                     id="budgetCustom"
                     name="budgetCustom"
                     type="text"
-                    placeholder="ex : $3,500, à discuter…"
+                    placeholder={t.collab.budgetCustomPlaceholder}
                     value={form.budgetCustom}
                     onChange={handleChange}
                     disabled={status === 'loading'}
@@ -325,13 +298,12 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
               )}
             </fieldset>
 
-            {/* Section: Type de collaboration */}
             <fieldset className="collab-fieldset">
               <legend className="collab-legend">
-                Niveau de collaboration <span className="collab-required">*</span>
+                {t.collab.collabLevel} <span className="collab-required">*</span>
               </legend>
               <div className="collab-radios">
-                {COLLAB_TYPES.map(ct => (
+                {t.collab.collabTypes.map(ct => (
                   <label key={ct.value} className="collab-radio-label">
                     <input
                       type="radio"
@@ -351,7 +323,6 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
               )}
             </fieldset>
 
-            {/* Confirmation checkbox */}
             <label className={`collab-checkbox-label ${errors.confirmed ? 'collab-checkbox-label--error' : ''}`}>
               <input
                 type="checkbox"
@@ -362,13 +333,12 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
               />
               <span className="collab-checkbox-custom" />
               <span>
-                Je confirme que ces informations sont correctes et que mon projet est sérieux.
+                {t.collab.confirmText}
                 <span className="collab-required"> *</span>
               </span>
             </label>
             {errors.confirmed && <span className="collab-error collab-error--checkbox">{errors.confirmed}</span>}
 
-            {/* Submit */}
             <div className="collab-submit-area">
               <button
                 type="submit"
@@ -378,23 +348,21 @@ const CollaborateModal: React.FC<CollaborateModalProps> = ({ isOpen, onClose }) 
                 {status === 'loading' ? (
                   <>
                     <Loader2 size={18} className="collab-spinner" />
-                    Envoi en cours…
+                    {t.collab.submitting}
                   </>
                 ) : (
                   <>
                     <Send size={18} />
-                    Soumettre mon projet
+                    {t.collab.submit}
                   </>
                 )}
               </button>
-              <p className="collab-response-time">
-                Réponse sous 24–48h pour les demandes complètes
-              </p>
+              <p className="collab-response-time">{t.collab.responseTime}</p>
             </div>
           </form>
         )}
 
-        </div>{/* end collab-panel__body */}
+        </div>
       </div>
     </div>,
     document.body

@@ -2,8 +2,10 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ArrowDown } from 'lucide-react';
 import './Hero.css';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const Hero: React.FC = () => {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const eyebrowRef = useRef<HTMLSpanElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -127,23 +129,22 @@ const Hero: React.FC = () => {
       <div ref={containerRef} className="hero-content container">
 
         <span ref={eyebrowRef} className="hero-eyebrow">
-          Portfolio · Obiity · Dakar
+          {t.hero.eyebrow}
         </span>
 
         <h1 ref={titleRef} className="hero-title">
           <div className="title-line-wrapper">
-            <div className="title-line">Artiste hybride</div>
+            <div className="title-line">{t.hero.line1}</div>
           </div>
           <div className="title-line-wrapper">
             <div className="title-line">
-              &amp;&nbsp;<span className="text-gradient">Développeur Créatif</span>
+              &amp;&nbsp;<span className="text-gradient">{t.hero.line2Gradient}</span>
             </div>
           </div>
         </h1>
 
         <p ref={subtitleRef} className="hero-subtitle">
-          À l'intersection de la 3D, des VFX, des technologies immersives,
-          de l'IA et des expériences numériques interactives.
+          {t.hero.subtitle}
         </p>
 
         <div ref={ctaRef} className="hero-cta-group">
@@ -151,26 +152,26 @@ const Hero: React.FC = () => {
             className="btn-primary"
             onClick={() => document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Voir les projets
+            {t.hero.cta1}
           </button>
           <button
             className="btn-secondary"
             onClick={() => window.open('https://drive.google.com/file/d/1kQ2dEHjcSkTJaB_3GnSULD9v0w_3XUBE/view?usp=sharing', '_blank', 'noopener,noreferrer')}
           >
-            Télécharger le CV
+            {t.hero.cta2}
           </button>
           <button
             className="btn-tertiary"
             onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Me contacter
+            {t.hero.cta3}
           </button>
         </div>
       </div>
 
       <div ref={scrollRef} className="hero-scroll-indicator" onClick={scrollToAbout}>
         <ArrowDown size={20} />
-        <span>Défiler</span>
+        <span>{t.hero.scroll}</span>
       </div>
     </section>
   );

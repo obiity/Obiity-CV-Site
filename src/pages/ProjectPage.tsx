@@ -4,9 +4,11 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, X } from 'lucide-react';
 import gsap from 'gsap';
 import { getProjectBySlug, getAdjacentProjects } from '../data/projects';
 import type { ProjectImage } from '../data/projects';
+import { useLanguage } from '../contexts/LanguageContext';
 import './ProjectPage.css';
 
 const ProjectPage = () => {
+  const { t } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const project = slug ? getProjectBySlug(slug) : undefined;
@@ -77,9 +79,9 @@ const ProjectPage = () => {
   if (!project) {
     return (
       <div className="pp-notfound">
-        <h1>Projet introuvable</h1>
+        <h1>{t.project.notFound}</h1>
         <Link to="/#portfolio" className="pp-back-btn">
-          <ArrowLeft size={18} /> Retour au portfolio
+          <ArrowLeft size={18} /> {t.project.backToPortfolio}
         </Link>
       </div>
     );
@@ -104,10 +106,10 @@ const ProjectPage = () => {
         <button
           className="pp-navbar__back"
           onClick={() => navigate('/#portfolio')}
-          aria-label="Retour"
+          aria-label={t.project.back}
         >
           <ArrowLeft size={16} />
-          <span>Portfolio</span>
+          <span>{t.project.back}</span>
         </button>
       </nav>
 
@@ -143,11 +145,11 @@ const ProjectPage = () => {
         {/* Description + Meta */}
         <section className="pp-section pp-info-grid">
           <div className="pp-info-grid__desc">
-            <h2 className="pp-section-title">Présentation</h2>
+            <h2 className="pp-section-title">{t.project.presentation}</h2>
             <p className="pp-body-text">{project.description}</p>
             {project.context && (
               <>
-                <h3 className="pp-subsection-title">Contexte</h3>
+                <h3 className="pp-subsection-title">{t.project.context}</h3>
                 <p className="pp-body-text">{project.context}</p>
               </>
             )}
@@ -155,19 +157,19 @@ const ProjectPage = () => {
           <aside className="pp-info-grid__meta glass-panel">
             <dl className="pp-meta-list">
               <div className="pp-meta-item">
-                <dt>{project.client === 'OBIITY' ? 'Réalisé par' : 'Client'}</dt>
+                <dt>{project.client === 'OBIITY' ? t.project.madeBy : t.project.client}</dt>
                 <dd>{project.client}</dd>
               </div>
               <div className="pp-meta-item">
-                <dt>Année</dt>
+                <dt>{t.project.year}</dt>
                 <dd>{project.year}</dd>
               </div>
               <div className="pp-meta-item">
-                <dt>Catégorie</dt>
+                <dt>{t.project.category}</dt>
                 <dd>{project.category}</dd>
               </div>
               <div className="pp-meta-item">
-                <dt>Technologies</dt>
+                <dt>{t.project.technologies}</dt>
                 <dd className="pp-meta-tags">
                   {project.tags.map((tag) => (
                     <span key={tag} className="pp-meta-tag">{tag}</span>
@@ -181,7 +183,7 @@ const ProjectPage = () => {
         {/* Objectives */}
         {project.objectives.length > 0 && (
           <section className="pp-section">
-            <h2 className="pp-section-title">Objectifs</h2>
+            <h2 className="pp-section-title">{t.project.objectives}</h2>
             <ul className="pp-objectives">
               {project.objectives.map((obj, i) => (
                 <li key={i} className="pp-objective-item">
@@ -205,7 +207,7 @@ const ProjectPage = () => {
                 </h2>
               );
             })() : (
-              <h2 className="pp-section-title">Galerie</h2>
+              <h2 className="pp-section-title">{t.project.gallery}</h2>
             )}
 
             {project.galleryVariant === 'editorial' ? (
@@ -287,7 +289,7 @@ const ProjectPage = () => {
         {/* Video(s) */}
         {hasVideo && (
           <section className="pp-section">
-            <h2 className="pp-section-title">Vidéo</h2>
+            <h2 className="pp-section-title">{t.project.video}</h2>
             <div className="pp-videos">
               {project.videos!.map((vid, i) => {
                 const src =
@@ -321,7 +323,7 @@ const ProjectPage = () => {
                 </div>
                 <div className="pp-nav-card__info">
                   <ArrowLeft size={16} />
-                  <span className="pp-nav-card__label">Projet précédent</span>
+                  <span className="pp-nav-card__label">{t.project.prevProject}</span>
                   <span className="pp-nav-card__title">{prev.title}</span>
                 </div>
               </Link>
@@ -335,7 +337,7 @@ const ProjectPage = () => {
                 </div>
                 <div className="pp-nav-card__info">
                   <ArrowRight size={16} />
-                  <span className="pp-nav-card__label">Projet suivant</span>
+                  <span className="pp-nav-card__label">{t.project.nextProject}</span>
                   <span className="pp-nav-card__title">{next.title}</span>
                 </div>
               </Link>

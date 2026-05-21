@@ -1,4 +1,5 @@
 import { useState, useEffect, useLayoutEffect, Suspense } from 'react';
+import { LanguageProvider } from './contexts/LanguageContext';
 import { Routes, Route } from 'react-router-dom';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
@@ -107,10 +108,12 @@ function MainLayout() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />} />
-      <Route path="/projects/:slug" element={<ProjectPage />} />
-    </Routes>
+    <LanguageProvider>
+      <Routes>
+        <Route path="/" element={<MainLayout />} />
+        <Route path="/projects/:slug" element={<ProjectPage />} />
+      </Routes>
+    </LanguageProvider>
   );
 }
 

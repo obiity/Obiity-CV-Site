@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 import './Portfolio.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -40,6 +41,7 @@ const loopedSlides = [
 ];
 
 const Portfolio: React.FC = () => {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef   = useRef<HTMLDivElement>(null);
 
@@ -287,7 +289,7 @@ const Portfolio: React.FC = () => {
 
       <div className="portfolio-header container">
         <h2 className="section-title">
-          Créations <span className="text-gradient">& Projets</span>
+          {t.portfolio.titleBefore}<span className="text-gradient">{t.portfolio.titleGradient}</span>
         </h2>
       </div>
 
@@ -346,7 +348,7 @@ const Portfolio: React.FC = () => {
                       draggable={false}
                       onClick={(e) => { if (hasDragged.current) e.preventDefault(); }}
                     >
-                      Explorer le projet <ArrowUpRight size={15} />
+                      {t.portfolio.explore} <ArrowUpRight size={15} />
                     </Link>
                   </div>
                 </div>
@@ -378,8 +380,8 @@ const Portfolio: React.FC = () => {
 
       <div className="other-projects-section container">
         <h3 className="other-projects-title">
-          <span className="other-projects-count">+150</span>{' '}
-          Projets réalisés
+          <span className="other-projects-count">{t.portfolio.otherCount}</span>{' '}
+          {t.portfolio.otherLabel}
         </h3>
         <div className="other-projects-image-wrapper">
           <img src="/AUTRES PROJETS.png" alt="Autres projets" className="other-projects-image" />

@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Send, MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react';
 import { sendContactEmail } from '../../lib/emailService';
+import { useLanguage } from '../../contexts/LanguageContext';
 import './Contact.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -28,12 +29,6 @@ const SocialIcons = {
   ),
 };
 
-const contactItems = [
-  { icon: MapPin, label: 'Localisation', value: 'Dakar, Sénégal',    href: null },
-  { icon: Phone,  label: 'Téléphone',   value: '+221 77 374 33 56', href: 'tel:+221773743356' },
-  { icon: Mail,   label: 'Email',       value: 'obiity1@gmail.com', href: 'mailto:obiity1@gmail.com' },
-];
-
 const socialLinks = [
   { name: 'LinkedIn',  href: 'https://www.linkedin.com/in/ousmane-biteye-8a7a55198/', Icon: SocialIcons.LinkedIn,  label: null },
   { name: 'Instagram', href: 'https://www.instagram.com/obiity/',                      Icon: SocialIcons.Instagram, label: null },
@@ -41,6 +36,7 @@ const socialLinks = [
 ];
 
 const Contact: React.FC = () => {
+  const { t } = useLanguage();
   const sectionRef    = useRef<HTMLElement>(null);
   const leftRef       = useRef<HTMLDivElement>(null);
   const rightRef      = useRef<HTMLDivElement>(null);
@@ -51,12 +47,17 @@ const Contact: React.FC = () => {
   const [submitted,    setSubmitted]    = useState(false);
   const [hasError,     setHasError]     = useState(false);
 
+  const contactItems = [
+    { icon: MapPin, label: t.contact.locationLabel, value: 'Dakar, Sénégal',    href: null },
+    { icon: Phone,  label: t.contact.phoneLabel,    value: '+221 77 374 33 56', href: 'tel:+221773743356' },
+    { icon: Mail,   label: t.contact.emailLabel,    value: 'obiity1@gmail.com', href: 'mailto:obiity1@gmail.com' },
+  ];
+
   useEffect(() => {
     const left  = leftRef.current;
     const right = rightRef.current;
     if (!left || !right) return;
 
-    // Delay lets mobile Safari finish layout before ScrollTrigger measures positions
     const setupTimeout = setTimeout(() => {
       gsap.fromTo(
         left.querySelectorAll('.c-anim'),
@@ -108,25 +109,23 @@ const Contact: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="contact-section" id="contact">
-      {/* Ambient glows */}
       <div className="contact-glow contact-glow--left"  aria-hidden="true" />
       <div className="contact-glow contact-glow--right" aria-hidden="true" />
 
       <div className="contact-inner container">
         {/* ── LEFT ── */}
         <div ref={leftRef} className="contact-left">
-          <span className="contact-eyebrow c-anim">Travaillons ensemble</span>
+          <span className="contact-eyebrow c-anim">{t.contact.eyebrow}</span>
 
           <h2 className="section-title c-anim">
-            Me <span className="text-gradient">Contacter</span>
+            {t.contact.titleBefore}<span className="text-gradient">{t.contact.titleGradient}</span>
           </h2>
 
           <p className="contact-tagline c-anim">
-            Prêt à donner vie à vos projets les plus ambitieux ?<br/>
-            Discutons de votre prochaine expérience immersive.
+            {t.contact.tagline1}<br/>
+            {t.contact.tagline2}
           </p>
 
-          {/* Info list */}
           <ul className="contact-info-list c-anim">
             {contactItems.map(({ icon: Icon, label, value, href }) => (
               <li key={label} className="contact-info-item">
@@ -145,9 +144,8 @@ const Contact: React.FC = () => {
             ))}
           </ul>
 
-          {/* Social row */}
           <div className="contact-socials c-anim">
-            <span className="contact-socials-label">Retrouvez-moi</span>
+            <span className="contact-socials-label">{t.contact.findMe}</span>
             <div className="contact-socials-row">
               {socialLinks.map(({ name, href, Icon, label }) => (
                 <a
@@ -174,7 +172,6 @@ const Contact: React.FC = () => {
             onSubmit={handleSubmit}
             noValidate
           >
-            {/* Top accent line */}
             <div className="form-accent-line" aria-hidden="true" />
 
             {submitted ? (
@@ -182,45 +179,44 @@ const Contact: React.FC = () => {
                 <div className="success-ring">
                   <div className="success-check">✓</div>
                 </div>
-                <h3>Message envoyé !</h3>
-                <p>Je vous répondrai dans les meilleurs délais.</p>
+                <h3>{t.contact.successTitle}</h3>
+                <p>{t.contact.successMsg}</p>
               </div>
             ) : (
               <>
                 <div className="form-title-row">
-                  <h3 className="form-title">Votre message</h3>
-                  <span className="form-badge">Réponse sous 24h</span>
+                  <h3 className="form-title">{t.contact.formTitle}</h3>
+                  <span className="form-badge">{t.contact.badge}</span>
                 </div>
 
                 {hasError && (
                   <div className="form-error-msg" role="alert">
-                    Une erreur est survenue lors de l'envoi. Veuillez réessayer ou me contacter directement à{' '}
-                    <a href="mailto:obiity1@gmail.com">obiity1@gmail.com</a>.
+                    {t.contact.errorMsg}{' '}
+                    <a href={`mailto:${t.contact.errorEmail}`}>{t.contact.errorEmail}</a>.
                   </div>
                 )}
 
-                {/* Row: name + email */}
                 <div className="form-row-duo">
                   <div className="form-field">
-                    <label htmlFor="c-name">Nom</label>
+                    <label htmlFor="c-name">{t.contact.nameLabel}</label>
                     <input
                       id="c-name"
                       type="text"
                       value={formState.name}
                       onChange={e => setFormState({ ...formState, name: e.target.value })}
-                      placeholder="Votre nom complet"
+                      placeholder={t.contact.namePlaceholder}
                       required
                       autoComplete="name"
                     />
                   </div>
                   <div className="form-field">
-                    <label htmlFor="c-email">Email</label>
+                    <label htmlFor="c-email">{t.contact.emailFieldLabel}</label>
                     <input
                       id="c-email"
                       type="email"
                       value={formState.email}
                       onChange={e => setFormState({ ...formState, email: e.target.value })}
-                      placeholder="votre@email.com"
+                      placeholder={t.contact.emailPlaceholder}
                       required
                       autoComplete="email"
                     />
@@ -228,25 +224,25 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="form-field">
-                  <label htmlFor="c-subject">Sujet</label>
+                  <label htmlFor="c-subject">{t.contact.subjectLabel}</label>
                   <input
                     id="c-subject"
                     type="text"
                     value={formState.subject}
                     onChange={e => setFormState({ ...formState, subject: e.target.value })}
-                    placeholder="Collaboration, projet, question…"
+                    placeholder={t.contact.subjectPlaceholder}
                     required
                   />
                 </div>
 
                 <div className="form-field">
-                  <label htmlFor="c-message">Message</label>
+                  <label htmlFor="c-message">{t.contact.messageLabel}</label>
                   <textarea
                     id="c-message"
                     rows={5}
                     value={formState.message}
                     onChange={e => setFormState({ ...formState, message: e.target.value })}
-                    placeholder="Décrivez votre projet, vos besoins, vos idées…"
+                    placeholder={t.contact.messagePlaceholder}
                     required
                   />
                 </div>
@@ -259,12 +255,12 @@ const Contact: React.FC = () => {
                   {isSubmitting ? (
                     <span className="form-cta-loading">
                       <span className="form-cta-spinner" />
-                      Envoi en cours…
+                      {t.contact.sending}
                     </span>
                   ) : (
                     <>
                       <Send size={17} />
-                      <span>Envoyer un message</span>
+                      <span>{t.contact.send}</span>
                       <ArrowUpRight size={15} className="form-cta-arrow" />
                     </>
                   )}
@@ -275,10 +271,9 @@ const Contact: React.FC = () => {
         </div>
       </div>
 
-      {/* Footer */}
       <footer className="contact-footer">
         <div className="contact-footer-inner container">
-          <p>© {new Date().getFullYear()} Ousmane Biteye · Dakar, Sénégal · Tous droits réservés.</p>
+          <p>{t.contact.footerPrefix} {new Date().getFullYear()} {t.contact.footerSuffix}</p>
         </div>
       </footer>
     </section>

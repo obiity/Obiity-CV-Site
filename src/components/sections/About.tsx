@@ -3,11 +3,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Briefcase, Clock, Globe, MapPin, Activity } from 'lucide-react';
 import CyberMap from '../ui/CyberMap';
+import { useLanguage } from '../../contexts/LanguageContext';
 import './About.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -49,10 +51,10 @@ const About = () => {
 
           <div className="about-header-area anim-child">
             <h2 className="section-title">
-              À <span className="text-gradient">Propos</span>
+              {t.about.titleBefore}<span className="text-gradient">{t.about.titleGradient}</span>
             </h2>
             <p className="about-bio">
-              « Spécialisé dans la conception d'expériences immersives, je développe des projets qui combinent 3D, XR, vidéo et intelligence artificielle. Mon travail s'appuie sur la direction artistique, les technologies émergentes et la narration visuelle pour créer des univers interactifs, innovants et engageants, conçus pour offrir une expérience digitale forte et mémorable. »
+              {t.about.bio}
             </p>
           </div>
 
@@ -61,15 +63,15 @@ const About = () => {
             <div className="about-stats">
               <div className="stat-item">
                 <span className="stat-value text-gradient">6+</span>
-                <span className="stat-label">Années d'expérience</span>
+                <span className="stat-label">{t.about.stat1Label}</span>
               </div>
               <div className="stat-item">
                 <span className="stat-value text-gradient">150+</span>
-                <span className="stat-label">Projets réalisés</span>
+                <span className="stat-label">{t.about.stat2Label}</span>
               </div>
               <div className="stat-item">
                 <span className="stat-value text-gradient">15+</span>
-                <span className="stat-label">Références</span>
+                <span className="stat-label">{t.about.stat3Label}</span>
               </div>
             </div>
           </div>
@@ -81,11 +83,11 @@ const About = () => {
               <div className="map-location-footer">
                 <div className="map-footer-row">
                   <MapPin size={13} className="map-footer-icon" />
-                  <span>Basé à Dakar</span>
+                  <span>{t.about.location}</span>
                 </div>
                 <div className="map-footer-row map-footer-availability">
                   <Activity size={13} className="map-footer-icon" />
-                  <span>Disponible H24</span>
+                  <span>{t.about.availability}</span>
                 </div>
               </div>
             </div>
@@ -110,20 +112,20 @@ const About = () => {
             <div className="identity-meta">
               <div className="meta-text">
                 <h3>Ousmane Biteye</h3>
-                <p className="role text-gradient">Artiste 3D / Dev Créatif</p>
+                <p className="role text-gradient">{t.about.role}</p>
               </div>
               <div className="meta-details">
                 <div className="meta-detail-item">
                   <Briefcase size={15} className="meta-icon" />
-                  <span>Disponible pour freelance & consulting</span>
+                  <span>{t.about.freelance}</span>
                 </div>
                 <div className="meta-detail-item">
                   <Clock size={15} className="meta-icon" />
-                  <span>Ouvert aux missions courtes ou longues durées</span>
+                  <span>{t.about.missions}</span>
                 </div>
                 <div className="meta-detail-item">
                   <Globe size={15} className="meta-icon" />
-                  <span>Travail à distance ou hybride</span>
+                  <span>{t.about.remote}</span>
                 </div>
               </div>
             </div>
