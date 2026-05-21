@@ -116,8 +116,11 @@ const ProjectPage = () => {
         <img
           src={project.heroImage}
           alt={project.title}
-          className="pp-hero__img"
-          style={project.heroObjectPosition ? { objectPosition: project.heroObjectPosition } : undefined}
+          className={`pp-hero__img${project.mobileHeroObjectPosition ? ' pp-hero__img--mobile-pos' : ''}`}
+          style={{
+            ...(project.heroObjectPosition          && { objectPosition: project.heroObjectPosition }),
+            ...(project.mobileHeroObjectPosition    && { '--mobile-hero-pos': project.mobileHeroObjectPosition } as React.CSSProperties),
+          }}
         />
         <div className="pp-hero__overlay pp-hero__overlay--radial" />
         <div className="pp-hero__overlay pp-hero__overlay--linear" />

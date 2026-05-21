@@ -22,6 +22,7 @@ export interface Project {
   objectives: string[];
   heroImage: string;
   heroObjectPosition?: string;
+  mobileHeroObjectPosition?: string;
   gallery: ProjectImage[];
   galleryVariant?: 'masonry' | 'showcase' | 'editorial';
   galleryTitle?: string;
@@ -183,6 +184,7 @@ export const projects: Project[] = [
     ],
     heroImage: "/PROJET DE DIGITALISATION.png",
     heroObjectPosition: 'center 25%',
+    mobileHeroObjectPosition: 'left center',
     gallery: [
       { src: CDN + "capture-daa-c-cran-97-xgGO2MQ7xTEcY7QJ.png", alt: "Digitalisation DER — module 1" },
       { src: CDN + "screenshot-247-14nGDbfGtOsly3my.png", alt: "Digitalisation DER — module 2" },

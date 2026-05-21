@@ -766,6 +766,11 @@
 }
 
 @media (max-width: 768px) {
+  /* Per-project mobile hero repositioning via CSS custom property */
+  .pp-hero__img--mobile-pos {
+    object-position: var(--mobile-hero-pos);
+  }
+
   .pp-hero__content {
     padding-bottom: 4rem;
   }
