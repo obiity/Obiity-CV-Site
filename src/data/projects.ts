@@ -52,13 +52,13 @@ export const projects: Project[] = [
       "Animer le produit avec fluidité pour un rendu dynamique et accrocheur",
       "Livrer une publicité prête à diffuser, cohérente avec l'identité visuelle de la marque",
     ],
-    heroImage: "/Publicité pour les climatiseurs Airton.png",
+    heroImage: "/publicite-airton.png",
     gallery: [
-      { src: "/Publicité pour les climatiseurs Airton.png",  alt: "Publicité Airton — vue principale" },
-      { src: "/Publicité pour les climatiseurs Airton1.png", alt: "Publicité Airton — rendu 2" },
-      { src: "/Publicité pour les climatiseurs Airton2.png", alt: "Publicité Airton — rendu 3" },
+      { src: "/publicite-airton.png",  alt: "Publicité Airton — vue principale" },
+      { src: "/publicite-airton1.png", alt: "Publicité Airton — rendu 2" },
+      { src: "/publicite-airton2.png", alt: "Publicité Airton — rendu 3" },
     ],
-    videos: [{ type: 'local', src: '/Publicité pour les climatiseurs Airton.mp4' }],
+    videos: [{ type: 'local', src: '/publicite-airton.mp4' }],
   },
   {
     id: 2,
@@ -85,7 +85,7 @@ export const projects: Project[] = [
       { src: "/Lancer Javelot2.png", alt: "Lancer Javelot VR — gameplay 2" },
       { src: "/Lancer Javelot3.png", alt: "Lancer Javelot VR — gameplay 3" },
     ],
-    videos: [{ type: 'local', src: '/Lancer javelot.mp4' }],
+    videos: [{ type: 'local', src: '/lancer-javelot.mp4' }],
   },
   {
     id: 4,
@@ -218,7 +218,7 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-122-oDAwZKZy7NOdLcFJ.png", alt: "ERROR 404 — scène 2" },
       { src: CDN + "capture-daa-c-cran-120-1fcYN0s2CQ4tdmBV.png", alt: "ERROR 404 — scène 3" },
     ],
-    videos: [{ type: 'local', src: '/ERROR 404.mov' }],
+    videos: [{ type: 'local', src: '/error-404.mov' }],
   },
   {
     id: 9,
@@ -265,9 +265,9 @@ export const projects: Project[] = [
       "Créer un outil de communication institutionnel moderne et premium",
       "Assurer une diffusion claire et percutante des données et résultats du programme",
     ],
-    heroImage: "/Accès au financement aux producteurs.png",
+    heroImage: "/acces-financement-producteurs.png",
     gallery: [],
-    videos: [{ type: 'local', src: '/Accès au financement aux producteurs.mov' }],
+    videos: [{ type: 'local', src: '/acces-financement-producteurs.mov' }],
   },
   {
     id: 10,
@@ -329,7 +329,7 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-32-D11xFXlmll1o1hXe.png", alt: "Last Loadout — opération offshore 1" },
       { src: CDN + "capture-daa-c-cran-27-tz5vlNfJacgR1xx1.png", alt: "Last Loadout — opération offshore 2" },
     ],
-    videos: [{ type: 'local', src: '/LAST LOADOUT SURF SCOP - V4.mp4' }],
+    videos: [{ type: 'local', src: '/last-loadout-v4.mp4' }],
   },
   {
     id: 12,
@@ -356,7 +356,7 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-88-CwQ0qTljcf1x5FLR.png", alt: "Clean Up Day — bénévoles" },
       { src: CDN + "capture-daa-c-cran-86-nZNWkl0HrSrBLgSU.png", alt: "Clean Up Day — résultat" },
     ],
-    videos: [{ type: 'local', src: '/Clean Up Day.mp4' }],
+    videos: [{ type: 'local', src: '/clean-up-day.mp4' }],
   },
   {
     id: 13,
@@ -454,8 +454,8 @@ export const projects: Project[] = [
     heroImage: "/DOLCE FRUITI (PUB).png",
     gallery: [],
     videos: [
-      { type: 'local', src: '/DOLCE FRUITI.mp4' },
-      { type: 'local', src: '/DOLCE FRUITI V2.mp4' },
+      { type: 'local', src: '/dolce-fruiti.mp4' },
+      { type: 'local', src: '/dolce-fruiti-v2.mp4' },
     ],
   },
   {
@@ -476,11 +476,11 @@ export const projects: Project[] = [
       "Synchroniser parfaitement image et musique",
       "Livrer un clip à hauteur des standards internationaux",
     ],
-    heroImage: "/WNPWY - DIP DOUNDOU GUISS.JPG",
+    heroImage: "/wnpwy-cover.jpg",
     heroObjectPosition: 'center 20%',
     mobileHeroObjectPosition: 'left center',
     gallery: [
-      { src: "/WNPWY - DIP DOUNDOU GUISS.JPG", alt: "WNPWY — Dip Doundou Guiss" },
+      { src: "/wnpwy-cover.jpg", alt: "WNPWY — Dip Doundou Guiss" },
       { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=2800,h=1577,fit=crop/b2ne8m116DM5kp91/img_3710-LvLTva10JDIDRRJI.JPG", alt: "WNPWY — image 1" },
       { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=531,fit=crop/b2ne8m116DM5kp91/img_3700-hT1L0jomuE65swtz.JPG", alt: "WNPWY — image 2" },
       { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=512,fit=crop/b2ne8m116DM5kp91/img_3705-m99KmkQ1dASRerdM.JPG", alt: "WNPWY — image 3" },
@@ -505,9 +505,9 @@ export const projects: Project[] = [
       "Créer une émotion forte à travers une narration sobre et percutante",
       "Valoriser l'inclusion et l'accessibilité urbaine",
     ],
-    heroImage: "/XÉÉR.png",
+    heroImage: "/xeer.png",
     gallery: [],
-    videos: [{ type: 'local', src: '/XÉÉR.mp4' }],
+    videos: [{ type: 'local', src: '/xeer.mp4' }],
   },
   {
     id: 19,
@@ -533,7 +533,7 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-81-VzBiX28drYnIFeWq.png", alt: "Corniche Dakar — athlètes" },
       { src: CDN + "capture-daa-c-cran-78-j9tIT3dUiPy6ZFcG.png", alt: "Corniche Dakar — nature" },
     ],
-    videos: [{ type: 'local', src: '/Corniche.MOV' }],
+    videos: [{ type: 'local', src: '/corniche.mov' }],
   },
 ];
 
