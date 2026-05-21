@@ -12,51 +12,57 @@ const ProjectPage = () => {
   const project = slug ? getProjectBySlug(slug) : undefined;
   const { prev, next } = slug ? getAdjacentProjects(slug) : { prev: null, next: null };
 
-  const heroRef = useRef<HTMLDivElement>(null);
+  const heroRef    = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+
+  // Lightbox — track by index so we can navigate prev / next
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const lightboxIdxRef = useRef<number | null>(null);
+  lightboxIdxRef.current = lightboxIdx;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
 
+  // GSAP entrance
   useEffect(() => {
     if (!project) return;
-
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.pp-hero__eyebrow',
+      gsap.fromTo('.pp-hero__eyebrow',
         { opacity: 0, y: 24 },
         { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.1 }
       );
-      gsap.fromTo(
-        '.pp-hero__title',
+      gsap.fromTo('.pp-hero__title',
         { opacity: 0, y: 60, skewY: 3 },
         { opacity: 1, y: 0, skewY: 0, duration: 1, ease: 'power4.out', delay: 0.25 }
       );
-      gsap.fromTo(
-        '.pp-hero__tags',
+      gsap.fromTo('.pp-hero__tags',
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.55 }
       );
-      gsap.fromTo(
-        '.pp-section',
+      gsap.fromTo('.pp-section',
         { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.9, stagger: 0.15, ease: 'power3.out', delay: 0.4,
-          scrollTrigger: undefined }
+        { opacity: 1, y: 0, duration: 0.9, stagger: 0.15, ease: 'power3.out', delay: 0.4 }
       );
     });
-
     return () => ctx.revert();
   }, [project]);
 
+  // Keyboard: Escape closes lightbox, arrows navigate images
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setLightboxSrc(null);
+      const idx = lightboxIdxRef.current;
+      if (e.key === 'Escape') {
+        setLightboxIdx(null);
+      } else if (idx !== null && project) {
+        const total = project.gallery.length;
+        if (e.key === 'ArrowLeft')  setLightboxIdx((idx - 1 + total) % total);
+        if (e.key === 'ArrowRight') setLightboxIdx((idx + 1) % total);
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, []);
+  }, [project]);
 
   if (!project) {
     return (
@@ -70,10 +76,16 @@ const ProjectPage = () => {
   }
 
   const hasGallery = project.gallery.length > 0;
-  const hasVideo = project.videos && project.videos.length > 0;
+  const hasVideo   = project.videos && project.videos.length > 0;
+  const multiImg   = project.gallery.length > 1;
+
+  const closeLightbox  = () => setLightboxIdx(null);
+  const prevLightbox   = () => setLightboxIdx(i => i !== null ? (i - 1 + project.gallery.length) % project.gallery.length : null);
+  const nextLightbox   = () => setLightboxIdx(i => i !== null ? (i + 1) % project.gallery.length : null);
 
   return (
     <div className="pp-root">
+
       {/* ── Fixed nav bar ── */}
       <nav className="pp-navbar">
         <Link to="/" className="pp-navbar__logo">
@@ -91,14 +103,9 @@ const ProjectPage = () => {
 
       {/* ── Hero fullscreen ── */}
       <div ref={heroRef} className="pp-hero">
-        <img
-          src={project.heroImage}
-          alt={project.title}
-          className="pp-hero__img"
-        />
+        <img src={project.heroImage} alt={project.title} className="pp-hero__img" />
         <div className="pp-hero__overlay pp-hero__overlay--radial" />
         <div className="pp-hero__overlay pp-hero__overlay--linear" />
-
         <div className="pp-hero__content container">
           <span className="pp-hero__eyebrow">
             {project.client} &nbsp;·&nbsp; {project.year}
@@ -120,7 +127,6 @@ const ProjectPage = () => {
           <div className="pp-info-grid__desc">
             <h2 className="pp-section-title">Présentation</h2>
             <p className="pp-body-text">{project.description}</p>
-
             {project.context && (
               <>
                 <h3 className="pp-subsection-title">Contexte</h3>
@@ -128,7 +134,6 @@ const ProjectPage = () => {
               </>
             )}
           </div>
-
           <aside className="pp-info-grid__meta glass-panel">
             <dl className="pp-meta-list">
               <div className="pp-meta-item">
@@ -170,23 +175,24 @@ const ProjectPage = () => {
           </section>
         )}
 
-        {/* Gallery */}
+        {/* Gallery — Masonry */}
         {hasGallery && (
           <section className="pp-section">
             <h2 className="pp-section-title">Galerie</h2>
-            <div className={`pp-gallery pp-gallery--${Math.min(project.gallery.length, 3)}`}>
+            <div className="pp-gallery">
               {project.gallery.map((img: ProjectImage, i) => (
                 <button
                   key={i}
                   className="pp-gallery__item"
-                  onClick={() => setLightboxSrc(img.src)}
+                  onClick={() => setLightboxIdx(i)}
                   aria-label={`Voir ${img.alt}`}
                 >
                   <img
                     src={img.src}
                     alt={img.alt}
                     className="pp-gallery__img"
-                    loading="lazy"
+                    loading={i < 3 ? 'eager' : 'lazy'}
+                    draggable={false}
                   />
                   <div className="pp-gallery__item-overlay">
                     <ArrowUpRight size={22} />
@@ -255,32 +261,66 @@ const ProjectPage = () => {
             ) : <div />}
           </div>
         </nav>
+
       </main>
 
-      {/* Lightbox */}
-      {lightboxSrc && (
+      {/* ── Lightbox ── */}
+      {lightboxIdx !== null && (
         <div
           className="pp-lightbox"
-          onClick={() => setLightboxSrc(null)}
+          onClick={closeLightbox}
           role="dialog"
           aria-modal="true"
           aria-label="Image en grand"
         >
+          {/* Close */}
           <button
             className="pp-lightbox__close"
-            onClick={() => setLightboxSrc(null)}
+            onClick={closeLightbox}
             aria-label="Fermer"
           >
             <X size={22} />
           </button>
+
+          {/* Prev */}
+          {multiImg && (
+            <button
+              className="pp-lightbox__nav pp-lightbox__nav--prev"
+              onClick={(e) => { e.stopPropagation(); prevLightbox(); }}
+              aria-label="Image précédente"
+            >
+              <ArrowLeft size={24} />
+            </button>
+          )}
+
+          {/* Image */}
           <img
-            src={lightboxSrc}
-            alt="Aperçu"
+            src={project.gallery[lightboxIdx].src}
+            alt={project.gallery[lightboxIdx].alt}
             className="pp-lightbox__img"
             onClick={(e) => e.stopPropagation()}
           />
+
+          {/* Next */}
+          {multiImg && (
+            <button
+              className="pp-lightbox__nav pp-lightbox__nav--next"
+              onClick={(e) => { e.stopPropagation(); nextLightbox(); }}
+              aria-label="Image suivante"
+            >
+              <ArrowRight size={24} />
+            </button>
+          )}
+
+          {/* Counter */}
+          {multiImg && (
+            <div className="pp-lightbox__counter" onClick={(e) => e.stopPropagation()}>
+              {lightboxIdx + 1} <span>/</span> {project.gallery.length}
+            </div>
+          )}
         </div>
       )}
+
     </div>
   );
 };

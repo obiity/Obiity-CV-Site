@@ -10,8 +10,34 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
   user-select: none;
-  /* pan-x pan-y allows page scroll while still enabling pinch-zoom on the map */
+  /* Default: allow page scroll on single-finger touch.
+     When a 2-finger pinch starts, JS switches to touch-action: none. */
   touch-action: pan-x pan-y;
+}
+
+/* Hint badge — "Scroll pour zoomer" — fades in/out on mouseenter */
+.cyber-map-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 122, 47, 0.3);
+  color: rgba(245, 235, 225, 0.85);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-map-hint.is-visible {
+  opacity: 1;
 }
 
 .leaflet-earth-map-canvas {

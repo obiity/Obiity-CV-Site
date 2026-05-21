@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import './Portfolio.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -113,8 +113,11 @@ const Portfolio: React.FC = () => {
   /* ── Pointer: down ──────────────────────────── */
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.button !== 0 && e.pointerType === 'mouse') return;
+    // Always reset so a click right after a drag still navigates
+    hasDragged.current = false;
+    // Let the CTA button receive its own click — don't capture the pointer
+    if ((e.target as HTMLElement).closest('.carousel-card__btn')) return;
     dragging.current     = true;
-    hasDragged.current   = false;
     pointerStartX.current  = e.clientX;
     pointerDeltaX.current  = 0;
     gsap.killTweensOf(trackRef.current);
@@ -208,6 +211,15 @@ const Portfolio: React.FC = () => {
         </h2>
       </div>
 
+      <div className="carousel-nav-wrapper">
+        <button
+          className="carousel-arrow carousel-arrow--prev"
+          onClick={() => goToRendered(trackIdxRef.current - 1)}
+          aria-label="Projet précédent"
+        >
+          <ChevronLeft size={32} strokeWidth={1.4} />
+        </button>
+
       <div className="carousel-outer">
         <div
           ref={trackRef}
@@ -263,6 +275,15 @@ const Portfolio: React.FC = () => {
         </div>
       </div>
 
+        <button
+          className="carousel-arrow carousel-arrow--next"
+          onClick={() => goToRendered(trackIdxRef.current + 1)}
+          aria-label="Projet suivant"
+        >
+          <ChevronRight size={32} strokeWidth={1.4} />
+        </button>
+      </div>{/* end carousel-nav-wrapper */}
+
       <div className="carousel-controls container">
         <div className="carousel-counter">
           <span className="carousel-counter__cur">{String(current + 1).padStart(2, '0')}</span>
@@ -275,7 +296,10 @@ const Portfolio: React.FC = () => {
       </div>
 
       <div className="other-projects-section container">
-        <h3 className="other-projects-title">Autres projets</h3>
+        <h3 className="other-projects-title">
+          <span className="other-projects-count">+150</span>{' '}
+          Projets réalisés
+        </h3>
         <div className="other-projects-image-wrapper">
           <img src="/AUTRES PROJETS.png" alt="Autres projets" className="other-projects-image" />
         </div>

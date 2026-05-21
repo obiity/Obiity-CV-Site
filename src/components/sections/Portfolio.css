@@ -19,6 +19,43 @@
   padding: 0 5vw;
 }
 
+/* ── Arrow nav wrapper ───────────────────── */
+.carousel-nav-wrapper {
+  position: relative;
+}
+
+/* ── Prev / Next arrows — flat minimal ───── */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  color: rgba(245, 240, 235, 0.4);
+  cursor: pointer;
+  transition:
+    color     0.25s ease,
+    opacity   0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.carousel-arrow:hover {
+  color: var(--accent-primary);
+  transform: translateY(-50%) scale(1.18);
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+.carousel-arrow--prev { left:  1.2vw; }
+.carousel-arrow--next { right: 1.2vw; }
+
 /* ── Outer viewport ──────────────────────── */
 .carousel-outer {
   width: 100%;
@@ -288,13 +325,19 @@
 }
 
 .other-projects-title {
-  font-size: 2rem;
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--text-light);
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-align: center;
+  line-height: 1.1;
+}
+
+.other-projects-count {
+  color: var(--accent-primary);
+  text-shadow: 0 0 48px rgba(255, 122, 47, 0.3);
 }
 
 .other-projects-image-wrapper {
@@ -344,6 +387,8 @@
   .carousel-card__content {
     padding: 1.8rem 2rem 2.2rem;
   }
+  .carousel-arrow--prev { left:  0.5rem; }
+  .carousel-arrow--next { right: 0.5rem; }
 }
 
 @media (max-width: 640px) {
@@ -379,6 +424,6 @@
     padding: 0 4vw;
   }
   .other-projects-title {
-    font-size: 1.5rem;
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
   }
 }
