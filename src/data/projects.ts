@@ -265,9 +265,9 @@ export const projects: Project[] = [
       "Créer un outil de communication institutionnel moderne et premium",
       "Assurer une diffusion claire et percutante des données et résultats du programme",
     ],
-    heroImage: "/Untitled-4.png",
+    heroImage: "/Accès au financement aux producteurs.png",
     gallery: [],
-    videos: [{ type: 'local', src: '/ENDEV - Accès au financement.mov' }],
+    videos: [{ type: 'local', src: '/Accès au financement aux producteurs.mov' }],
   },
   {
     id: 10,

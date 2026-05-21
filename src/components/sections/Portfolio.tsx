@@ -17,7 +17,7 @@ const projects = [
   { id: 7,  title: 'PROJET DE DIGITALISATION',              client: 'DER · KTM ADVANCE',  location: 'Dakar - 2025', image: '/PROJET DE DIGITALISATION.png',               slug: 'digitalisation'            },
   { id: 8,  title: 'ERROR 404',                             client: 'OBIITY',             location: 'Dakar - 2025', image: '/ERROR 404.png',                              slug: 'error-404'                 },
   { id: 9,  title: 'KING OF ARENA',                         client: 'DAMEL STUDIO',       location: 'Dakar - 2025', image: '/KING OF ARENA V2.png',                       slug: 'king-of-arena'             },
-  { id: 20, title: 'Accès au financement aux producteurs de FA', client: 'ENDEV',          location: 'Dakar - 2025', image: '/Untitled-4.png',                             slug: 'endev-acces-financement'   },
+  { id: 20, title: 'Accès au financement aux producteurs de FA', client: 'ENDEV',          location: 'Dakar - 2025', image: '/Accès au financement aux producteurs.png',   slug: 'endev-acces-financement'   },
   { id: 10, title: 'FULANI',                                client: 'DAMEL STUDIO',       location: 'Dakar - 2023', image: '/FULANI.png',                                 slug: 'fulani'                    },
   { id: 11, title: 'LAST LOADOUT - SURF SCOP',              client: 'SAIPEM',             location: 'Dakar - 2024', image: '/LAST LOADOUT - SURF SCOP.png',               slug: 'last-loadout'              },
   { id: 12, title: 'CLEAN UP DAY',                          client: 'SAIPEM',             location: 'Dakar - 2024', image: '/CLEAN UP DAY.png',                           slug: 'clean-up-day'              },
