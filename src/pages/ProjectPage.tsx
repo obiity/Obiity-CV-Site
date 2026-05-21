@@ -292,14 +292,28 @@ const ProjectPage = () => {
             <h2 className="pp-section-title">{t.project.video}</h2>
             <div className="pp-videos">
               {project.videos!.map((vid, i) => {
-                const src =
+                if (vid.type === 'local' && vid.src) {
+                  return (
+                    <div key={i} className="pp-video-wrapper pp-video-wrapper--local">
+                      <video
+                        src={vid.src}
+                        className="pp-video-local"
+                        controls
+                        playsInline
+                        preload="metadata"
+                        title={`${project.title} — vidéo ${i + 1}`}
+                      />
+                    </div>
+                  );
+                }
+                const embedSrc =
                   vid.type === 'youtube'
                     ? `https://www.youtube.com/embed/${vid.id}?rel=0&modestbranding=1`
                     : `https://player.vimeo.com/video/${vid.id}?dnt=1`;
                 return (
                   <div key={i} className="pp-video-wrapper">
                     <iframe
-                      src={src}
+                      src={embedSrc}
                       title={`${project.title} — vidéo ${i + 1}`}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen

@@ -525,6 +525,20 @@
   border: none;
 }
 
+/* Local / self-hosted video — no aspect-ratio trick needed */
+.pp-video-wrapper--local {
+  padding-bottom: 0;
+  height: auto;
+}
+
+.pp-video-local {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  background: #000;
+  outline: none;
+}
+
 /* ── Prev / Next navigation ──────────────────── */
 .pp-project-nav {
   margin-top: 2rem;

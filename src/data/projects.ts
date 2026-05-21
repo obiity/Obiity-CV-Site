@@ -1,6 +1,7 @@
 export interface ProjectVideo {
-  type: 'youtube' | 'vimeo';
-  id: string;
+  type: 'youtube' | 'vimeo' | 'local';
+  id?: string;
+  src?: string;
 }
 
 export interface ProjectImage {
@@ -83,6 +84,7 @@ export const projects: Project[] = [
       { src: "/Lancer Javelot2.png", alt: "Lancer Javelot VR — gameplay 2" },
       { src: "/Lancer Javelot3.png", alt: "Lancer Javelot VR — gameplay 3" },
     ],
+    videos: [{ type: 'local', src: '/Lancer javelot.mp4' }],
   },
   {
     id: 4,
