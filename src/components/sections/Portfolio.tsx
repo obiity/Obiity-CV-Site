@@ -30,7 +30,7 @@ const projects = [
 
 const TOTAL        = projects.length;
 const CLONE_COUNT  = 2;
-const DRAG_THRESHOLD = 48;
+const DRAG_THRESHOLD = 28;
 
 // Infinite loop array: [last-2, last-1, ...all originals..., first-0, first-1]
 const loopedSlides = [
@@ -113,15 +113,15 @@ const Portfolio: React.FC = () => {
   /* ── Pointer: down ──────────────────────────── */
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.button !== 0 && e.pointerType === 'mouse') return;
-    // Always reset so a click right after a drag still navigates
     hasDragged.current = false;
-    // Let the CTA button receive its own click — don't capture the pointer
     if ((e.target as HTMLElement).closest('.carousel-card__btn')) return;
-    dragging.current     = true;
+    dragging.current      = true;
     pointerStartX.current  = e.clientX;
     pointerDeltaX.current  = 0;
     gsap.killTweensOf(trackRef.current);
     animating.current = false;
+    // Disable browser touch handling so the swipe isn't hijacked on mobile
+    (e.currentTarget as HTMLDivElement).style.touchAction = 'none';
     (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
   };
 
@@ -138,6 +138,7 @@ const Portfolio: React.FC = () => {
   const handlePointerUp = () => {
     if (!dragging.current) return;
     dragging.current = false;
+    if (trackRef.current) trackRef.current.style.touchAction = '';
     const delta = pointerDeltaX.current;
 
     if (Math.abs(delta) >= DRAG_THRESHOLD) {
@@ -227,6 +228,7 @@ const Portfolio: React.FC = () => {
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
           onPointerLeave={handlePointerUp}
           style={{ cursor: dragging.current ? 'grabbing' : 'grab' }}
         >

@@ -113,7 +113,12 @@ const ProjectPage = () => {
 
       {/* ── Hero fullscreen ── */}
       <div ref={heroRef} className="pp-hero">
-        <img src={project.heroImage} alt={project.title} className="pp-hero__img" />
+        <img
+          src={project.heroImage}
+          alt={project.title}
+          className="pp-hero__img"
+          style={project.heroObjectPosition ? { objectPosition: project.heroObjectPosition } : undefined}
+        />
         <div className="pp-hero__overlay pp-hero__overlay--radial" />
         <div className="pp-hero__overlay pp-hero__overlay--linear" />
         <div className="pp-hero__content container">
@@ -147,7 +152,7 @@ const ProjectPage = () => {
           <aside className="pp-info-grid__meta glass-panel">
             <dl className="pp-meta-list">
               <div className="pp-meta-item">
-                <dt>Client</dt>
+                <dt>Réalisé par</dt>
                 <dd>{project.client}</dd>
               </div>
               <div className="pp-meta-item">
@@ -203,9 +208,13 @@ const ProjectPage = () => {
             {project.galleryVariant === 'editorial' ? (
               /* True masonry: JS-distributed flexbox columns, no holes */
               <div className="pp-gallery pp-gallery--editorial" data-count={project.gallery.length}>
-                {Array.from({ length: editorialCols }, (_, ci) => (
+                {Array.from({ length: editorialCols }, (_, ci) => {
+                  const galleryImages = (editorialCols === 1 && project.mobileGalleryOrder)
+                    ? project.mobileGalleryOrder.map(idx => project.gallery[idx])
+                    : project.gallery;
+                  return (
                   <div key={ci} className="pp-gallery__col">
-                    {project.gallery
+                    {galleryImages
                       .map((img, i) => ({ img, i }))
                       .filter(({ i }) => i % editorialCols === ci)
                       .map(({ img, i }) => (
@@ -229,7 +238,8 @@ const ProjectPage = () => {
                         </button>
                       ))}
                   </div>
-                ))}
+                  );
+                })}
               </div>
             ) : (
               /* Grid or showcase */

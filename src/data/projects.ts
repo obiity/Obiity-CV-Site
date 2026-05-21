@@ -21,9 +21,11 @@ export interface Project {
   context: string;
   objectives: string[];
   heroImage: string;
+  heroObjectPosition?: string;
   gallery: ProjectImage[];
   galleryVariant?: 'masonry' | 'showcase' | 'editorial';
   galleryTitle?: string;
+  mobileGalleryOrder?: number[];
   videos?: ProjectVideo[];
 }
 
@@ -102,8 +104,8 @@ export const projects: Project[] = [
     heroImage: "/PLAN ARCHI 3D.png",
     gallery: [
       { src: "/PLAN ARCHI 3D.png",  alt: "Archi 3D — plan principal" },
-      { src: "/PLAN ARCHI 3D1.png", alt: "Archi 3D — visualisation 1" },
       { src: "/PLAN ARCHI 3D2.png", alt: "Archi 3D — visualisation 2" },
+      { src: "/PLAN ARCHI 3D1.png", alt: "Archi 3D — visualisation 1" },
     ],
   },
   {
@@ -125,6 +127,7 @@ export const projects: Project[] = [
       "Proposer des mises en situation réalistes et progressives",
     ],
     heroImage: "/DEVENIR AGRI-ENTREPRENEUR.png",
+    heroObjectPosition: 'center 20%',
     gallery: [
       { src: CDN + "screenshot-199-fAK2BXfzh4CIwfbC.png", alt: "Devenir Agri-Entrepreneur — écran 1" },
       { src: CDN + "screenshot-201-j0EL2dSKFdn3cKzB.png", alt: "Devenir Agri-Entrepreneur — écran 2" },
@@ -152,8 +155,8 @@ export const projects: Project[] = [
     ],
     heroImage: "/BOOSTGI-JOBS.jpeg",
     gallery: [
-      { src: CDN + "dsc08841-NFlBIVPGp3XSogIc.JPG", alt: "BoostGI Jobs — participants" },
       { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1200,fit=crop,gravity=top/b2ne8m116DM5kp91/img_4588-WZxw3KKIWXFNXNzm.JPG", alt: "BoostGI Jobs — formation VR", objectPosition: 'center 20%' },
+      { src: CDN + "dsc08841-NFlBIVPGp3XSogIc.JPG", alt: "BoostGI Jobs — participants" },
       { src: CDN + "dsc08877-uk6plZQ2mSTPCYU5.JPG", alt: "BoostGI Jobs — atelier mécatronique" },
       { src: CDN + "screenshot-139-gfyR6jhb2UcWkma3.png", alt: "BoostGI Jobs — interface" },
       { src: "/BOOSTGI-JOBS2.png", alt: "BoostGI Jobs — session 2" },
@@ -179,6 +182,7 @@ export const projects: Project[] = [
       "Moderniser l'expérience d'apprentissage via le contenu digital",
     ],
     heroImage: "/PROJET DE DIGITALISATION.png",
+    heroObjectPosition: 'center 25%',
     gallery: [
       { src: CDN + "capture-daa-c-cran-97-xgGO2MQ7xTEcY7QJ.png", alt: "Digitalisation DER — module 1" },
       { src: CDN + "screenshot-247-14nGDbfGtOsly3my.png", alt: "Digitalisation DER — module 2" },
@@ -265,6 +269,7 @@ export const projects: Project[] = [
       { src: "/FULANI2.png", alt: "FULANI — scène 2" },
     ],
     galleryVariant: 'editorial',
+    mobileGalleryOrder: [1, 0, 2, 3, 4, 5],
   },
   {
     id: 11,
@@ -286,6 +291,12 @@ export const projects: Project[] = [
     ],
     heroImage: "/LAST LOADOUT - SURF SCOP.png",
     gallery: [
+      { src: "/Last Loadout 1.png", alt: "Last Loadout — image 1" },
+      { src: "/Last Loadout 2.png", alt: "Last Loadout — image 2" },
+      { src: "/Last Loadout 3.png", alt: "Last Loadout — image 3" },
+      { src: "/Last Loadout 4.png", alt: "Last Loadout — image 4" },
+      { src: "/Last Loadout 5.png", alt: "Last Loadout — image 5" },
+      { src: "/Last Loadout 6.png", alt: "Last Loadout — image 6" },
       { src: CDN + "capture-daa-c-cran-32-D11xFXlmll1o1hXe.png", alt: "Last Loadout — opération offshore 1" },
       { src: CDN + "capture-daa-c-cran-27-tz5vlNfJacgR1xx1.png", alt: "Last Loadout — opération offshore 2" },
     ],
@@ -432,6 +443,7 @@ export const projects: Project[] = [
       "Livrer un clip à hauteur des standards internationaux",
     ],
     heroImage: "/WNPWY - DIP DOUNDOU GUISS.JPG",
+    heroObjectPosition: 'center 20%',
     gallery: [
       { src: "/WNPWY - DIP DOUNDOU GUISS.JPG", alt: "WNPWY — Dip Doundou Guiss" },
       { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=2800,h=1577,fit=crop/b2ne8m116DM5kp91/img_3710-LvLTva10JDIDRRJI.JPG", alt: "WNPWY — image 1" },
