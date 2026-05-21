@@ -248,6 +248,32 @@ export const projects: Project[] = [
     galleryTitle: '+60 lutteurs modélisés',
   },
   {
+    id: 20,
+    slug: "endev-acces-financement",
+    title: "Accès au financement aux producteurs de FA",
+    client: "ENDEV",
+    year: "2025",
+    category: "Vidéo Institutionnelle · Communication · Développement",
+    tags: ["Vidéo Institutionnelle", "Communication", "Développement", "Agriculture", "Impact Social"],
+    description:
+      "Production vidéo institutionnelle pour ENDEV, mettant en lumière le programme d'accès au financement destiné aux producteurs de Filières Agricoles. La vidéo documente les actions menées sur le terrain, les résultats obtenus et l'impact concret du programme — un outil de communication puissant au service du développement agricole local.",
+    context:
+      "Dans un contexte où l'accès au financement constitue un frein majeur pour le développement agricole, ce programme vise à faciliter l'accès aux ressources financières pour les producteurs locaux. La vidéo capture les témoignages, les résultats chiffrés et les dynamiques de terrain qui témoignent de l'impact transformateur du programme ENDEV sur les communautés bénéficiaires.",
+    objectives: [
+      "Documenter les actions et résultats du programme d'accès au financement",
+      "Mettre en valeur l'impact concret sur les producteurs de Filières Agricoles",
+      "Créer un outil de communication institutionnel fort et crédible",
+      "Valoriser les bénéficiaires et leurs témoignages terrain",
+    ],
+    heroImage: "/Untitled-4.png",
+    gallery: [
+      { src: "/Untitled-4.png", alt: "ENDEV — accès au financement" },
+      { src: "/Untitled-5.png", alt: "ENDEV — producteurs FA" },
+    ],
+    galleryVariant: 'editorial',
+    videos: [{ type: 'local', src: '/ENDEV - Accès au financement.mov' }],
+  },
+  {
     id: 10,
     slug: "fulani",
     title: "FULANI",
