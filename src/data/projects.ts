@@ -217,7 +217,7 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-122-oDAwZKZy7NOdLcFJ.png", alt: "ERROR 404 — scène 2" },
       { src: CDN + "capture-daa-c-cran-120-1fcYN0s2CQ4tdmBV.png", alt: "ERROR 404 — scène 3" },
     ],
-    videos: [{ type: "youtube", id: "tJrLgFgFYI4" }],
+    videos: [{ type: 'local', src: '/ERROR 404.mov' }],
   },
   {
     id: 9,
@@ -305,7 +305,7 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-32-D11xFXlmll1o1hXe.png", alt: "Last Loadout — opération offshore 1" },
       { src: CDN + "capture-daa-c-cran-27-tz5vlNfJacgR1xx1.png", alt: "Last Loadout — opération offshore 2" },
     ],
-    videos: [{ type: "youtube", id: "I5TPkEcm8V0" }],
+    videos: [{ type: 'local', src: '/LAST LOADOUT SURF SCOP - V4.mp4' }],
   },
   {
     id: 12,
@@ -332,7 +332,7 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-88-CwQ0qTljcf1x5FLR.png", alt: "Clean Up Day — bénévoles" },
       { src: CDN + "capture-daa-c-cran-86-nZNWkl0HrSrBLgSU.png", alt: "Clean Up Day — résultat" },
     ],
-    videos: [{ type: "youtube", id: "6rdSFgFglsE" }],
+    videos: [{ type: 'local', src: '/Clean Up Day.mp4' }],
   },
   {
     id: 13,
@@ -425,8 +425,8 @@ export const projects: Project[] = [
     heroImage: "/DOLCE FRUITI (PUB).png",
     gallery: [],
     videos: [
-      { type: "youtube", id: "S3rh00beBMg" },
-      { type: "youtube", id: "yhgynW_W568" },
+      { type: 'local', src: '/DOLCE FRUITI.mp4' },
+      { type: 'local', src: '/DOLCE FRUITI V2.mp4' },
     ],
   },
   {
@@ -456,7 +456,7 @@ export const projects: Project[] = [
       { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=531,fit=crop/b2ne8m116DM5kp91/img_3700-hT1L0jomuE65swtz.JPG", alt: "WNPWY — image 2" },
       { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=512,fit=crop/b2ne8m116DM5kp91/img_3705-m99KmkQ1dASRerdM.JPG", alt: "WNPWY — image 3" },
     ],
-    videos: [{ type: "youtube", id: "k2zen1OyUWs" }],
+    videos: [{ type: 'local', src: '/WNPWY.mov' }],
   },
   {
     id: 18,
@@ -478,7 +478,7 @@ export const projects: Project[] = [
     ],
     heroImage: "/XÉÉR.png",
     gallery: [],
-    videos: [{ type: "youtube", id: "llBNrcEFQK0" }],
+    videos: [{ type: 'local', src: '/XÉÉR.mp4' }],
   },
   {
     id: 19,
@@ -504,7 +504,7 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-81-VzBiX28drYnIFeWq.png", alt: "Corniche Dakar — athlètes" },
       { src: CDN + "capture-daa-c-cran-78-j9tIT3dUiPy6ZFcG.png", alt: "Corniche Dakar — nature" },
     ],
-    videos: [{ type: "youtube", id: "gFLxK7sDeLA" }],
+    videos: [{ type: 'local', src: '/Corniche.MOV' }],
   },
 ];
 
