@@ -20,6 +20,16 @@ const ProjectPage = () => {
   const lightboxIdxRef = useRef<number | null>(null);
   lightboxIdxRef.current = lightboxIdx;
 
+  // Editorial masonry column count — driven by JS so resize stays accurate
+  const [editorialCols, setEditorialCols] = useState(3);
+  useEffect(() => {
+    const update = () =>
+      setEditorialCols(window.innerWidth < 480 ? 1 : window.innerWidth < 768 ? 2 : 3);
+    update();
+    window.addEventListener('resize', update, { passive: true });
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
@@ -175,31 +185,82 @@ const ProjectPage = () => {
           </section>
         )}
 
-        {/* Gallery — Masonry */}
+        {/* Gallery — Grid, Showcase, or Editorial Masonry */}
         {hasGallery && (
           <section className="pp-section">
-            <h2 className="pp-section-title">Galerie</h2>
-            <div className="pp-gallery">
-              {project.gallery.map((img: ProjectImage, i) => (
-                <button
-                  key={i}
-                  className="pp-gallery__item"
-                  onClick={() => setLightboxIdx(i)}
-                  aria-label={`Voir ${img.alt}`}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="pp-gallery__img"
-                    loading={i < 3 ? 'eager' : 'lazy'}
-                    draggable={false}
-                  />
-                  <div className="pp-gallery__item-overlay">
-                    <ArrowUpRight size={22} />
+            {project.galleryTitle ? (() => {
+              const [count, ...rest] = project.galleryTitle!.split(' ');
+              return (
+                <h2 className="pp-gallery-title">
+                  <span className="pp-gallery-title__count">{count}</span>{' '}
+                  {rest.join(' ')}
+                </h2>
+              );
+            })() : (
+              <h2 className="pp-section-title">Galerie</h2>
+            )}
+
+            {project.galleryVariant === 'editorial' ? (
+              /* True masonry: JS-distributed flexbox columns, no holes */
+              <div className="pp-gallery pp-gallery--editorial" data-count={project.gallery.length}>
+                {Array.from({ length: editorialCols }, (_, ci) => (
+                  <div key={ci} className="pp-gallery__col">
+                    {project.gallery
+                      .map((img, i) => ({ img, i }))
+                      .filter(({ i }) => i % editorialCols === ci)
+                      .map(({ img, i }) => (
+                        <button
+                          key={i}
+                          className="pp-gallery__item"
+                          onClick={() => setLightboxIdx(i)}
+                          aria-label={`Voir ${img.alt}`}
+                        >
+                          <img
+                            src={img.src}
+                            alt={img.alt}
+                            className="pp-gallery__img"
+                            loading={i < editorialCols ? 'eager' : 'lazy'}
+                            draggable={false}
+                            style={img.objectPosition ? { objectPosition: img.objectPosition } : undefined}
+                          />
+                          <div className="pp-gallery__item-overlay">
+                            <ArrowUpRight size={22} />
+                          </div>
+                        </button>
+                      ))}
                   </div>
-                </button>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              /* Grid or showcase */
+              <div
+                className={`pp-gallery${project.galleryVariant === 'showcase' ? ' pp-gallery--showcase' : ''}`}
+                data-count={project.gallery.length}
+              >
+                {project.gallery.map((img: ProjectImage, i) => (
+                  <button
+                    key={i}
+                    className="pp-gallery__item"
+                    onClick={() => setLightboxIdx(i)}
+                    aria-label={`Voir ${img.alt}`}
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="pp-gallery__img"
+                      loading={i < 3 ? 'eager' : 'lazy'}
+                      draggable={false}
+                      style={img.objectPosition ? { objectPosition: img.objectPosition } : undefined}
+                    />
+                    {project.galleryVariant !== 'showcase' && (
+                      <div className="pp-gallery__item-overlay">
+                        <ArrowUpRight size={22} />
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
           </section>
         )}
 

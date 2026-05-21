@@ -6,6 +6,7 @@ export interface ProjectVideo {
 export interface ProjectImage {
   src: string;
   alt: string;
+  objectPosition?: string;
 }
 
 export interface Project {
@@ -21,6 +22,8 @@ export interface Project {
   objectives: string[];
   heroImage: string;
   gallery: ProjectImage[];
+  galleryVariant?: 'masonry' | 'showcase' | 'editorial';
+  galleryTitle?: string;
   videos?: ProjectVideo[];
 }
 
@@ -149,10 +152,12 @@ export const projects: Project[] = [
     ],
     heroImage: "/BOOSTGI-JOBS.jpeg",
     gallery: [
-      { src: CDN + "screenshot-139-gfyR6jhb2UcWkma3.png", alt: "BoostGI Jobs — interface" },
-      { src: CDN + "img_4588-WZxw3KKIWXFNXNzm.JPG", alt: "BoostGI Jobs — formation terrain" },
-      { src: CDN + "dsc08877-uk6plZQ2mSTPCYU5.JPG", alt: "BoostGI Jobs — atelier mécatronique" },
       { src: CDN + "dsc08841-NFlBIVPGp3XSogIc.JPG", alt: "BoostGI Jobs — participants" },
+      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1200,fit=crop,gravity=top/b2ne8m116DM5kp91/img_4588-WZxw3KKIWXFNXNzm.JPG", alt: "BoostGI Jobs — formation VR", objectPosition: 'center 20%' },
+      { src: CDN + "dsc08877-uk6plZQ2mSTPCYU5.JPG", alt: "BoostGI Jobs — atelier mécatronique" },
+      { src: CDN + "screenshot-139-gfyR6jhb2UcWkma3.png", alt: "BoostGI Jobs — interface" },
+      { src: "/BOOSTGI-JOBS2.png", alt: "BoostGI Jobs — session 2" },
+      { src: "/BOOSTGI-JOBS1.png", alt: "BoostGI Jobs — session 1" },
     ],
   },
   {
@@ -211,28 +216,26 @@ export const projects: Project[] = [
     title: "KING OF ARENA",
     client: "DAMEL STUDIO",
     year: "2025",
-    category: "Game Design · Character Design · Web",
-    tags: ["Game Design", "Character Design", "Web Design", "Patrimoine Culturel", "Lutte Sénégalaise"],
+    category: "Character Design · Modélisation 3D · Gaming",
+    tags: ["3D", "Character Design", "Modélisation", "Texturing", "Rigging", "Gaming Africain"],
     description:
-      "Contribution au design de personnages pour un jeu vidéo inspiré de la lutte sénégalaise — sport emblématique et pilier de l'identité culturelle du Sénégal. Chaque personnage reflète les codes, traditions et esthétiques de cette discipline ancestrale, avec en parallèle la conception du site officiel du jeu.",
+      "Modélisation et design de plus de 60 personnages 3D inspirés de la lutte sénégalaise pour le jeu vidéo KING OF ARENA. Chaque lutteur est conçu avec une attention minutieuse aux traditions vestimentaires, aux silhouettes caractéristiques et à l'esthétique culturelle du Sénégal — pour un univers gaming authentique, visuellement percutant et artistiquement ambitieux.",
     context:
-      "King of Arena est un jeu vidéo qui s'inspire de la lutte sénégalaise, sport national et symbole fort de la culture ouest-africaine. Le projet a nécessité une recherche culturelle approfondie pour ancrer les personnages et l'univers visuel dans l'authenticité de cette tradition tout en les rendant accessibles à un public international.",
+      "King of Arena est ancré dans la tradition de la lutte sénégalaise, sport national emblématique. La phase de character modeling a nécessité une recherche culturelle approfondie : costumes traditionnels, morphologies athlétiques, amulettes et parures propres aux lutteurs, architecture des arènes. Chaque personnage est un hommage visuel à la richesse de cette culture sportive africaine.",
     objectives: [
-      "Concevoir des personnages inspirés des traditions de la lutte sénégalaise",
-      "Créer un site officiel transmettant l'univers unique du jeu",
-      "Offrir une expérience utilisateur fluide et immersive",
-      "Allier patrimoine culturel africain et game design contemporain",
+      "Créer plus de 60 personnages 3D uniques, culturellement authentiques",
+      "Développer des silhouettes distinctives et mémorables pour chaque lutteur",
+      "Texturer et rigger chaque personnage pour une intégration fluide en jeu",
+      "Construire une direction artistique gaming ancrée dans l'univers de la lutte sénégalaise",
     ],
-    heroImage: "/KING OF ARENA 1.png",
+    heroImage: "/KING OF ARENA V2.png",
     gallery: [
-      { src: "/KING OF ARENA 1.png",  alt: "King of Arena — affiche officielle" },
-      { src: "/KING OF ARENAV1.png",  alt: "King of Arena — personnage V1" },
-      { src: "/KING OF ARENA V2.png", alt: "King of Arena — personnage V2" },
-      { src: "/KING OF ARENA 2.png",  alt: "King of Arena — combattant" },
-      { src: "/KING OF ARENA 3.png",  alt: "King of Arena — arène" },
-      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,h=1280,fit=crop/b2ne8m116DM5kp91/222040918_359f83e6-0095-4ff6-b079-72a3b2a6019b-f06h7AjgO5qizmjv.png", alt: "King of Arena — design personnage" },
-      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=593,fit=crop/b2ne8m116DM5kp91/ahmed-taya-uiVVXVrEOFqubnse.png", alt: "King of Arena — Ahmed Taya" },
+      { src: "/KING OF ARENA 1.png", alt: "King of Arena — personnage 1" },
+      { src: "/KING OF ARENA 2.png", alt: "King of Arena — personnage 2" },
+      { src: "/KING OF ARENA 3.png", alt: "King of Arena — personnage 3" },
     ],
+    galleryVariant: 'showcase',
+    galleryTitle: '+60 lutteurs modélisés',
   },
   {
     id: 10,
@@ -254,14 +257,14 @@ export const projects: Project[] = [
     ],
     heroImage: "/FULANI.png",
     gallery: [
-      { src: "/FULANI1.png", alt: "FULANI — scène 1" },
-      { src: "/FULANI2.png", alt: "FULANI — scène 2" },
-      { src: "/FULANI3.png", alt: "FULANI — scène 3" },
       { src: "/FULANI4.png", alt: "FULANI — scène 4" },
+      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1200/b2ne8m116DM5kp91/cover-2-ExAwwWfOBcoD1xDf.png", alt: "FULANI — guerrière africaine" },
       { src: "/FULANI5.png", alt: "FULANI — scène 5" },
-      { src: "/FULANI6.png", alt: "FULANI — scène 6" },
-      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1102,fit=crop/b2ne8m116DM5kp91/cover-2-ExAwwWfOBcoD1xDf.png", alt: "FULANI — guerrière africaine" },
+      { src: "/FULANI1.png", alt: "FULANI — scène 1" },
+      { src: "/FULANI3.png", alt: "FULANI — scène 3" },
+      { src: "/FULANI2.png", alt: "FULANI — scène 2" },
     ],
+    galleryVariant: 'editorial',
   },
   {
     id: 11,
