@@ -110,9 +110,10 @@ const Portfolio: React.FC = () => {
     });
   }, [calcOffset]);
 
-  /* ── Pointer: down ──────────────────────────── */
+  /* ── Pointer: down (mouse only) ────────────── */
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    if (e.pointerType === 'touch') return; // touch handled natively
+    if (e.button !== 0) return;
     hasDragged.current = false;
     if ((e.target as HTMLElement).closest('.carousel-card__btn')) return;
     dragging.current      = true;
@@ -120,13 +121,12 @@ const Portfolio: React.FC = () => {
     pointerDeltaX.current  = 0;
     gsap.killTweensOf(trackRef.current);
     animating.current = false;
-    // Disable browser touch handling so the swipe isn't hijacked on mobile
-    (e.currentTarget as HTMLDivElement).style.touchAction = 'none';
     (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
   };
 
-  /* ── Pointer: move ──────────────────────────── */
+  /* ── Pointer: move (mouse only) ─────────────── */
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === 'touch') return;
     if (!dragging.current) return;
     const delta = e.clientX - pointerStartX.current;
     pointerDeltaX.current = delta;
@@ -134,11 +134,11 @@ const Portfolio: React.FC = () => {
     gsap.set(trackRef.current, { x: trackTranslate.current + delta });
   };
 
-  /* ── Pointer: up / leave ────────────────────── */
-  const handlePointerUp = () => {
+  /* ── Pointer: up / leave (mouse only) ───────── */
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === 'touch') return;
     if (!dragging.current) return;
     dragging.current = false;
-    if (trackRef.current) trackRef.current.style.touchAction = '';
     const delta = pointerDeltaX.current;
 
     if (Math.abs(delta) >= DRAG_THRESHOLD) {
@@ -148,6 +148,79 @@ const Portfolio: React.FC = () => {
     }
     pointerDeltaX.current = 0;
   };
+
+  /* ── Native touch: intent-aware swipe (mobile) ─ */
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isHorizontal: boolean | null = null;
+
+    const onTouchStart = (e: TouchEvent) => {
+      if ((e.target as HTMLElement).closest('.carousel-card__btn')) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      isHorizontal = null;
+      gsap.killTweensOf(track);
+      animating.current = false;
+      dragging.current  = true;
+      hasDragged.current = false;
+      pointerStartX.current  = touchStartX;
+      pointerDeltaX.current  = 0;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (!dragging.current) return;
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+
+      // Determine swipe axis on first meaningful movement
+      if (isHorizontal === null) {
+        if (Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
+        isHorizontal = Math.abs(dx) > Math.abs(dy);
+        if (!isHorizontal) {
+          // Vertical intent → release so page can scroll
+          dragging.current = false;
+          return;
+        }
+      }
+
+      if (!isHorizontal) return;
+      e.preventDefault(); // block page scroll for horizontal swipe
+
+      const delta = e.touches[0].clientX - pointerStartX.current;
+      pointerDeltaX.current = delta;
+      if (Math.abs(delta) > 6) hasDragged.current = true;
+      gsap.set(track, { x: trackTranslate.current + delta });
+    };
+
+    const onTouchEnd = () => {
+      if (!dragging.current) return;
+      dragging.current = false;
+      isHorizontal = null;
+      const delta = pointerDeltaX.current;
+      if (Math.abs(delta) >= DRAG_THRESHOLD) {
+        goToRendered(delta < 0 ? trackIdxRef.current + 1 : trackIdxRef.current - 1);
+      } else {
+        goToRendered(trackIdxRef.current);
+      }
+      pointerDeltaX.current = 0;
+    };
+
+    track.addEventListener('touchstart',  onTouchStart, { passive: true });
+    track.addEventListener('touchmove',   onTouchMove,  { passive: false }); // passive:false needed for preventDefault
+    track.addEventListener('touchend',    onTouchEnd,   { passive: true });
+    track.addEventListener('touchcancel', onTouchEnd,   { passive: true });
+
+    return () => {
+      track.removeEventListener('touchstart',  onTouchStart);
+      track.removeEventListener('touchmove',   onTouchMove);
+      track.removeEventListener('touchend',    onTouchEnd);
+      track.removeEventListener('touchcancel', onTouchEnd);
+    };
+  }, [goToRendered]);
 
   /* ── Initial position (after first paint) ───── */
   useEffect(() => {

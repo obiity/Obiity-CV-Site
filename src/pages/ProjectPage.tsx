@@ -152,7 +152,7 @@ const ProjectPage = () => {
           <aside className="pp-info-grid__meta glass-panel">
             <dl className="pp-meta-list">
               <div className="pp-meta-item">
-                <dt>Réalisé par</dt>
+                <dt>{project.client === 'OBIITY' ? 'Réalisé par' : 'Client'}</dt>
                 <dd>{project.client}</dd>
               </div>
               <div className="pp-meta-item">
