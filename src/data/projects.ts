@@ -47,7 +47,9 @@ export const projects: Project[] = [
     ],
     heroImage: "/Publicité pour les climatiseurs Airton.png",
     gallery: [
-      { src: "/Publicité pour les climatiseurs Airton.png", alt: "Publicité Airton Climatiseurs" },
+      { src: "/Publicité pour les climatiseurs Airton.png",  alt: "Publicité Airton — vue principale" },
+      { src: "/Publicité pour les climatiseurs Airton1.png", alt: "Publicité Airton — rendu 2" },
+      { src: "/Publicité pour les climatiseurs Airton2.png", alt: "Publicité Airton — rendu 3" },
     ],
   },
   {
@@ -70,7 +72,10 @@ export const projects: Project[] = [
     ],
     heroImage: "/Lancer Javelot.png",
     gallery: [
-      { src: "/Lancer Javelot.png", alt: "Lancer Javelot VR" },
+      { src: "/Lancer Javelot.png",  alt: "Lancer Javelot VR — vue principale" },
+      { src: "/Lancer Javelot1.png", alt: "Lancer Javelot VR — gameplay 1" },
+      { src: "/Lancer Javelot2.png", alt: "Lancer Javelot VR — gameplay 2" },
+      { src: "/Lancer Javelot3.png", alt: "Lancer Javelot VR — gameplay 3" },
     ],
   },
   {
@@ -93,7 +98,9 @@ export const projects: Project[] = [
     ],
     heroImage: "/PLAN ARCHI 3D.png",
     gallery: [
-      { src: "/PLAN ARCHI 3D.png", alt: "Plan Archi 3D" },
+      { src: "/PLAN ARCHI 3D.png",  alt: "Archi 3D — plan principal" },
+      { src: "/PLAN ARCHI 3D1.png", alt: "Archi 3D — visualisation 1" },
+      { src: "/PLAN ARCHI 3D2.png", alt: "Archi 3D — visualisation 2" },
     ],
   },
   {
@@ -216,10 +223,15 @@ export const projects: Project[] = [
       "Offrir une expérience utilisateur fluide et immersive",
       "Allier patrimoine culturel africain et game design contemporain",
     ],
-    heroImage: "/KING OF ARENA.png",
+    heroImage: "/KING OF ARENA 1.png",
     gallery: [
-      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,h=1280,fit=crop/b2ne8m116DM5kp91/222040918_359f83e6-0095-4ff6-b079-72a3b2a6019b-f06h7AjgO5qizmjv.png", alt: "King of Arena — personnage" },
-      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=593,fit=crop/b2ne8m116DM5kp91/ahmed-taya-uiVVXVrEOFqubnse.png", alt: "King of Arena — combattant Ahmed Taya" },
+      { src: "/KING OF ARENA 1.png",  alt: "King of Arena — affiche officielle" },
+      { src: "/KING OF ARENAV1.png",  alt: "King of Arena — personnage V1" },
+      { src: "/KING OF ARENA V2.png", alt: "King of Arena — personnage V2" },
+      { src: "/KING OF ARENA 2.png",  alt: "King of Arena — combattant" },
+      { src: "/KING OF ARENA 3.png",  alt: "King of Arena — arène" },
+      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,h=1280,fit=crop/b2ne8m116DM5kp91/222040918_359f83e6-0095-4ff6-b079-72a3b2a6019b-f06h7AjgO5qizmjv.png", alt: "King of Arena — design personnage" },
+      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=593,fit=crop/b2ne8m116DM5kp91/ahmed-taya-uiVVXVrEOFqubnse.png", alt: "King of Arena — Ahmed Taya" },
     ],
   },
   {
@@ -242,6 +254,12 @@ export const projects: Project[] = [
     ],
     heroImage: "/FULANI.png",
     gallery: [
+      { src: "/FULANI1.png", alt: "FULANI — scène 1" },
+      { src: "/FULANI2.png", alt: "FULANI — scène 2" },
+      { src: "/FULANI3.png", alt: "FULANI — scène 3" },
+      { src: "/FULANI4.png", alt: "FULANI — scène 4" },
+      { src: "/FULANI5.png", alt: "FULANI — scène 5" },
+      { src: "/FULANI6.png", alt: "FULANI — scène 6" },
       { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1102,fit=crop/b2ne8m116DM5kp91/cover-2-ExAwwWfOBcoD1xDf.png", alt: "FULANI — guerrière africaine" },
     ],
   },
