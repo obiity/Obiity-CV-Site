@@ -52,13 +52,13 @@ export const projects: Project[] = [
       "Animer le produit avec fluidité pour un rendu dynamique et accrocheur",
       "Livrer une publicité prête à diffuser, cohérente avec l'identité visuelle de la marque",
     ],
-    heroImage: "/publicite-airton.png",
+    heroImage: "/airton-cover.jpg",
     gallery: [
-      { src: "/publicite-airton.png",  alt: "Publicité Airton — vue principale" },
-      { src: "/publicite-airton1.png", alt: "Publicité Airton — rendu 2" },
-      { src: "/publicite-airton2.png", alt: "Publicité Airton — rendu 3" },
+      { src: "/airton-cover.jpg",     alt: "Publicité Airton — vue principale" },
+      { src: "/airton-gallery-1.jpg", alt: "Publicité Airton — rendu 2" },
+      { src: "/airton-gallery-2.jpg", alt: "Publicité Airton — rendu 3" },
     ],
-    videos: [{ type: 'local', src: '/publicite-airton.mp4' }],
+    videos: [{ type: 'local', src: '/airton-video.mp4' }],
   },
   {
     id: 2,

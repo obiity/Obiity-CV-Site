@@ -9,7 +9,7 @@ import './Portfolio.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { id: 1,  title: 'Publicité pour les climatiseurs Airton', client: 'AIRTON',            location: 'Dakar - 2026', image: '/publicite-airton.png',                      slug: 'airton-climatiseurs'       },
+  { id: 1,  title: 'Publicité pour les climatiseurs Airton', client: 'AIRTON',            location: 'Dakar - 2026', image: '/airton-cover.jpg',                          slug: 'airton-climatiseurs'       },
   { id: 2,  title: 'Lancer Javelot - Jeu VR',               client: 'OBIITY',             location: 'Dakar - 2026', image: '/Lancer Javelot.png',                         slug: 'lancer-javelot-vr'         },
   { id: 4,  title: 'ARCHI 3D',                              client: 'OBIITY',             location: 'Dakar - 2026', image: '/PLAN ARCHI 3D.png',                          slug: 'archi-3d'                  },
   { id: 5,  title: 'DEVENIR AGRI-ENTREPRENEUR',             client: 'KTM ACADEMY',        location: 'Dakar - 2026', image: '/DEVENIR AGRI-ENTREPRENEUR.png',              slug: 'devenir-agri-entrepreneur' },
