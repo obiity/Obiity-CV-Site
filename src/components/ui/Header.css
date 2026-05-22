@@ -268,7 +268,7 @@
   top: 90px;
   right: 0;
   z-index: 999;
-  width: 210px;
+  width: 230px;
   max-height: calc(100dvh - 90px - max(0px, env(safe-area-inset-bottom)));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -321,6 +321,7 @@
   display: block;
   width: 100%;
   text-align: right;
+  white-space: nowrap;
   transition: color 0.18s ease;
 }
 
