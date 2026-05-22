@@ -119,6 +119,7 @@ const ProjectPage = () => {
           src={project.heroImage}
           alt={project.title}
           className={`pp-hero__img${project.mobileHeroObjectPosition ? ' pp-hero__img--mobile-pos' : ''}`}
+          onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0'; }}
           style={{
             ...(project.heroObjectPosition          && { objectPosition: project.heroObjectPosition }),
             ...(project.mobileHeroObjectPosition    && { '--mobile-hero-pos': project.mobileHeroObjectPosition } as React.CSSProperties),
@@ -293,16 +294,20 @@ const ProjectPage = () => {
             <div className="pp-videos">
               {project.videos!.map((vid, i) => {
                 if (vid.type === 'local' && vid.src) {
+                  const ext = vid.src.split('.').pop()?.toLowerCase();
+                  const mimeType = ext === 'mov' ? 'video/quicktime' : 'video/mp4';
                   return (
                     <div key={i} className="pp-video-wrapper pp-video-wrapper--local">
                       <video
-                        src={vid.src}
                         className="pp-video-local"
                         controls
                         playsInline
                         preload="metadata"
+                        poster={project.heroImage}
                         title={`${project.title} — vidéo ${i + 1}`}
-                      />
+                      >
+                        <source src={vid.src} type={mimeType} />
+                      </video>
                     </div>
                   );
                 }
