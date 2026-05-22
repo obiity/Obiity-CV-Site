@@ -28,12 +28,4 @@ dist-ssr
 *.sln
 *.sw?
 
-# Large video files (>100 MB — exceeds GitHub hard limit)
-# These must be hosted externally or deployed via Vercel CLI
-public/xeer.mp4
-public/error-404.mov
-public/last-loadout-v4.mp4
-public/clean-up-day.mp4
-public/acces-financement-producteurs.mov
-# Original unlocked copy (duplicate of last-loadout-v4.mp4)
-"public/LAST LOADOUT SURF SCOP - V4.mp4"
+.vercel

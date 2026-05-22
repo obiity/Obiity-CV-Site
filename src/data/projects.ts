@@ -218,7 +218,7 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-122-oDAwZKZy7NOdLcFJ.png", alt: "ERROR 404 — scène 2" },
       { src: CDN + "capture-daa-c-cran-120-1fcYN0s2CQ4tdmBV.png", alt: "ERROR 404 — scène 3" },
     ],
-    videos: [{ type: 'local', src: '/error-404.mov' }],
+    videos: [{ type: 'local', src: '/error-404.mp4' }],
   },
   {
     id: 9,
@@ -267,7 +267,7 @@ export const projects: Project[] = [
     ],
     heroImage: "/acces-financement-producteurs.png",
     gallery: [],
-    videos: [{ type: 'local', src: '/acces-financement-producteurs.mov' }],
+    videos: [{ type: 'local', src: '/acces-financement-producteurs.mp4' }],
   },
   {
     id: 10,
@@ -329,7 +329,7 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-32-D11xFXlmll1o1hXe.png", alt: "Last Loadout — opération offshore 1" },
       { src: CDN + "capture-daa-c-cran-27-tz5vlNfJacgR1xx1.png", alt: "Last Loadout — opération offshore 2" },
     ],
-    videos: [{ type: 'local', src: '/last-loadout-v4.mp4' }],
+    videos: [{ type: 'local', src: '/last-loadout-surf-scop.mp4' }],
   },
   {
     id: 12,
