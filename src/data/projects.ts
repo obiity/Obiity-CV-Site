@@ -131,7 +131,7 @@ export const projects: Project[] = [
       "Couvrir la gestion des terres, des semences et des ressources durables",
       "Proposer des mises en situation réalistes et progressives",
     ],
-    heroImage: "/DEVENIR AGRI-ENTREPRENEUR.png",
+    heroImage: "/devenir-agri-entrepreneur.jpg",
     heroObjectPosition: 'center 20%',
     gallery: [
       { src: CDN + "screenshot-199-fAK2BXfzh4CIwfbC.png", alt: "Devenir Agri-Entrepreneur — écran 1" },
