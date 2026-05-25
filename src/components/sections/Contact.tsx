@@ -46,6 +46,7 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted,    setSubmitted]    = useState(false);
   const [hasError,     setHasError]     = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const contactItems = [
     { icon: MapPin, label: t.contact.locationLabel, value: 'Dakar, Sénégal',    href: null },
@@ -95,13 +96,15 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setHasError(false);
+    setErrorMessage('');
     try {
       await sendContactEmail(formState);
       setSubmitted(true);
       setFormState({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setSubmitted(false), 7000);
-    } catch {
+    } catch (err: any) {
       setHasError(true);
+      setErrorMessage(err.message || '');
     } finally {
       setIsSubmitting(false);
     }
@@ -191,7 +194,7 @@ const Contact: React.FC = () => {
 
                 {hasError && (
                   <div className="form-error-msg" role="alert">
-                    {t.contact.errorMsg}{' '}
+                    {errorMessage ? `${errorMessage}. ` : `${t.contact.errorMsg} `}
                     <a href={`mailto:${t.contact.errorEmail}`}>{t.contact.errorEmail}</a>.
                   </div>
                 )}
