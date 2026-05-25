@@ -2,14 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { Sun, Moon } from 'lucide-react';
 import './Header.css';
-import CollaborateModal from './CollaborateModal';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   const [isLight, setIsLight] = useState(
     () => document.documentElement.getAttribute('data-theme') === 'light'
   );
@@ -22,7 +20,6 @@ const Header: React.FC = () => {
     { label: t.nav.marketplace, href: '#store' },
     { label: t.nav.software,    href: '#tech' },
     { label: t.nav.experience,  href: '#cv' },
-    { label: t.nav.contact,     href: '#contact' },
   ];
 
   useEffect(() => {
@@ -89,8 +86,8 @@ const Header: React.FC = () => {
         </ul>
 
         {/* CTA Button */}
-        <button className="header__cta btn-primary" onClick={() => setModalOpen(true)}>
-          {t.nav.collaborate}
+        <button className="header__cta btn-primary" onClick={(e) => handleNavClick(e as any, '#contact')}>
+          {t.nav.contact}
         </button>
 
         {/* Language Switcher */}
@@ -128,8 +125,6 @@ const Header: React.FC = () => {
         </button>
       </nav>
 
-      <CollaborateModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-
       {/* Mobile Menu */}
       <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}>
         <ul>
@@ -143,9 +138,12 @@ const Header: React.FC = () => {
           <li>
             <button
               className="mobile-menu__collab"
-              onClick={() => { setMenuOpen(false); setModalOpen(true); }}
+              onClick={(e) => {
+                setMenuOpen(false);
+                handleNavClick(e as any, '#contact');
+              }}
             >
-              {t.nav.collaborate}
+              {t.nav.contact}
             </button>
           </li>
         </ul>

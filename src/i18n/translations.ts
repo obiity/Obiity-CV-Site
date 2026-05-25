@@ -4,7 +4,7 @@ export interface Translations {
   nav: {
     about: string; services: string; portfolio: string;
     marketplace: string; software: string; experience: string;
-    contact: string; collaborate: string;
+    contact: string;
   };
   hero: {
     eyebrow: string; line1: string;
@@ -54,25 +54,7 @@ export interface Translations {
     errorMsg: string; errorEmail: string;
     footerPrefix: string; footerSuffix: string;
   };
-  collab: {
-    label: string; title: string;
-    personalInfo: string; professionalInfo: string;
-    budget: string; budgetRange: string;
-    budgetCustomLabel: string; budgetCustomPlaceholder: string;
-    collabLevel: string;
-    nameLabel: string; emailLabel: string; phoneLabel: string;
-    companyLabel: string; websiteLabel: string;
-    namePlaceholder: string; emailPlaceholder: string;
-    phonePlaceholder: string; companyPlaceholder: string; websitePlaceholder: string;
-    confirmText: string; submit: string; submitting: string;
-    successTitle: string; successMsg: string;
-    errorTitle: string; errorMsg: string;
-    close: string; retry: string; optional: string; responseTime: string;
-    budgetOptions: { value: string; label: string }[];
-    collabTypes: { value: string; label: string }[];
-    errName: string; errEmail: string; errEmailInvalid: string;
-    errCollabType: string; errConfirmed: string;
-  };
+
   project: {
     back: string; madeBy: string; client: string;
     year: string; category: string; technologies: string;
@@ -87,7 +69,7 @@ export const fr: Translations = {
   nav: {
     about: 'À Propos', services: 'Services', portfolio: 'Portfolio',
     marketplace: 'Marketplace', software: 'Logiciels', experience: 'Expériences',
-    contact: 'Contact', collaborate: 'Collaborer',
+    contact: 'Contact',
   },
   hero: {
     eyebrow: 'Portfolio · Obiity · Dakar',
@@ -161,42 +143,7 @@ export const fr: Translations = {
     errorEmail: 'obiity1@gmail.com',
     footerPrefix: '©', footerSuffix: 'Ousmane Biteye · Dakar, Sénégal · Tous droits réservés.',
   },
-  collab: {
-    label: 'Collaboration', title: 'Démarrons un projet',
-    personalInfo: 'Informations personnelles', professionalInfo: 'Informations professionnelles',
-    budget: 'Budget estimé', budgetRange: 'Fourchette budgétaire',
-    budgetCustomLabel: 'Précisez votre budget', budgetCustomPlaceholder: 'ex : $3,500, à discuter…',
-    collabLevel: 'Niveau de collaboration',
-    nameLabel: 'Nom & Prénom', emailLabel: 'Email professionnel', phoneLabel: 'Téléphone',
-    companyLabel: 'Entreprise / Organisation', websiteLabel: 'Site web / LinkedIn',
-    namePlaceholder: 'Votre nom complet', emailPlaceholder: 'votre@email.com',
-    phonePlaceholder: '+1 (000) 000-0000', companyPlaceholder: 'Votre entreprise',
-    websitePlaceholder: 'https://votre-site.com',
-    confirmText: "Je confirme que ces informations sont correctes et que mon projet est sérieux.",
-    submit: 'Soumettre mon projet', submitting: 'Envoi en cours…',
-    successTitle: 'Demande envoyée !', successMsg: 'Je vous répondrai sous 24–48h. Merci pour votre confiance.',
-    errorTitle: 'Une erreur est survenue', errorMsg: 'Veuillez réessayer ou me contacter directement par email.',
-    close: 'Fermer', retry: 'Réessayer', optional: 'optionnel',
-    responseTime: 'Réponse sous 24–48h pour les demandes complètes',
-    budgetOptions: [
-      { value: '', label: 'Sélectionner un budget' },
-      { value: '< $1,000', label: '< $1,000' },
-      { value: '$1,000 – $5,000', label: '$1,000 – $5,000' },
-      { value: '$5,000 – $15,000', label: '$5,000 – $15,000' },
-      { value: '$15,000 – $50,000', label: '$15,000 – $50,000' },
-      { value: '> $50,000', label: '> $50,000' },
-      { value: 'custom', label: 'Autre / À discuter' },
-    ],
-    collabTypes: [
-      { value: 'freelance', label: 'Freelance ponctuel' },
-      { value: 'partnership', label: 'Partenariat long terme' },
-      { value: 'subcontracting', label: 'Sous-traitance' },
-      { value: 'cocreation', label: 'Co-création / Startup' },
-      { value: 'other', label: 'Autre' },
-    ],
-    errName: 'Le nom est requis.', errEmail: "L'email est requis.", errEmailInvalid: 'Email invalide.',
-    errCollabType: 'Sélectionnez un type.', errConfirmed: 'Vous devez confirmer avant de soumettre.',
-  },
+
   project: {
     back: 'Portfolio', madeBy: 'Réalisé par', client: 'Client',
     year: 'Année', category: 'Catégorie', technologies: 'Technologies',
@@ -212,7 +159,7 @@ export const en: Translations = {
   nav: {
     about: 'About', services: 'Services', portfolio: 'Portfolio',
     marketplace: 'Marketplace', software: 'Software', experience: 'Experience',
-    contact: 'Contact', collaborate: 'Collaborate',
+    contact: 'Contact',
   },
   hero: {
     eyebrow: 'Portfolio · Obiity · Dakar',
@@ -286,42 +233,7 @@ export const en: Translations = {
     errorEmail: 'obiity1@gmail.com',
     footerPrefix: '©', footerSuffix: 'Ousmane Biteye · Dakar, Senegal · All rights reserved.',
   },
-  collab: {
-    label: 'Collaboration', title: "Let's start a project",
-    personalInfo: 'Personal information', professionalInfo: 'Professional information',
-    budget: 'Estimated budget', budgetRange: 'Budget range',
-    budgetCustomLabel: 'Specify your budget', budgetCustomPlaceholder: 'e.g. $3,500, open to discussion…',
-    collabLevel: 'Collaboration type',
-    nameLabel: 'Full name', emailLabel: 'Professional email', phoneLabel: 'Phone',
-    companyLabel: 'Company / Organisation', websiteLabel: 'Website / LinkedIn',
-    namePlaceholder: 'Your full name', emailPlaceholder: 'your@email.com',
-    phonePlaceholder: '+1 (000) 000-0000', companyPlaceholder: 'Your company',
-    websitePlaceholder: 'https://your-site.com',
-    confirmText: 'I confirm that this information is accurate and my project is genuine.',
-    submit: 'Submit my project', submitting: 'Sending…',
-    successTitle: 'Request sent!', successMsg: "I'll reply within 24–48h. Thank you for your trust.",
-    errorTitle: 'An error occurred', errorMsg: 'Please try again or contact me directly by email.',
-    close: 'Close', retry: 'Try again', optional: 'optional',
-    responseTime: 'Response within 24–48h for complete requests',
-    budgetOptions: [
-      { value: '', label: 'Select a budget' },
-      { value: '< $1,000', label: '< $1,000' },
-      { value: '$1,000 – $5,000', label: '$1,000 – $5,000' },
-      { value: '$5,000 – $15,000', label: '$5,000 – $15,000' },
-      { value: '$15,000 – $50,000', label: '$15,000 – $50,000' },
-      { value: '> $50,000', label: '> $50,000' },
-      { value: 'custom', label: 'Other / Open to discussion' },
-    ],
-    collabTypes: [
-      { value: 'freelance', label: 'One-off freelance' },
-      { value: 'partnership', label: 'Long-term partnership' },
-      { value: 'subcontracting', label: 'Subcontracting' },
-      { value: 'cocreation', label: 'Co-creation / Startup' },
-      { value: 'other', label: 'Other' },
-    ],
-    errName: 'Name is required.', errEmail: 'Email is required.', errEmailInvalid: 'Invalid email address.',
-    errCollabType: 'Please select a type.', errConfirmed: 'You must confirm before submitting.',
-  },
+
   project: {
     back: 'Portfolio', madeBy: 'Made by', client: 'Client',
     year: 'Year', category: 'Category', technologies: 'Technologies',

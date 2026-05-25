@@ -64,37 +64,4 @@ export async function sendContactEmail(data: ContactPayload): Promise<void> {
   });
 }
 
-/* ── Collaborate / Collab modal ───────────────────────────────────── */
-export interface CollabPayload {
-  fullName:          string;
-  email:             string;
-  phone:             string;
-  company:           string;
-  website:           string;
-  budget:            string;
-  collaborationType: string;
-}
 
-export async function sendCollabEmail(data: CollabPayload): Promise<void> {
-  const date = new Date().toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' });
-
-  await post({
-    from_name: data.fullName,
-    email:     data.email,
-    subject:   `[Collaboration] ${data.fullName} — ${data.collaborationType}`,
-    message: [
-      `Formulaire : Collaboration`,
-      `Date       : ${date}`,
-      ``,
-      `Nom           : ${data.fullName}`,
-      `Email         : ${data.email}`,
-      `Téléphone     : ${data.phone    || 'Non renseigné'}`,
-      `Entreprise    : ${data.company  || 'Non renseignée'}`,
-      `Site web      : ${data.website  || 'Non renseigné'}`,
-      `Budget        : ${data.budget   || 'Non précisé'}`,
-      `Collaboration : ${data.collaborationType}`,
-      `───────────────────────────────────────`,
-      `Envoyé depuis obiity.com`,
-    ].join('\n'),
-  });
-}
