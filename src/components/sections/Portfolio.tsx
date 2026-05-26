@@ -48,6 +48,7 @@ const Portfolio: React.FC = () => {
 
   // logical index 0…TOTAL-1  (drives counter + is-active + progress)
   const [current, setCurrent] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Mutable refs — no re-render on change
   const dragging       = useRef(false);
@@ -57,6 +58,7 @@ const Portfolio: React.FC = () => {
   const pointerDeltaX  = useRef(0);
   const trackTranslate = useRef(0);
   const trackIdxRef    = useRef(CLONE_COUNT); // rendered index of centered slide
+  const hasInitializedPosition = useRef(false);
 
   // Autoplay and Hover refs
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -121,6 +123,42 @@ const Portfolio: React.FC = () => {
     });
   }, [calcOffset]);
 
+  /* ── Intersection Observer for visibility ──── */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15, // Démarrer l'autoplay lorsque 15% de la section est visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  /* ── Position initialization on visibility ───── */
+  useEffect(() => {
+    if (isVisible && !hasInitializedPosition.current) {
+      const offset = calcOffset(CLONE_COUNT);
+      if (offset !== 0) {
+        hasInitializedPosition.current = true;
+        trackIdxRef.current = CLONE_COUNT;
+        setCurrent(0);
+        trackTranslate.current = offset;
+        gsap.set(trackRef.current, { x: offset });
+      }
+    }
+  }, [isVisible, calcOffset]);
+
   /* ── Autoplay controls ─────────────────────── */
   const stopAutoplay = useCallback(() => {
     if (autoplayTimerRef.current) {
@@ -131,6 +169,8 @@ const Portfolio: React.FC = () => {
 
   const startAutoplay = useCallback(() => {
     stopAutoplay();
+    if (!isVisible || document.hidden) return;
+
     autoplayTimerRef.current = setTimeout(() => {
       if (!dragging.current && !isHoveredRef.current && !animating.current) {
         goToRendered(trackIdxRef.current + 1);
@@ -138,25 +178,29 @@ const Portfolio: React.FC = () => {
         startAutoplay();
       }
     }, 4500); // 4.5s delay for a premium and non-rushed cinematic feel
-  }, [goToRendered, stopAutoplay]);
+  }, [goToRendered, stopAutoplay, isVisible]);
 
   // Bind the ref on every render to break cyclic dependency
   startAutoplayRef.current = startAutoplay;
 
-  // Start autoplay on mount
+  // Start autoplay when section becomes visible
   useEffect(() => {
-    startAutoplay();
+    if (isVisible) {
+      startAutoplay();
+    } else {
+      stopAutoplay();
+    }
     return () => {
       stopAutoplay();
     };
-  }, [startAutoplay, stopAutoplay]);
+  }, [isVisible, startAutoplay, stopAutoplay]);
 
   // Visibility change handling (pause when tab hidden to prevent GSAP queuing)
   useEffect(() => {
     const handleVisibility = () => {
       if (document.hidden) {
         stopAutoplay();
-      } else {
+      } else if (isVisible) {
         startAutoplay();
       }
     };
@@ -164,7 +208,7 @@ const Portfolio: React.FC = () => {
     return () => {
       document.removeEventListener('visibilitychange', handleVisibility);
     };
-  }, [startAutoplay, stopAutoplay]);
+  }, [isVisible, startAutoplay, stopAutoplay]);
 
   /* ── Pointer: down (mouse only) ────────────── */
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
