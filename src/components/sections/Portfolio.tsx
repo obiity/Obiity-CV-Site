@@ -58,6 +58,11 @@ const Portfolio: React.FC = () => {
   const trackTranslate = useRef(0);
   const trackIdxRef    = useRef(CLONE_COUNT); // rendered index of centered slide
 
+  // Autoplay and Hover refs
+  const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isHoveredRef = useRef(false);
+  const startAutoplayRef = useRef<() => void>(() => {});
+
   /* ── Pixel offset for a rendered index ─────── */
   const calcOffset = useCallback((ri: number): number => {
     const track = trackRef.current;
@@ -109,9 +114,57 @@ const Portfolio: React.FC = () => {
           trackTranslate.current = offset;
         }
         animating.current = false;
+
+        // Resume/reset autoplay after the transition completes
+        startAutoplayRef.current();
       },
     });
   }, [calcOffset]);
+
+  /* ── Autoplay controls ─────────────────────── */
+  const stopAutoplay = useCallback(() => {
+    if (autoplayTimerRef.current) {
+      clearTimeout(autoplayTimerRef.current);
+      autoplayTimerRef.current = null;
+    }
+  }, []);
+
+  const startAutoplay = useCallback(() => {
+    stopAutoplay();
+    autoplayTimerRef.current = setTimeout(() => {
+      if (!dragging.current && !isHoveredRef.current && !animating.current) {
+        goToRendered(trackIdxRef.current + 1);
+      } else {
+        startAutoplay();
+      }
+    }, 4500); // 4.5s delay for a premium and non-rushed cinematic feel
+  }, [goToRendered, stopAutoplay]);
+
+  // Bind the ref on every render to break cyclic dependency
+  startAutoplayRef.current = startAutoplay;
+
+  // Start autoplay on mount
+  useEffect(() => {
+    startAutoplay();
+    return () => {
+      stopAutoplay();
+    };
+  }, [startAutoplay, stopAutoplay]);
+
+  // Visibility change handling (pause when tab hidden to prevent GSAP queuing)
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.hidden) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, [startAutoplay, stopAutoplay]);
 
   /* ── Pointer: down (mouse only) ────────────── */
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -119,6 +172,9 @@ const Portfolio: React.FC = () => {
     if (e.button !== 0) return;
     hasDragged.current = false;
     if ((e.target as HTMLElement).closest('.carousel-card__btn')) return;
+
+    stopAutoplay(); // Pause autoplay during user interaction
+
     dragging.current      = true;
     pointerStartX.current  = e.clientX;
     pointerDeltaX.current  = 0;
@@ -170,6 +226,9 @@ const Portfolio: React.FC = () => {
         dragging.current = false; // ensure clean state so onTouchEnd is a no-op
         return;
       }
+
+      stopAutoplay(); // Stop autoplay during mobile swipe interaction
+
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
       isHorizontal = null;
@@ -229,7 +288,7 @@ const Portfolio: React.FC = () => {
       track.removeEventListener('touchend',    onTouchEnd);
       track.removeEventListener('touchcancel', onTouchEnd);
     };
-  }, [goToRendered]);
+  }, [goToRendered, stopAutoplay]);
 
   /* ── Initial position (after first paint) ───── */
   useEffect(() => {
@@ -294,7 +353,17 @@ const Portfolio: React.FC = () => {
         </h2>
       </div>
 
-      <div className="carousel-nav-wrapper">
+      <div 
+        className="carousel-nav-wrapper"
+        onMouseEnter={() => {
+          isHoveredRef.current = true;
+          stopAutoplay();
+        }}
+        onMouseLeave={() => {
+          isHoveredRef.current = false;
+          startAutoplay();
+        }}
+      >
         <button
           className="carousel-arrow carousel-arrow--prev"
           onClick={() => goToRendered(trackIdxRef.current - 1)}
