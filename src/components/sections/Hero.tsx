@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowDown } from 'lucide-react';
 import './Hero.css';
@@ -12,10 +12,8 @@ const Hero: React.FC = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = ['/hero_bg_1.png', '/hero_bg_2.png', '/hero_bg_3.png'];
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Immediately make elements visible to avoid "stuck invisible" on mobile
   // if GSAP animation is delayed too long or doesn't fire correctly
@@ -43,9 +41,9 @@ const Hero: React.FC = () => {
   useEffect(() => {
     // Performant passive GPU parallax effect
     const handleScroll = () => {
-      if (sliderRef.current) {
+      if (videoContainerRef.current) {
         const scrolled = window.scrollY;
-        sliderRef.current.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
+        videoContainerRef.current.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
       }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -53,11 +51,12 @@ const Hero: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const slideTimer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(slideTimer);
-  }, [slides.length]);
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => {
+        console.log('Video play failed or auto-play prevented:', err);
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const delay = 2.9;
@@ -105,15 +104,19 @@ const Hero: React.FC = () => {
 
   return (
     <section className="hero-section" id="home">
-      {/* Cinematic Background Slider */}
-      <div ref={sliderRef} className="hero-slider">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
-            style={{ backgroundImage: `url(${slide})` }}
-          />
-        ))}
+      {/* Cinematic Background Video */}
+      <div ref={videoContainerRef} className="hero-video-container">
+        <video
+          ref={videoRef}
+          src="/3D AIO.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="hero-video"
+          poster="/hero_bg_1.png"
+          preload="auto"
+        />
       </div>
 
       {/* Premium Dark Overlays */}
