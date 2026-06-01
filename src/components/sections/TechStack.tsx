@@ -6,12 +6,7 @@ import './TechStack.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STATIC_TECHS = [
-  'Blender', 'ZBrush', 'Unreal Engine', 'Unity', 'After Effects',
-  'Premiere Pro', 'DaVinci Resolve', 'Photoshop', 'Illustrator',
-  'Substance Painter', 'Marvelous Designer', 'Character Creator',
-  'iClone',
-];
+
 
 const TechStack: React.FC = () => {
   const { t } = useLanguage();
@@ -54,10 +49,9 @@ const TechStack: React.FC = () => {
     return () => clearTimeout(setupTimeout);
   }, []);
 
-  const technologies = [...STATIC_TECHS, t.tech.aiTools];
-  const row1 = technologies.slice(0, 5);
-  const row2 = technologies.slice(5, 10);
-  const row3 = technologies.slice(10);
+  const row1 = ['Unreal Engine', 'Blender', 'DaVinci Resolve', 'Photoshop', 'Unity'];
+  const row2 = ['After Effects', 'Substance Painter', 'Illustrator', 'ZBrush', 'iClone'];
+  const row3 = ['Marvelous Designer', 'Premiere Pro', 'Character Creator', t.tech.aiTools];
 
   return (
     <section ref={sectionRef} className="tech-section container" id="tech">

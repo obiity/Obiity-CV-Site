@@ -17,7 +17,7 @@
   gap: 2rem;
   justify-content: center;
   align-items: center;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -40,14 +40,17 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(10, 10, 10, 0.5);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .tech-name {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-light);
   z-index: 2;
   letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .hologram-glow {
