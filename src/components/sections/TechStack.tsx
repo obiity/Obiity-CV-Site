@@ -7,7 +7,7 @@ import './TechStack.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const STATIC_TECHS = [
-  'Blender', 'Unreal Engine', 'Unity', 'After Effects',
+  'Blender', 'ZBrush', 'Unreal Engine', 'Unity', 'After Effects',
   'Premiere Pro', 'DaVinci Resolve', 'Photoshop', 'Illustrator',
   'Substance Painter', 'Marvelous Designer', 'Character Creator',
   'iClone',
