@@ -13,12 +13,20 @@
 
 .tech-track {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 2rem;
   justify-content: center;
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.tech-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
 }
 
 .tech-item {
@@ -75,8 +83,14 @@
   }
 
   .tech-track {
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 0.65rem;
     max-width: 100%;
+  }
+
+  .tech-row {
+    display: contents;
   }
 
   .tech-item {

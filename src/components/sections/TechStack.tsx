@@ -55,6 +55,9 @@ const TechStack: React.FC = () => {
   }, []);
 
   const technologies = [...STATIC_TECHS, t.tech.aiTools];
+  const row1 = technologies.slice(0, 5);
+  const row2 = technologies.slice(5, 10);
+  const row3 = technologies.slice(10);
 
   return (
     <section ref={sectionRef} className="tech-section container" id="tech">
@@ -64,12 +67,30 @@ const TechStack: React.FC = () => {
 
       <div className="tech-container">
         <div ref={trackRef} className="tech-track">
-          {technologies.map((tech, idx) => (
-            <div key={idx} className="tech-item glass-panel">
-              <span className="tech-name">{tech}</span>
-              <div className="hologram-glow"></div>
-            </div>
-          ))}
+          <div className="tech-row">
+            {row1.map((tech, idx) => (
+              <div key={`r1-${idx}`} className="tech-item glass-panel">
+                <span className="tech-name">{tech}</span>
+                <div className="hologram-glow"></div>
+              </div>
+            ))}
+          </div>
+          <div className="tech-row">
+            {row2.map((tech, idx) => (
+              <div key={`r2-${idx}`} className="tech-item glass-panel">
+                <span className="tech-name">{tech}</span>
+                <div className="hologram-glow"></div>
+              </div>
+            ))}
+          </div>
+          <div className="tech-row">
+            {row3.map((tech, idx) => (
+              <div key={`r3-${idx}`} className="tech-item glass-panel">
+                <span className="tech-name">{tech}</span>
+                <div className="hologram-glow"></div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
