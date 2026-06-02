@@ -218,24 +218,24 @@
   line-height: 1.15;
   /* Extra room so GSAP skewY / translate don't clip letter bottoms */
   padding-bottom: 0.12em;
+  padding-right: 0.25em; /* Prevent clipping of skewed letters at the end of the line */
+  margin-right: -0.25em; /* Compensate for the extra right padding to maintain correct alignment */
 }
 
 .hero-title {
-  /* Narrowed max so long lines like "& Développeur Créatif" never overflow */
-  font-size: clamp(2.4rem, 5.5vw, 7rem);
+  /* Adjusted size to ensure "& Développeur Créatif" fits elegantly on intermediate desktops */
+  font-size: clamp(2.2rem, 4.8vw, 6.2rem);
   line-height: 1.1;
   margin-bottom: 2rem;
   text-shadow: 0 0 80px rgba(255, 122, 47, 0.12);
   font-family: 'Orbitron', var(--font-display);
   font-weight: 900;
-  /* Prevent any overflow at the container level */
-  overflow-wrap: break-word;
-  word-break: keep-all;
 }
 
 .title-line {
   display: block;
   opacity: 0;
+  white-space: nowrap; /* Prevent internal wrapping of title lines on all viewports */
   /* Negative margin cancels the wrapper padding so spacing stays tight */
   margin-bottom: -0.04em;
 }
@@ -344,7 +344,7 @@ button {
 /* Tablet */
 @media (max-width: 1024px) {
   .hero-title {
-    font-size: clamp(2.2rem, 6vw, 5rem);
+    font-size: clamp(1.8rem, 5.2vw, 4.2rem);
   }
 }
 
@@ -356,22 +356,16 @@ button {
 
   .hero-title {
     /*
-     * 7.5vw ensures "Artiste hybride" (15 Orbitron chars × ~0.72 width factor)
-     * fits within the container (375px − 2×5vw = 337.5px) with room to spare.
-     *   375px → 7.5vw = 28.1px → 15 × 20.2 = 303px  < 337.5px ✓
-     *   320px → clamped to 1.5rem = 24px → 15 × 17.3 = 259px  < 288px  ✓
+     * 5.8vw ensures "& Développeur Créatif" (21 Orbitron chars)
+     * fits within the container (375px − 2×5vw = 337.5px) on a single line.
      */
-    font-size: clamp(1.5rem, 7.5vw, 3.2rem);
+    font-size: clamp(1.1rem, 5.8vw, 2.5rem);
     word-break: keep-all;
     overflow-wrap: normal;
     hyphens: none;
   }
 
-  /* Lock "Artiste hybride" to a single line — prevents the space between the
-     two words from being used as a wrap point on narrow viewports. */
-  .hero-title .title-line-wrapper:first-child .title-line {
-    white-space: nowrap;
-  }
+  /* Both lines are already locked to white-space: nowrap globally */
 
   .title-line-wrapper {
     /* More breathing room on mobile */
@@ -389,9 +383,9 @@ button {
   }
 }
 
-/* Small mobile — keep clamp consistent, cap at 2.4rem so it stays compact */
+/* Small mobile — keep clamp consistent, cap at 2.2rem so it stays compact */
 @media (max-width: 420px) {
   .hero-title {
-    font-size: clamp(1.4rem, 7.5vw, 2.4rem);
+    font-size: clamp(1.1rem, 5.8vw, 2.2rem);
   }
 }

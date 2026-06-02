@@ -391,10 +391,10 @@ export const projects: Project[] = [
     id: 15,
     slug: "femmes-sous-un-baobab",
     title: "FEMMES SOUS UN BAOBAB",
-    client: "UNICEF",
+    client: "UNICEF · Maison de Podcast",
     year: "2023",
     category: "Vidéo · Documentaire · Impact Social",
-    tags: ["Vidéo Documentaire", "UNICEF", "Femmes", "Empowerment", "Culture Africaine"],
+    tags: ["Vidéo Documentaire", "UNICEF", "Femmes", "Empowerment"],
     description:
       "Vidéo-débat mettant en lumière la force et la résilience de femmes réunies sous un baobab pour échanger, apprendre et construire un avenir meilleur pour leur communauté. Un symbole puissant de transmission et de solidarité, au service de l'empowerment féminin en Afrique.",
     context:
