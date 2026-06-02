@@ -8,7 +8,7 @@ export interface Translations {
   };
   hero: {
     eyebrow: string; line1: string;
-    line2Prefix: string; line2Gradient: string;
+    line2: string; line3: string;
     subtitle: string; cta1: string; cta2: string; cta3: string; scroll: string;
   };
   about: {
@@ -74,7 +74,8 @@ export const fr: Translations = {
   hero: {
     eyebrow: 'Portfolio · Obiity · Dakar',
     line1: 'Artiste hybride',
-    line2Prefix: '& ', line2Gradient: 'Développeur Créatif',
+    line2: 'Développeur',
+    line3: 'Créatif',
     subtitle: "À l'intersection de la 3D, des VFX, des technologies immersives, de l'IA et des expériences numériques interactives.",
     cta1: 'Voir les projets', cta2: 'Télécharger le CV', cta3: 'Me contacter',
     scroll: 'Défiler',
@@ -164,7 +165,8 @@ export const en: Translations = {
   hero: {
     eyebrow: 'Portfolio · Obiity · Dakar',
     line1: 'Hybrid Artist',
-    line2Prefix: '& ', line2Gradient: 'Creative Developer',
+    line2: 'Creative',
+    line3: 'Developer',
     subtitle: 'At the intersection of 3D, VFX, immersive technologies, AI and interactive digital experiences.',
     cta1: 'View Projects', cta2: 'Download CV', cta3: 'Contact Me',
     scroll: 'Scroll',

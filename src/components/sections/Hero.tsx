@@ -141,7 +141,12 @@ const Hero: React.FC = () => {
           </div>
           <div className="title-line-wrapper">
             <div className="title-line">
-              &amp;&nbsp;<span className="text-gradient">{t.hero.line2Gradient}</span>
+              &amp;&nbsp;<span className="text-gradient">{t.hero.line2}</span>
+            </div>
+          </div>
+          <div className="title-line-wrapper">
+            <div className="title-line">
+              <span className="text-gradient">{t.hero.line3}</span>
             </div>
           </div>
         </h1>

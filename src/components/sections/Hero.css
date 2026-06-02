@@ -356,10 +356,10 @@ button {
 
   .hero-title {
     /*
-     * 5.8vw ensures "& Développeur Créatif" (21 Orbitron chars)
-     * fits within the container (375px − 2×5vw = 337.5px) on a single line.
+     * Split layout (3 lines) prevents text wrapping.
+     * Adjusted clamp for a punchier responsive title.
      */
-    font-size: clamp(1.1rem, 5.8vw, 2.5rem);
+    font-size: clamp(1.5rem, 7.5vw, 3.2rem);
     word-break: keep-all;
     overflow-wrap: normal;
     hyphens: none;
@@ -383,9 +383,9 @@ button {
   }
 }
 
-/* Small mobile — keep clamp consistent, cap at 2.2rem so it stays compact */
+/* Small mobile — keep clamp consistent, cap at 2.4rem so it stays compact */
 @media (max-width: 420px) {
   .hero-title {
-    font-size: clamp(1.1rem, 5.8vw, 2.2rem);
+    font-size: clamp(1.4rem, 7.5vw, 2.4rem);
   }
 }
