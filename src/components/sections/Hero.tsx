@@ -108,15 +108,15 @@ const Hero: React.FC = () => {
       <div ref={videoContainerRef} className="hero-video-container">
         <video
           ref={videoRef}
-          src="/3D AIO.mp4"
           autoPlay
           muted
           loop
           playsInline
           className="hero-video"
-          poster="/hero_bg_1.png"
           preload="auto"
-        />
+        >
+          <source src="/3d-aio.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* Premium Dark Overlays */}

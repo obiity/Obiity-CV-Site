@@ -14,7 +14,6 @@ import FabStore from './components/sections/FabStore';
 import TechStack from './components/sections/TechStack';
 import CV from './components/sections/CV';
 import Contact from './components/sections/Contact';
-import CustomCursor from './components/ui/CustomCursor';
 import ProjectPage from './pages/ProjectPage';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -81,7 +80,6 @@ function MainLayout() {
         <Loader />
       ) : (
         <div className="app-container">
-          {!isTouch && <CustomCursor />}
           <Header />
           <main>
             {!isTouch && (
