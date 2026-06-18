@@ -77,8 +77,8 @@ const About = () => {
           </div>
 
           {/* Carte — juste sous les stats */}
-          <div className="about-map-area anim-child">
-            <div className="about-map-card">
+          <div className="about-map-area anim-child" data-speed="0.05">
+            <div className="about-map-card premium-hover">
               <CyberMap />
               <div className="map-location-footer">
                 <div className="map-footer-row">
@@ -96,8 +96,8 @@ const About = () => {
         </div>
 
         {/* Right column: portrait */}
-        <div className="about-portrait-area anim-child">
-          <div className="identity-portrait-card glass-panel">
+        <div className="about-portrait-area anim-child" data-speed="0.15">
+          <div className="identity-portrait-card glass-panel premium-hover">
             <div className="portrait-wrapper">
               <div className="portrait-glow"></div>
               <img src="/PP.png" alt="Ousmane Biteye" className="portrait-img" />

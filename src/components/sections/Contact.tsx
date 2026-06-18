@@ -115,7 +115,7 @@ const Contact: React.FC = () => {
       <div className="contact-glow contact-glow--left"  aria-hidden="true" />
       <div className="contact-glow contact-glow--right" aria-hidden="true" />
 
-      <div className="contact-inner container">
+      <div className="contact-inner container" data-speed="0.1">
         {/* ── LEFT ── */}
         <div ref={leftRef} className="contact-left">
           <span className="contact-eyebrow c-anim">{t.contact.eyebrow}</span>

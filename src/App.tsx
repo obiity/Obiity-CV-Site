@@ -70,6 +70,23 @@ function MainLayout() {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         ScrollTrigger.refresh(true);
+        
+        // Global Parallax for .content-overlay elements
+        const parallaxEls = document.querySelectorAll('[data-speed]');
+        parallaxEls.forEach((el) => {
+          const speed = parseFloat(el.getAttribute('data-speed') || '0.5');
+          gsap.to(el, {
+            y: () => -1 * (ScrollTrigger.maxScroll(window) * speed),
+            ease: 'none',
+            scrollTrigger: {
+              trigger: document.body,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: true,
+              invalidateOnRefresh: true,
+            }
+          });
+        });
       });
     });
   }, [isMounted]);
@@ -80,6 +97,9 @@ function MainLayout() {
         <Loader />
       ) : (
         <div className="app-container">
+          <div className="global-glow-container">
+            <div className="global-glow"></div>
+          </div>
           <Header />
           <main>
             {!isTouch && (
