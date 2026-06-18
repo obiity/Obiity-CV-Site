@@ -96,8 +96,8 @@ const Portfolio: React.FC = () => {
 
     gsap.to(trackRef.current, {
       x: offset,
-      duration: 1.1,
-      ease: 'power4.inOut',
+      duration: 0.75,
+      ease: 'power3.out',
       onComplete: () => {
         // Seamless teleport: clone zone → real zone
         let finalRi = ri;
@@ -371,14 +371,14 @@ const Portfolio: React.FC = () => {
       gsap.fromTo('.portfolio-header',
         { y: 50, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 1.2, ease: 'power4.out',
+          y: 0, opacity: 1, duration: 1, ease: 'power3.out',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 88%', invalidateOnRefresh: true },
         }
       );
       gsap.fromTo('.carousel-outer',
         { opacity: 0, y: 40 },
         {
-          opacity: 1, y: 0, duration: 1.2, ease: 'power4.out', delay: 0.15,
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.15,
           scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', invalidateOnRefresh: true },
         }
       );
@@ -391,7 +391,7 @@ const Portfolio: React.FC = () => {
   return (
     <section ref={sectionRef} className="portfolio-section" id="portfolio">
 
-      <div className="portfolio-header container" data-speed="0.15">
+      <div className="portfolio-header container">
         <h2 className="section-title">
           {t.portfolio.titleBefore}<span className="text-gradient">{t.portfolio.titleGradient}</span>
         </h2>

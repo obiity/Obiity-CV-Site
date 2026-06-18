@@ -59,11 +59,11 @@ const TechStack: React.FC = () => {
         {t.tech.titleBefore}<span className="text-gradient">{t.tech.titleGradient}</span>
       </h2>
 
-      <div className="tech-container" data-speed="0.1">
+      <div className="tech-container">
         <div ref={trackRef} className="tech-track">
           <div className="tech-row">
             {row1.map((tech, idx) => (
-              <div key={`r1-${idx}`} className="tech-item glass-panel premium-hover">
+              <div key={`r1-${idx}`} className="tech-item glass-panel">
                 <span className="tech-name">{tech}</span>
                 <div className="hologram-glow"></div>
               </div>
@@ -71,7 +71,7 @@ const TechStack: React.FC = () => {
           </div>
           <div className="tech-row">
             {row2.map((tech, idx) => (
-              <div key={`r2-${idx}`} className="tech-item glass-panel premium-hover">
+              <div key={`r2-${idx}`} className="tech-item glass-panel">
                 <span className="tech-name">{tech}</span>
                 <div className="hologram-glow"></div>
               </div>
@@ -79,7 +79,7 @@ const TechStack: React.FC = () => {
           </div>
           <div className="tech-row">
             {row3.map((tech, idx) => (
-              <div key={`r3-${idx}`} className="tech-item glass-panel premium-hover">
+              <div key={`r3-${idx}`} className="tech-item glass-panel">
                 <span className="tech-name">{tech}</span>
                 <div className="hologram-glow"></div>
               </div>
