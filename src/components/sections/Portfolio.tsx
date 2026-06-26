@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   { id: 1,  title: 'Publicité pour les climatiseurs Airton', client: 'AIRTON',            location: 'Dakar - 2026', image: '/airton-cover.jpg',                          slug: 'airton-climatiseurs'       },
   { id: 2,  title: 'Lancer Javelot - Jeu VR',               client: 'OBIITY',             location: 'Dakar - 2026', image: '/Lancer Javelot.png',                         slug: 'lancer-javelot-vr'         },
+  { id: 21, title: 'INTRO DAMEL',                           client: 'DAMEL STUDIO',       location: 'Dakar - 2026', image: '/LAT-DIOR1.png',                              slug: 'intro-damel'               },
   { id: 4,  title: 'ARCHI 3D',                              client: 'OBIITY',             location: 'Dakar - 2026', image: '/PLAN ARCHI 3D.png',                          slug: 'archi-3d'                  },
   { id: 5,  title: 'DEVENIR AGRI-ENTREPRENEUR',             client: 'KTM ACADEMY',        location: 'Dakar - 2026', image: '/devenir-agri-entrepreneur.jpg',              slug: 'devenir-agri-entrepreneur' },
   { id: 6,  title: 'BOOSTGI-JOBS',                          client: 'ENCAF · KTM ADVANCE',location: 'Dakar - 2025', image: '/BOOSTGI-JOBS.jpeg',                          slug: 'boostgi-jobs'              },
@@ -43,6 +44,7 @@ const loopedSlides = [
 
 const Portfolio: React.FC = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef   = useRef<HTMLDivElement>(null);
 
@@ -436,6 +438,13 @@ const Portfolio: React.FC = () => {
               <div
                 key={`${ri}-${project.id}`}
                 className={`carousel-slide${isActive ? ' is-active' : ''}`}
+                onClick={(e) => {
+                  if (hasDragged.current) return;
+                  if (!(e.target as HTMLElement).closest('.carousel-card__btn')) {
+                    navigate(`/projects/${project.slug}`);
+                  }
+                }}
+                style={{ cursor: 'pointer' }}
               >
                 <div className="carousel-card">
                   <div className="carousel-card__img-wrapper">

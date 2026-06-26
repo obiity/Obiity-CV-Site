@@ -294,7 +294,8 @@ const ProjectPage = () => {
             <div className="pp-videos">
               {project.videos!.map((vid, i) => {
                 if (vid.type === 'local' && vid.src) {
-                  const ext = vid.src.split('.').pop()?.toLowerCase();
+                  const cleanSrc = vid.src.split('?')[0];
+                  const ext = cleanSrc.split('.').pop()?.toLowerCase();
                   const mimeType = ext === 'mov' ? 'video/quicktime' : 'video/mp4';
                   return (
                     <div key={i} className="pp-video-wrapper pp-video-wrapper--local">

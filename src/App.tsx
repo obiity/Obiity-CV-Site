@@ -1,11 +1,10 @@
-import { useState, useEffect, useLayoutEffect, Suspense } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { Routes, Route } from 'react-router-dom';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import Loader from './components/ui/Loader';
 import Header from './components/ui/Header';
-import HeroScene from './components/canvas/HeroScene';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Services from './components/sections/Services';
@@ -17,11 +16,6 @@ import Contact from './components/sections/Contact';
 import ProjectPage from './pages/ProjectPage';
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Detect touch / mobile device (no mouse)
-const isTouchDevice = () =>
-  typeof window !== 'undefined' &&
-  ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
 // Fix iOS Safari 100vh bug by setting --vh CSS custom property
 function useViewportFix() {
@@ -53,7 +47,6 @@ function useViewportFix() {
 function MainLayout() {
   const [loading, setLoading] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
-  const isTouch = isTouchDevice();
 
   useViewportFix();
 
@@ -82,11 +75,6 @@ function MainLayout() {
         <div className="app-container">
           <Header />
           <main>
-            {!isTouch && (
-              <Suspense fallback={null}>
-                <HeroScene />
-              </Suspense>
-            )}
             <div className="content-overlay">
               <Hero />
               <About />
