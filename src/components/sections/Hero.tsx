@@ -115,7 +115,7 @@ const Hero: React.FC = () => {
           className="hero-video"
           preload="auto"
         >
-          <source src="/3d-aio.mp4?v=2" type="video/mp4" />
+          <source src="/3d-aio.mp4?v=3" type="video/mp4" />
         </video>
       </div>
 
