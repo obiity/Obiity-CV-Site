@@ -35,6 +35,30 @@ const CDN = "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=cro
 
 export const projects: Project[] = [
   {
+    id: 21,
+    slug: "intro-damel",
+    title: "INTRO DAMEL",
+    client: "DAMEL STUDIO",
+    year: "2026",
+    category: "Animation · Character Design · VFX",
+    tags: ["Animation", "Character Design", "VFX", "Cinématique", "Sénégal"],
+    description:
+      "INTRO DAMEL est une courte séquence cinématique réalisée pour DAMEL STUDIO, mettant en scène Lat Dior, figure emblématique de la résistance sénégalaise, monté sur son célèbre cheval Malaw.",
+    context:
+      "L'animation s'ouvre sur une progression calme du cavalier à travers son environnement. En quelques instants, la tension s'installe : le cheval se cabre avec puissance tandis que Lat Dior dégaine son arme dans un geste déterminé, annonçant un moment décisif. Ce projet met l'accent sur la mise en scène, le character design, les animations de personnage, les effets visuels et la création d'une atmosphère cinématographique inspirée de l'histoire et du patrimoine sénégalais.",
+    objectives: [
+      "Mettre en scène Lat Dior et son cheval Malaw dans une séquence cinématique",
+      "Créer une atmosphère immersive inspirée de l'histoire du Sénégal",
+      "Réaliser un character design poussé et des animations de personnages complexes",
+      "Intégrer des effets visuels (VFX) de haute qualité",
+    ],
+    heroImage: "/LAT-DIOR1.png",
+    gallery: [
+      { src: "/LAT-DIOR1.png", alt: "INTRO DAMEL — Lat Dior et Malaw" },
+    ],
+    videos: [{ type: 'local', src: '/LAT DIOR.mp4' }],
+  },
+  {
     id: 1,
     slug: "airton-climatiseurs",
     title: "Publicité pour les climatiseurs Airton",
