@@ -53,9 +53,7 @@ export const projects: Project[] = [
       "Intégrer des effets visuels (VFX) de haute qualité",
     ],
     heroImage: "/LAT-DIOR1.png",
-    gallery: [
-      { src: '/LAT-DIOR1.png', alt: 'INTRO DAMEL — Lat Dior et Malaw', objectPosition: 'center 30%' },
-    ],
+    gallery: [],
     videos: [{ type: 'local', src: '/LAT DIOR.mp4?v=3' }],
   },
   {
