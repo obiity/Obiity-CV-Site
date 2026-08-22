@@ -555,6 +555,30 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 28,
+    slug: "ton-bon-cadeau",
+    title: "Ton Bon Cadeau",
+    client: "ETHNI BEAUTY MARKET",
+    year: "2026",
+    category: "IA Générative · Motion Design · Vidéo · Campaign",
+    tags: ["IA Générative", "IA", "Creative AI", "Graphic Design", "Motion Design", "Vidéo", "Branding", "Campagne"],
+    description:
+      "Conception graphique, vidéo promotionnelle et campagne 'Ton Bon Cadeau' pour Ethni Beauty Market. Un concept visuel élégant et festif développé pour les cartes cadeaux et chèques de fidélité, offrant une expérience d'achat haut de gamme à la clientèle.",
+    context:
+      "Création d'un dispositif visuel d'engagement client combinant identité de marque raffinée, visuels sociaux, vidéo explicative (40s) et cartes cadeaux personnalisées.",
+    objectives: [
+      "Concevoir le design premium et la vidéo promotionnelle des cartes cadeaux 'Ton Bon Cadeau'",
+      "Élaborer une campagne visuelle et vidéo engageante pour les périodes de fêtes et célébrations",
+      "Valoriser l'expérience client et la fidélisation chez Ethni Beauty Market",
+      "Décliner les contenus pour le site web, les newsletters et les réseaux sociaux",
+    ],
+    heroImage: "/EBM/ton-bon-cadeau-cover.jpg",
+    heroObjectPosition: "center center",
+    galleryVariant: "editorial",
+    gallery: [],
+    videos: [{ type: 'local', src: '/EBM/ebm-ugc-s2.mp4', poster: '/EBM/poster-ebm-ugc.jpg', centered: true }],
+  },
+  {
     id: 23,
     slug: "medicube-pads-deep-vita-c",
     title: "Medicube Pads Deep Vita C",
@@ -659,30 +683,6 @@ export const projects: Project[] = [
     galleryVariant: "editorial",
     gallery: [],
     videos: [{ type: 'local', src: '/EBM/ebm-reel.mp4', poster: '/EBM/poster-ebm-reel.jpg', centered: true, compact: true }],
-  },
-  {
-    id: 28,
-    slug: "ton-bon-cadeau",
-    title: "Ton Bon Cadeau",
-    client: "ETHNI BEAUTY MARKET",
-    year: "2026",
-    category: "IA Générative · Motion Design · Vidéo · Campaign",
-    tags: ["IA Générative", "IA", "Creative AI", "Graphic Design", "Motion Design", "Vidéo", "Branding", "Campagne"],
-    description:
-      "Conception graphique, vidéo promotionnelle et campagne 'Ton Bon Cadeau' pour Ethni Beauty Market. Un concept visuel élégant et festif développé pour les cartes cadeaux et chèques de fidélité, offrant une expérience d'achat haut de gamme à la clientèle.",
-    context:
-      "Création d'un dispositif visuel d'engagement client combinant identité de marque raffinée, visuels sociaux, vidéo explicative (40s) et cartes cadeaux personnalisées.",
-    objectives: [
-      "Concevoir le design premium et la vidéo promotionnelle des cartes cadeaux 'Ton Bon Cadeau'",
-      "Élaborer une campagne visuelle et vidéo engageante pour les périodes de fêtes et célébrations",
-      "Valoriser l'expérience client et la fidélisation chez Ethni Beauty Market",
-      "Décliner les contenus pour le site web, les newsletters et les réseaux sociaux",
-    ],
-    heroImage: "/EBM/ton-bon-cadeau-cover.jpg",
-    heroObjectPosition: "center center",
-    galleryVariant: "editorial",
-    gallery: [],
-    videos: [{ type: 'local', src: '/EBM/ebm-ugc-s2.mp4', poster: '/EBM/poster-ebm-ugc.jpg', centered: true }],
   },
   {
     id: 16,
