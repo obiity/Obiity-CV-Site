@@ -102,6 +102,16 @@ const Contact: React.FC = () => {
     }
   };
 
+  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Open Gmail web compose interface directly in a new tab (works even without desktop email app)
+    const subject = encodeURIComponent("Demande de projet — Obiity");
+    const body = encodeURIComponent(
+      "Bonjour Ousmane,\n\nJe vous contacte suite à la découverte de votre portfolio.\n\nJ'aimerais échanger avec vous concernant un projet :\n\n• Type de projet (3D, VFX, Motion, IA, XR, Web) :\n• Description / Objectifs :\n• Échéance souhaitée :\n\nBien cordialement,"
+    );
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=obiity1@gmail.com&su=${subject}&body=${body}`;
+    window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section ref={sectionRef} className="contact-section" id="contact">
       <div className="contact-glow contact-glow--left"  aria-hidden="true" />
@@ -130,7 +140,7 @@ const Contact: React.FC = () => {
                 <div className="contact-info-text">
                   <span className="contact-info-label">{label}</span>
                   {href ? (
-                    <a href={href} className="contact-info-value contact-info-link">{value}</a>
+                    <a href={href} onClick={href.startsWith('mailto:') ? handleEmailClick : undefined} className="contact-info-value contact-info-link">{value}</a>
                   ) : (
                     <span className="contact-info-value">{value}</span>
                   )}
@@ -179,6 +189,7 @@ const Contact: React.FC = () => {
               {/* ── CARD 1: EMAIL DIRECT ── */}
               <a
                 href="mailto:obiity1@gmail.com?subject=Demande%20de%20projet%20%E2%80%94%20Obiity&body=Bonjour%20Ousmane%2C%0A%0AJe%20vous%20contacte%20suite%20%C3%A0%20la%20d%C3%A9couverte%20de%20votre%20portfolio.%0A%0AJ%27aimerais%20%C3%A9changer%20avec%20vous%20concernant%20un%20projet%20%3A%0A%0A%E2%80%A2%20Type%20de%20projet%20%283D%2C%20VFX%2C%20Motion%2C%20IA%2C%20XR%2C%20Web%29%20%3A%0A%E2%80%A2%20Description%20%2F%20Objectifs%20%3A%0A%E2%80%A2%20%C3%89ch%C3%A9ance%20souhait%C3%A9e%20%3A%0A%0ABien%20cordialement%2C"
+                onClick={handleEmailClick}
                 className="contact-action-card contact-action-card--email"
               >
                 <div className="action-card-glow" />
