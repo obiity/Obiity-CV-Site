@@ -297,14 +297,24 @@ const ProjectPage = () => {
                   const cleanSrc = vid.src.split('?')[0];
                   const ext = cleanSrc.split('.').pop()?.toLowerCase();
                   const mimeType = ext === 'mov' ? 'video/quicktime' : 'video/mp4';
+                  const handleVideoPlay = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+                    const currentVid = e.currentTarget;
+                    const allVids = document.querySelectorAll<HTMLVideoElement>('.pp-video-local');
+                    allVids.forEach((v) => {
+                      if (v !== currentVid && !v.paused) {
+                        v.pause();
+                      }
+                    });
+                  };
                   return (
-                    <div key={i} className="pp-video-wrapper pp-video-wrapper--local">
+                    <div key={i} className={`pp-video-wrapper pp-video-wrapper--local${vid.centered ? ' pp-video-wrapper--centered' : ''}${vid.compact ? ' pp-video-wrapper--compact' : ''}`}>
                       <video
                         className="pp-video-local"
                         controls
                         playsInline
                         preload="metadata"
-                        poster={project.heroImage}
+                        poster={vid.poster}
+                        onPlay={handleVideoPlay}
                         title={`${project.title} — vidéo ${i + 1}`}
                       >
                         <source src={vid.src} type={mimeType} />

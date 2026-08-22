@@ -9,44 +9,58 @@ import './Portfolio.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { id: 1,  title: 'Publicité pour les climatiseurs Airton', client: 'AIRTON',            location: 'Dakar - 2026', image: '/airton-cover.jpg',                          slug: 'airton-climatiseurs'       },
-  { id: 2,  title: 'Lancer Javelot - Jeu VR',               client: 'OBIITY',             location: 'Dakar - 2026', image: '/Lancer Javelot.png',                         slug: 'lancer-javelot-vr'         },
-  { id: 21, title: 'INTRO DAMEL',                           client: 'DAMEL STUDIO',       location: 'Dakar - 2026', image: '/LAT-DIOR1.png',                              slug: 'intro-damel'               },
-  { id: 4,  title: 'ARCHI 3D',                              client: 'OBIITY',             location: 'Dakar - 2026', image: '/PLAN ARCHI 3D.png',                          slug: 'archi-3d'                  },
-  { id: 5,  title: 'DEVENIR AGRI-ENTREPRENEUR',             client: 'KTM ACADEMY',        location: 'Dakar - 2026', image: '/devenir-agri-entrepreneur.jpg',              slug: 'devenir-agri-entrepreneur' },
-  { id: 6,  title: 'BOOSTGI-JOBS',                          client: 'ENCAF · KTM ADVANCE',location: 'Dakar - 2025', image: '/BOOSTGI-JOBS.jpeg',                          slug: 'boostgi-jobs'              },
-  { id: 7,  title: 'PROJET DE DIGITALISATION',              client: 'DER · KTM ADVANCE',  location: 'Dakar - 2025', image: '/PROJET DE DIGITALISATION.png',               slug: 'digitalisation'            },
-  { id: 8,  title: 'ERROR 404',                             client: 'OBIITY',             location: 'Dakar - 2025', image: '/ERROR 404.png',                              slug: 'error-404'                 },
-  { id: 9,  title: 'KING OF ARENA',                         client: 'DAMEL STUDIO',       location: 'Dakar - 2025', image: '/KING OF ARENA V2.png',                       slug: 'king-of-arena'             },
-  { id: 20, title: 'Accès au financement aux producteurs de FA', client: 'ENDEV',          location: 'Dakar - 2025', image: '/acces-financement-producteurs.png',          slug: 'endev-acces-financement'   },
-  { id: 10, title: 'FULANI',                                client: 'DAMEL STUDIO',       location: 'Dakar - 2023', image: '/FULANI.png',                                 slug: 'fulani'                    },
-  { id: 11, title: 'LAST LOADOUT - SURF SCOP',              client: 'SAIPEM',             location: 'Dakar - 2024', image: '/LAST LOADOUT - SURF SCOP.png',               slug: 'last-loadout'              },
-  { id: 12, title: 'CLEAN UP DAY',                          client: 'SAIPEM',             location: 'Dakar - 2024', image: '/CLEAN UP DAY.png',                           slug: 'clean-up-day'              },
-  { id: 13, title: 'SAIPEM TRAINING CAMP',                  client: 'SAIPEM',             location: 'Dakar - 2024', image: '/SAIPEM TRAINING CAMP.jpg',                   slug: 'saipem-training-camp'      },
-  { id: 15, title: 'FEMMES SOUS UN BAOBAB',                 client: 'UNICEF · Maison de Podcast',             location: 'Dakar - 2023', image: '/FEMMES SOUS UN BAOBAB.png',                  slug: 'femmes-sous-un-baobab'     },
-  { id: 14, title: 'SHORT ANIMATION (TEST)',                 client: 'OBIITY',             location: 'Dakar - 2023', image: '/SHORT ANIMATION (TEST).png',                 slug: 'short-animation'           },
-  { id: 17, title: 'DOLCE FRUITI (PUB)',                    client: 'OBIITY',             location: 'Dakar - 2026', image: '/DOLCE FRUITI (PUB).png',                     slug: 'dolce-fruiti'              },
-  { id: 16, title: 'WNPWY - DIP DOUNDOU GUISS',             client: 'OBIITY',             location: 'Dakar - 2024', image: '/wnpwy-cover.jpg',                            slug: 'wnpwy'                     },
-  { id: 18, title: 'XÉÉR',                                  client: 'OBIITY',             location: 'Dakar - 2023', image: '/xeer.png',                                   slug: 'xeer'                      },
-  { id: 19, title: 'CORNICHE',                              client: 'OBIITY',             location: 'Dakar - 2023', image: '/CORNICHE.png',                               slug: 'corniche'                  },
+  { id: 24, title: "SIGNAL",                                client: 'OBIITY',             location: 'Dakar - 2026', image: '/Signal10.png',                              slug: 'signal',                    categories: ['3D', 'IA', 'VFX', 'Vidéo'] },
+  { id: 22, title: "DREAM",                                 client: 'OBIITY',             location: 'Dakar - 2026', image: "/L'homme qui a peur de tombe2.png",           slug: 'dream',                     categories: ['3D', 'IA', 'VFX', 'Vidéo'] },
+  { id: 23, title: "Medicube Pads Deep Vita C",             client: 'ETHNI BEAUTY MARKET',location: 'Dakar - 2026', image: '/EBM/Couverture EBM.png',               slug: 'medicube-pads-deep-vita-c', categories: ['IA', 'Motion Design', 'Vidéo'] },
+  { id: 25, title: "Medicube Triple Collagen Serum",        client: 'ETHNI BEAUTY MARKET',location: 'Dakar - 2026', image: '/EBM/2.jpeg',                            slug: 'medicube-triple-collagen-serum', categories: ['IA', 'Motion Design'] },
+  { id: 26, title: "Medicube Deep Vita C Ampoule",          client: 'ETHNI BEAUTY MARKET',location: 'Dakar - 2026', image: '/EBM/5-2.jpeg',                          slug: 'medicube-deep-vita-c-ampoule', categories: ['IA', 'Motion Design', 'Vidéo'] },
+  { id: 27, title: "Sunny Isle Rosemary Mint",              client: 'ETHNI BEAUTY MARKET',location: 'Dakar - 2026', image: '/EBM/sunny-isle-cover.png',                slug: 'sunny-isle-rosemary-mint', categories: ['IA', 'Motion Design'] },
+  { id: 28, title: "Ton Bon Cadeau",                        client: 'ETHNI BEAUTY MARKET',location: 'Dakar - 2026', image: '/EBM/ton-bon-cadeau-cover.jpg',            slug: 'ton-bon-cadeau',           categories: ['IA', 'Motion Design'] },
+  { id: 1,  title: 'Publicité pour les climatiseurs Airton', client: 'AIRTON',            location: 'Dakar - 2026', image: '/airton-cover.jpg',                          slug: 'airton-climatiseurs',       categories: ['3D', 'VFX', 'Motion Design', 'Vidéo'] },
+  { id: 2,  title: 'Lancer Javelot - Jeu VR',               client: 'OBIITY',             location: 'Dakar - 2026', image: '/Lancer Javelot.png',                         slug: 'lancer-javelot-vr',         categories: ['3D', 'XR'] },
+  { id: 21, title: 'INTRO DAMEL',                           client: 'DAMEL STUDIO',       location: 'Dakar - 2026', image: '/LAT-DIOR1.png',                              slug: 'intro-damel',               categories: ['IA', '3D', 'Motion Design', 'Vidéo'] },
+  { id: 4,  title: 'ARCHI 3D',                              client: 'OBIITY',             location: 'Dakar - 2026', image: '/PLAN ARCHI 3D.png',                          slug: 'archi-3d',                  categories: ['3D'] },
+  { id: 5,  title: 'DEVENIR AGRI-ENTREPRENEUR',             client: 'KTM ACADEMY',        location: 'Dakar - 2026', image: '/devenir-agri-entrepreneur.jpg',              slug: 'devenir-agri-entrepreneur', categories: ['3D', 'Serious Game'] },
+  { id: 6,  title: 'BOOSTGI-JOBS',                          client: 'ENCAF · KTM ADVANCE',location: 'Dakar - 2025', image: '/BOOSTGI-JOBS.jpeg',                          slug: 'boostgi-jobs',              categories: ['3D', 'XR', 'Serious Game'] },
+  { id: 7,  title: 'PROJET DE DIGITALISATION',              client: 'DER · KTM ADVANCE',  location: 'Dakar - 2025', image: '/PROJET DE DIGITALISATION.png',               slug: 'digitalisation',            categories: ['3D', 'Serious Game'] },
+  { id: 8,  title: 'ERROR 404',                             client: 'OBIITY',             location: 'Dakar - 2025', image: '/ERROR 404.png',                              slug: 'error-404',                 categories: ['3D', 'VFX', 'Vidéo'] },
+  { id: 9,  title: 'KING OF ARENA',                         client: 'DAMEL STUDIO',       location: 'Dakar - 2025', image: '/KING OF ARENA V2.png',                       slug: 'king-of-arena',             categories: ['3D', 'VFX', 'Vidéo'] },
+  { id: 20, title: 'Accès au financement aux producteurs de FA', client: 'ENDEV',          location: 'Dakar - 2025', image: '/acces-financement-producteurs.png',          slug: 'endev-acces-financement',   categories: ['Serious Game'] },
+  { id: 10, title: 'FULANI',                                client: 'DAMEL STUDIO',       location: 'Dakar - 2023', image: '/FULANI.png',                                 slug: 'fulani',                    categories: ['3D', 'VFX', 'Vidéo'] },
+  { id: 11, title: 'LAST LOADOUT - SURF SCOP',              client: 'SAIPEM',             location: 'Dakar - 2024', image: '/LAST LOADOUT - SURF SCOP.png',               slug: 'last-loadout',              categories: ['Serious Game'] },
+  { id: 12, title: 'CLEAN UP DAY',                          client: 'SAIPEM',             location: 'Dakar - 2024', image: '/CLEAN UP DAY.png',                           slug: 'clean-up-day',              categories: ['Serious Game'] },
+  { id: 13, title: 'SAIPEM TRAINING CAMP',                  client: 'SAIPEM',             location: 'Dakar - 2024', image: '/SAIPEM TRAINING CAMP.jpg',                   slug: 'saipem-training-camp',      categories: ['Serious Game'] },
+  { id: 15, title: 'FEMMES SOUS UN BAOBAB',                 client: 'UNICEF · Maison de Podcast',             location: 'Dakar - 2023', image: '/FEMMES SOUS UN BAOBAB.png',                  slug: 'femmes-sous-un-baobab',     categories: ['Motion Design', 'Vidéo'] },
+  { id: 14, title: 'SHORT ANIMATION (TEST)',                 client: 'OBIITY',             location: 'Dakar - 2023', image: '/SHORT ANIMATION (TEST).png',                 slug: 'short-animation',           categories: ['3D', 'Motion Design', 'Vidéo'] },
+  { id: 17, title: 'DOLCE FRUITI (PUB)',                    client: 'OBIITY',             location: 'Dakar - 2026', image: '/DOLCE FRUITI (PUB).png',                     slug: 'dolce-fruiti',              categories: ['3D', 'IA', 'Motion Design', 'Vidéo'] },
+  { id: 16, title: 'WNPWY - DIP DOUNDOU GUISS',             client: 'OBIITY',             location: 'Dakar - 2024', image: '/wnpwy-cover.jpg',                            slug: 'wnpwy',                     categories: ['3D', 'VFX', 'Vidéo'] },
+  { id: 18, title: 'XÉÉR',                                  client: 'OBIITY',             location: 'Dakar - 2023', image: '/xeer.png',                                   slug: 'xeer',                      categories: ['Vidéo'] },
+  { id: 19, title: 'CORNICHE',                              client: 'OBIITY',             location: 'Dakar - 2023', image: '/CORNICHE.png',                               slug: 'corniche',                  categories: ['Vidéo'] },
 ];
 
-const TOTAL        = projects.length;
-const CLONE_COUNT  = 2;
+const CATEGORIES = ['Tous', '3D', 'IA', 'VFX', 'XR', 'Vidéo', 'Motion Design', 'Serious Game'];
+const CLONE_COUNT = 2;
 const DRAG_THRESHOLD = 28;
-
-// Infinite loop array: [last-2, last-1, ...all originals..., first-0, first-1]
-const loopedSlides = [
-  ...projects.slice(TOTAL - CLONE_COUNT),
-  ...projects,
-  ...projects.slice(0, CLONE_COUNT),
-];
 
 const Portfolio: React.FC = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef   = useRef<HTMLDivElement>(null);
+
+  const [activeCategory, setActiveCategory] = useState('Tous');
+
+  const filteredProjects = activeCategory === 'Tous'
+    ? projects
+    : projects.filter((p) => p.categories.includes(activeCategory));
+
+  const TOTAL = filteredProjects.length;
+
+  const loopedSlides = TOTAL > 0 ? [
+    ...filteredProjects.slice(Math.max(0, TOTAL - CLONE_COUNT)),
+    ...filteredProjects,
+    ...filteredProjects.slice(0, CLONE_COUNT),
+  ] : [];
 
   // logical index 0…TOTAL-1  (drives counter + is-active + progress)
   const [current, setCurrent] = useState(0);
@@ -80,7 +94,13 @@ const Portfolio: React.FC = () => {
 
   /* ── Core navigator (rendered index) ────────── */
   const goToRendered = useCallback((ri: number, instant = false) => {
-    if (animating.current && !instant) return;
+    if (TOTAL <= 0) return;
+
+    // Kill any running tween so rapid user clicks or drags never get locked
+    if (trackRef.current) {
+      gsap.killTweensOf(trackRef.current);
+    }
+    animating.current = false;
 
     const offset  = calcOffset(ri);
     const logical = ((ri - CLONE_COUNT) % TOTAL + TOTAL) % TOTAL;
@@ -123,7 +143,7 @@ const Portfolio: React.FC = () => {
         startAutoplayRef.current();
       },
     });
-  }, [calcOffset]);
+  }, [calcOffset, TOTAL]);
 
   /* ── Intersection Observer for visibility ──── */
   useEffect(() => {
@@ -388,7 +408,20 @@ const Portfolio: React.FC = () => {
     return () => clearTimeout(t);
   }, []);
 
-  const progressPct = ((current + 1) / TOTAL) * 100;
+  const handleCategoryChange = (cat: string) => {
+    animating.current = false;
+    if (trackRef.current) {
+      gsap.killTweensOf(trackRef.current);
+    }
+    setActiveCategory(cat);
+    setCurrent(0);
+    trackIdxRef.current = CLONE_COUNT;
+    setTimeout(() => {
+      goToRendered(CLONE_COUNT, true);
+    }, 50);
+  };
+
+  const progressPct = TOTAL > 0 ? ((current + 1) / TOTAL) * 100 : 0;
 
   return (
     <section ref={sectionRef} className="portfolio-section" id="portfolio">
@@ -397,6 +430,19 @@ const Portfolio: React.FC = () => {
         <h2 className="section-title">
           {t.portfolio.titleBefore}<span className="text-gradient">{t.portfolio.titleGradient}</span>
         </h2>
+
+        {/* ── Category Filters ── */}
+        <div className="portfolio-categories">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              className={`category-pill${activeCategory === cat ? ' is-active' : ''}`}
+              onClick={() => handleCategoryChange(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div 
@@ -463,6 +509,12 @@ const Portfolio: React.FC = () => {
                       <span className="carousel-card__client">{project.client}</span>
                       <span className="carousel-card__sep">·</span>
                       <span className="carousel-card__year">{year}</span>
+                      {project.categories && project.categories.length > 0 && (
+                        <>
+                          <span className="carousel-card__sep">·</span>
+                          <span className="carousel-card__cat-badge">{project.categories.slice(0, 2).join(' / ')}</span>
+                        </>
+                      )}
                     </div>
                     <h3 className="carousel-card__title">{project.title}</h3>
                     <Link

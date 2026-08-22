@@ -164,12 +164,6 @@ const Hero: React.FC = () => {
           </button>
           <button
             className="btn-secondary"
-            onClick={() => window.open('https://drive.google.com/file/d/1kQ2dEHjcSkTJaB_3GnSULD9v0w_3XUBE/view?usp=sharing', '_blank', 'noopener,noreferrer')}
-          >
-            {t.hero.cta2}
-          </button>
-          <button
-            className="btn-tertiary"
             onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             {t.hero.cta3}

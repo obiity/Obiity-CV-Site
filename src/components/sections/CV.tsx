@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Download, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import './CV.css';
 
@@ -110,20 +109,6 @@ const CV: React.FC = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="cv-download">
-            <a
-              href="https://drive.google.com/file/d/1kQ2dEHjcSkTJaB_3GnSULD9v0w_3XUBE/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cv-download-btn"
-            >
-              <span className="cv-download-btn__glow" aria-hidden="true" />
-              <Download size={17} className="cv-download-btn__dl-icon" />
-              <span className="cv-download-btn__label">{t.cv.download}</span>
-              <ArrowUpRight size={15} className="cv-download-btn__arrow" />
-            </a>
           </div>
         </div>
       </div>

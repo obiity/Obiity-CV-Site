@@ -9,14 +9,63 @@
   overflow: hidden;
 }
 
-/* ── Header ──────────────────────────────── */
+/* ── Header & Category Filter Tabs ─────────── */
 .portfolio-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 4.5rem;
+  margin-bottom: 3.5rem;
   padding: 0 5vw;
+}
+
+.portfolio-categories {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.category-pill {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 0.55rem 1.2rem;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.category-pill:hover {
+  color: var(--text-light);
+  border-color: rgba(255, 122, 47, 0.35);
+  background: rgba(255, 122, 47, 0.06);
+  transform: translateY(-2px);
+}
+
+.category-pill.is-active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent-primary) 0%, #FF9E2F 100%);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 20px rgba(255, 122, 47, 0.4), 0 4px 12px rgba(255, 122, 47, 0.25);
+  transform: translateY(-2px);
+}
+
+.carousel-card__cat-badge {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
 }
 
 /* ── Arrow nav wrapper ───────────────────── */

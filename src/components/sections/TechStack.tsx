@@ -49,9 +49,10 @@ const TechStack: React.FC = () => {
     return () => clearTimeout(setupTimeout);
   }, []);
 
-  const row1 = ['Unreal Engine', 'Blender', 'DaVinci Resolve', 'Photoshop', 'Unity'];
-  const row2 = ['After Effects', 'Substance Painter', 'Illustrator', 'ZBrush', 'iClone'];
-  const row3 = ['Marvelous Designer', 'Premiere Pro', 'Character Creator', t.tech.aiTools];
+  const row1 = ['Unreal Engine', 'Blender', 'DaVinci Resolve', 'Photoshop', 'Unity', 'OpenAI'];
+  const row2 = ['After Effects', 'Substance Painter', 'Illustrator', 'ZBrush', 'iClone', 'Gemini'];
+  const row3 = ['Marvelous Designer', 'Premiere Pro', 'Character Creator', 'Antigravity', 'Codex'];
+  const row4 = ['Seedance', 'Kling', 'Veo', 'Flow'];
 
   return (
     <section ref={sectionRef} className="tech-section container" id="tech">
@@ -80,6 +81,14 @@ const TechStack: React.FC = () => {
           <div className="tech-row">
             {row3.map((tech, idx) => (
               <div key={`r3-${idx}`} className="tech-item glass-panel">
+                <span className="tech-name">{tech}</span>
+                <div className="hologram-glow"></div>
+              </div>
+            ))}
+          </div>
+          <div className="tech-row">
+            {row4.map((tech, idx) => (
+              <div key={`r4-${idx}`} className="tech-item glass-panel">
                 <span className="tech-name">{tech}</span>
                 <div className="hologram-glow"></div>
               </div>

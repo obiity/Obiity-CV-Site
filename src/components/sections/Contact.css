@@ -198,148 +198,259 @@
   box-shadow: 0 10px 28px rgba(255, 122, 47, 0.38);
 }
 
-/* ── RIGHT COLUMN — FORM ── */
+/* ── RIGHT COLUMN — DIRECT ACTIONS HUB ── */
 .contact-right {
   position: sticky;
   top: 110px;
 }
 
-.contact-form-premium {
+.contact-actions-panel {
   position: relative;
-  background: rgba(16, 10, 5, 0.55);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 122, 47, 0.1);
+  background: rgba(12, 12, 15, 0.65);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
-  padding: 48px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5),
+  gap: 2rem;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6),
               0 0 0 1px rgba(255, 255, 255, 0.03) inset;
   overflow: hidden;
 }
 
-/* Top glowing edge */
+/* Top glowing edge line */
 .form-accent-line {
   position: absolute;
   top: 0;
   left: 10%;
   right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 122, 47, 0.5), rgba(255, 179, 71, 0.4), transparent);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-tertiary), transparent);
 }
 
-/* Form header row */
-.form-title-row {
+/* Header */
+.actions-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 0.4rem;
-}
-
-.form-title {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-light);
-  text-transform: none;
-  letter-spacing: 0;
-}
-
-.form-badge {
-  font-family: var(--font-display);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #4ade80;
-  background: rgba(74, 222, 128, 0.08);
-  border: 1px solid rgba(74, 222, 128, 0.22);
-  padding: 0.25rem 0.75rem;
-  border-radius: 100px;
-}
-
-/* Side-by-side row */
-.form-row-duo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-/* Individual field */
-.form-field {
+.actions-header-title {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
-.form-field label {
+.actions-title {
   font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.form-field input,
-.form-field textarea {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 12px;
-  padding: 0.9rem 1.1rem;
+  font-size: 1.35rem;
+  font-weight: 700;
   color: var(--text-light);
+  letter-spacing: -0.01em;
+}
+
+.actions-subtitle {
   font-family: var(--font-body);
-  font-size: 0.97rem;
-  outline: none;
-  transition: border-color 0.3s ease,
-              background   0.3s ease,
-              box-shadow   0.3s ease;
-  resize: none;
-  width: 100%;
-}
-
-.form-field input::placeholder,
-.form-field textarea::placeholder {
+  font-size: 0.88rem;
   color: var(--text-muted);
-  opacity: 0.45;
-  font-style: italic;
+  opacity: 0.8;
 }
 
-.form-field input:focus,
-.form-field textarea:focus {
-  border-color: rgba(255, 122, 47, 0.55);
-  background: rgba(255, 122, 47, 0.04);
-  box-shadow: 0 0 0 3px rgba(255, 122, 47, 0.08),
-              0 0 20px rgba(255, 122, 47, 0.12);
+.actions-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 100px;
+  background: rgba(0, 255, 135, 0.08);
+  border: 1px solid rgba(0, 255, 135, 0.25);
+  flex-shrink: 0;
 }
 
-/* CTA submit button */
-.form-cta-btn {
+.status-ping {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00FF87;
+  box-shadow: 0 0 10px #00FF87;
+  animation: pulsePing 2s infinite ease-in-out;
+}
+
+@keyframes pulsePing {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+.status-text {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #00FF87;
+}
+
+/* Cards Grid */
+.contact-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Individual Action Card */
+.contact-action-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.6rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.action-card-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.contact-action-card--email .action-card-glow,
+.contact-action-card--whatsapp .action-card-glow {
+  background: radial-gradient(circle at 90% 10%, rgba(255, 122, 47, 0.15) 0%, transparent 65%);
+}
+
+.contact-action-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+}
+
+.contact-action-card:hover {
+  border-color: rgba(255, 122, 47, 0.45);
+  box-shadow: 0 16px 40px rgba(255, 122, 47, 0.18);
+}
+
+.contact-action-card:hover .action-card-glow {
+  opacity: 1;
+}
+
+/* Card Header */
+.action-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.action-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  width: 100%;
-  padding: 1.1rem 2rem;
-  margin-top: 0.4rem;
-  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-tertiary) 100%);
-  border: none;
-  border-radius: 14px;
-  color: #fff;
+  background: rgba(255, 122, 47, 0.12);
+  border: 1px solid rgba(255, 122, 47, 0.28);
+  color: var(--accent-primary);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.contact-action-card:hover .action-icon-wrapper {
+  transform: scale(1.1) rotate(-3deg);
+  background: rgba(255, 122, 47, 0.2);
+  box-shadow: 0 0 20px rgba(255, 122, 47, 0.3);
+}
+
+.action-badge {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.3s ease,
-              filter     0.3s ease;
-  box-shadow: 0 8px 28px rgba(255, 122, 47, 0.3),
-              0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  color: var(--accent-primary);
+  background: rgba(255, 122, 47, 0.1);
+  border: 1px solid rgba(255, 122, 47, 0.25);
+}
+
+/* Card Body */
+.action-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.action-card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.action-card-detail {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  letter-spacing: 0.02em;
+}
+
+.action-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-top: 0.3rem;
+  opacity: 0.85;
+}
+
+/* Card Footer */
+.action-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.action-cta-text {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-light);
+  transition: color 0.3s ease;
+}
+
+.contact-action-card:hover .action-cta-text {
+  color: var(--accent-primary);
+}
+
+.action-arrow-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 122, 47, 0.12);
+  border: 1px solid rgba(255, 122, 47, 0.25);
+  color: var(--accent-primary);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contact-action-card:hover .action-arrow-btn {
+  transform: translate(3px, -3px);
+  background: var(--accent-primary);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 122, 47, 0.6);
 }
 
 .form-cta-btn::before {

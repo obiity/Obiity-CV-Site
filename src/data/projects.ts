@@ -2,6 +2,9 @@ export interface ProjectVideo {
   type: 'youtube' | 'vimeo' | 'local';
   id?: string;
   src?: string;
+  poster?: string;
+  centered?: boolean;
+  compact?: boolean;
 }
 
 export interface ProjectImage {
@@ -35,22 +38,223 @@ const CDN = "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=cro
 
 export const projects: Project[] = [
   {
+    id: 24,
+    slug: "signal",
+    title: "SIGNAL",
+    client: "OBIITY",
+    year: "2026",
+    category: "IA Générative · Animation 3D · VFX · Court Métrage",
+    tags: ["Seedance", "IA Générative", "Prompt Engineering", "VFX", "3D", "Animation 3D", "Direction Artistique"],
+    description:
+      "SIGNAL est un court-métrage d'animation 3D de 3 minutes, entièrement conçu et réalisé sous la direction artistique Obiity, mêlant un style de rendu cristallin à facettes (« gem-cut » low-poly) à un éclairage bicolore chaud/froid inspiré du cinéma d'animation contemporain.\n\nDeux inconnus se croisent trois fois dans une même nuit sans jamais échanger un mot. Leurs trajectoires s'orbitent sans le savoir, jusqu'à un toit-terrasse où leurs mains, presque jointes, font basculer le film dans une séquence d'illusion cosmique — le seul contact du film, mais seulement dans l'imaginaire. Retour brutal à la réalité : rien n'est confirmé. Le film se termine à l'aube, sur un carnet ouvert où l'un des deux personnages a dessiné ce qu'elle n'a jamais osé dire.",
+    context:
+      "SIGNAL explore la synchronicité et le non-dit à travers une mise en scène cinématographique soignée — travellings, séquence en apesanteur — et une direction artistique cohérente du personnage à l'environnement.",
+    objectives: [
+      "Explorer la synchronicité et le non-dit à travers un storytelling visuel poétique",
+      "Créer un style de rendu cristallin à facettes (gem-cut low-poly) unique",
+      "Concevoir un éclairage bicolore chaud/froid cinématique et une séquence en apesanteur",
+      "Fusionner IA générative, Prompt Engineering technique, VFX et animation 3D",
+    ],
+    heroImage: "/Signal10.png",
+    heroObjectPosition: "center center",
+    galleryVariant: "editorial",
+    gallery: [
+      { src: "/Signal1.png", alt: "SIGNAL — Plan 1" },
+      { src: "/Signal7.png", alt: "SIGNAL — Plan 7" },
+      { src: "/Signal2.png", alt: "SIGNAL — Plan 2" },
+      { src: "/Signal4.png", alt: "SIGNAL — Plan 4" },
+      { src: "/Signal5.png", alt: "SIGNAL — Plan 5" },
+      { src: "/Signal3.png", alt: "SIGNAL — Plan 3" },
+      { src: "/Signal8.png", alt: "SIGNAL — Plan 8" },
+      { src: "/Signal6.png", alt: "SIGNAL — Plan 6" },
+      { src: "/Signal9.png", alt: "SIGNAL — Plan 9" },
+      { src: "/Signal10.png", alt: "SIGNAL — Plan 10" },
+      { src: "/Signal12.png", alt: "SIGNAL — Plan 12" },
+      { src: "/Signal11.png", alt: "SIGNAL — Plan 11" },
+      { src: "/Signal13.png", alt: "SIGNAL — Plan 13" },
+      { src: "/Signal14.png", alt: "SIGNAL — Plan 14" },
+      { src: "/Signal15.png", alt: "SIGNAL — Plan 15" },
+    ],
+    videos: [{ type: 'local', src: '/signal.mp4?v=1', poster: '/poster-signal.jpg', centered: true }],
+  },
+  {
+    id: 22,
+    slug: "dream",
+    title: "DREAM",
+    client: "OBIITY",
+    year: "2026",
+    category: "IA Générative · Court Métrage · VFX",
+    tags: ["IA Générative", "IA", "Prompt Engineering", "VFX", "Simulation Volumétrique", "Cinéma Digital"],
+    description:
+      "DREAM est un court-métrage expérimental explorant la mémoire, la perte et le déni à travers une métaphore visuelle : l'anti-gravité comme état de suspension psychique.\n\nLe film suit un homme assis paisiblement sur un nuage, quelque part entre ciel et souvenir. Autour de lui, des objets familiers — une chaise de bureau, un téléphone qui sonne, une horloge sans aiguilles — se désintègrent lentement en particules de fumée, comme autant de repères qui lui échappent. Le ciel change de teinte sans logique météorologique, suivant plutôt une logique émotionnelle. Puis, sans prévenir, le nuage commence à descendre — révélant que ce moment suspendu n'était jamais une pause, mais une chute déjà entamée.",
+    context:
+      "Pensé comme un exercice de direction artistique et de VFX narratif, le projet combine cinématographie de haut niveau et un travail de simulation volumétrique (fumée, particules, dissolution) pour construire une expérience à la fois onirique et inconfortable.",
+    objectives: [
+      "Explorer la mémoire, la perte et le déni à travers la métaphore visuelle de l'anti-gravité",
+      "Développer une cinématographie de haut niveau",
+      "Concevoir un travail de simulation volumétrique (fumée, particules, dissolution)",
+      "Fusionner IA générative, Prompt Engineering et VFX narratifs",
+    ],
+    heroImage: "/L'homme qui a peur de tombe2.png",
+    heroObjectPosition: "center center",
+    galleryVariant: "editorial",
+    gallery: [
+      { src: "/L'homme qui a peur de tombe1.png", alt: "DREAM — Visuel 1" },
+      { src: "/L'homme qui a peur de tombe2.png", alt: "DREAM — Visuel 2" },
+      { src: "/L'homme qui a peur de tombe3.png", alt: "L'Homme qui a Peur de Tomber — Plan IA 3" },
+      { src: "/L'homme qui a peur de tombe4.png", alt: "L'Homme qui a Peur de Tomber — Plan IA 4" },
+      { src: "/L'homme qui a peur de tombe5.png", alt: "L'Homme qui a Peur de Tomber — Plan IA 5" },
+      { src: "/L'homme qui a peur de tombe6.png", alt: "L'Homme qui a Peur de Tomber — Plan IA 6" },
+    ],
+    videos: [{ type: 'local', src: '/lhomme-qui-a-peur-de-tomber.mp4?v=1' }],
+  },
+  {
+    id: 23,
+    slug: "medicube-pads-deep-vita-c",
+    title: "Medicube Pads Deep Vita C",
+    client: "ETHNI BEAUTY MARKET",
+    year: "2026",
+    category: "IA Générative · Motion Design · Vidéo · Skincare",
+    tags: ["IA Générative", "IA", "Creative AI", "Motion Design", "Vidéo", "Publicité", "UGC", "Skincare"],
+    description:
+      "Campagne de lancement et production vidéo UGC pour les disques exfoliants et illuminateurs Medicube Deep Vita C Pads chez Ethni Beauty Market. Une présentation en 5 étapes clés mettant en avant les 3 actifs phares (Eau Vitaminée, Dérivé de Vitamine C, Niacinamide 2%) pour lisser le grain de peau et raviver l'éclat du teint.",
+    context:
+      "Conçu pour la communication digitale d'Ethni Beauty Market, ce projet combine une direction artistique fraîche, un tutoriel étape par étape (exfoliation, hydratation, éclat) et des vidéos au format vertical Reel/UGC optimisées pour TikTok et Instagram.",
+    objectives: [
+      "Présenter le rituel en 5 étapes pour un grain de peau affiné et un teint lumineux",
+      "Valoriser la formulation aux 3 actifs (Vitamine C, Niacinamide 2%, Eau Vitaminée)",
+      "Produire des vidéos format vertical UGC/Reel captivantes pour les réseaux sociaux",
+      "Stimuler la conversion e-commerce sur les plateformes de vente Ethni Beauty Market",
+    ],
+    heroImage: "/EBM/Couverture EBM.png",
+    heroObjectPosition: "center center",
+    galleryVariant: "editorial",
+    gallery: [
+      { src: "/EBM/C1.png", alt: "Medicube Pads Deep Vita C — Étape 01/05" },
+      { src: "/EBM/C2.png", alt: "Medicube Pads Deep Vita C — Étape 02/05 (3 actifs)" },
+      { src: "/EBM/C3.png", alt: "Medicube Pads Deep Vita C — Étape 03/05 (4 actions)" },
+      { src: "/EBM/C4.png", alt: "Medicube Pads Deep Vita C — Étape 04/05 (Utilisation)" },
+      { src: "/EBM/C5.png", alt: "Medicube Pads Deep Vita C — Étape 05/05 (Résultat)" },
+      { src: "/EBM/3.jpeg", alt: "Medicube Pads Deep Vita C — Flacon 150ml" },
+      { src: "/EBM/4.jpeg", alt: "Medicube Pads Deep Vita C — Vue produit" },
+      { src: "/EBM/V1-2.png", alt: "Medicube Pads Deep Vita C — Pourquoi des pads ?" },
+    ],
+  },
+  {
+    id: 25,
+    slug: "medicube-triple-collagen-serum",
+    title: "Medicube Triple Collagen Serum",
+    client: "ETHNI BEAUTY MARKET",
+    year: "2026",
+    category: "IA Générative · Motion Design · Vidéo · Skincare",
+    tags: ["IA Générative", "IA", "Creative AI", "Motion Design", "Vidéo", "Publicité", "Branding", "Skincare"],
+    description:
+      "Campagne visuelle et Reel publicitaire pour le Sérum Triple Collagène 4.0 (55ml) de Medicube chez Ethni Beauty Market. Une présentation luxueuse axée sur l'hydratation profonde, la fermeté et la restauration de l'élasticité cutanée grâce à sa formule enrichie en collagène hydrolysé et atélocollagène.",
+    context:
+      "Création de visuels produit photoréalistes et d'une vidéo Reel dynamique illustrant l'absorption rapide et les bienfaits repulpants du sérum pour la communauté Ethni Beauty Market.",
+    objectives: [
+      "Mettre en valeur le Sérum Triple Collagène 4.0 de Medicube",
+      "Illustrer scientifiquement l'action du collagène hydrolysé et de l'atélocollagène",
+      "Produire une vidéo Reel fluide et engageante pour Instagram et TikTok",
+      "Mettre en place une identité visuelle élégante et premium pour le soin anti-âge",
+    ],
+    heroImage: "/EBM/2.jpeg",
+    heroObjectPosition: "center center",
+    galleryVariant: "editorial",
+    gallery: [
+      { src: "/EBM/1.jpeg", alt: "Medicube Triple Collagen Serum — Flacon 55ml" },
+      { src: "/EBM/2.jpeg", alt: "Medicube Triple Collagen Serum 4.0 — Campagne" },
+    ],
+  },
+  {
+    id: 26,
+    slug: "medicube-deep-vita-c-ampoule",
+    title: "Medicube Deep Vita C Ampoule",
+    client: "ETHNI BEAUTY MARKET",
+    year: "2026",
+    category: "IA Générative · Motion Design · Vidéo · Skincare",
+    tags: ["IA Générative", "IA", "Creative AI", "Motion Design", "Vidéo", "Publicité", "Vitamine C", "Skincare"],
+    description:
+      "Production visuelle et spot publicitaire pour l'Ampoule Medicube Deep Vita C (14.5% Vitamine C pure & Glutathion) distribuée par Ethni Beauty Market. Un focus ciblé sur l'estompage des taches pigmentaires, l'unification du teint et l'action antioxydante concentrée.",
+    context:
+      "Conception d'une campagne visuelle percutante mettant en relief le haut dosage en Vitamine C (14.5%) et en Glutathion, déclinée en vidéo promotionnelle et visuels e-commerce.",
+    objectives: [
+      "Sublimer l'Ampoule Deep Vita C 14.5% de Medicube",
+      "Expliquer les bénéfices antioxydants et anti-taches du complexe Vitamine C + Glutathion",
+      "Créer une capsule vidéo dynamique aux couleurs vitaminées de la gamme",
+      "Renforcer la désirabilité du produit sur le marché cosmétique sénégalais",
+    ],
+    heroImage: "/EBM/5-2.jpeg",
+    heroObjectPosition: "center center",
+    galleryVariant: "editorial",
+    gallery: [],
+    videos: [{ type: 'local', src: '/EBM/ebm-v3.mp4', poster: '/EBM/poster-ebm-v3.jpg', centered: true, compact: true }],
+  },
+  {
+    id: 27,
+    slug: "sunny-isle-rosemary-mint",
+    title: "Sunny Isle Rosemary Mint",
+    client: "ETHNI BEAUTY MARKET",
+    year: "2026",
+    category: "IA Générative · Motion Design · Haircare · E-Commerce",
+    tags: ["IA Générative", "IA", "Creative AI", "Motion Design", "Haircare", "Soin Capillaire", "E-Commerce"],
+    description:
+      "Direction artistique, visuels promotionnels et campagne digitale pour la gamme capillaire d'exception Sunny Isle Rosemary Mint chez Ethni Beauty Market. Une mise en avant rafraîchissante et organique de l'huile de romarin et de la menthe poivrée pour la pousse, le soin et la fortification des cheveux.",
+    context:
+      "Création d'un univers esthétique naturel et stimulant pour valoriser les vertus fortifiantes de la menthe et du romarin sur les cheveux texturés et bouclés.",
+    objectives: [
+      "Créer un univers visuel frais et organique pour Sunny Isle Rosemary Mint",
+      "Promouvoir les soins capillaires fortifiants à base d'huiles naturelles",
+      "Développer des visuels attractifs pour le catalogue et les réseaux sociaux d'Ethni Beauty Market",
+      "Mettre en avant l'expérience sensorielle de la menthe et du romarin",
+    ],
+    heroImage: "/EBM/sunny-isle-cover.png",
+    heroObjectPosition: "center center",
+    galleryVariant: "editorial",
+    gallery: [],
+    videos: [{ type: 'local', src: '/EBM/ebm-reel.mp4', poster: '/EBM/poster-ebm-reel.jpg', centered: true, compact: true }],
+  },
+  {
+    id: 28,
+    slug: "ton-bon-cadeau",
+    title: "Ton Bon Cadeau",
+    client: "ETHNI BEAUTY MARKET",
+    year: "2026",
+    category: "IA Générative · Motion Design · Vidéo · Campaign",
+    tags: ["IA Générative", "IA", "Creative AI", "Graphic Design", "Motion Design", "Vidéo", "Branding", "Campagne"],
+    description:
+      "Conception graphique, vidéo promotionnelle et campagne 'Ton Bon Cadeau' pour Ethni Beauty Market. Un concept visuel élégant et festif développé pour les cartes cadeaux et chèques de fidélité, offrant une expérience d'achat haut de gamme à la clientèle.",
+    context:
+      "Création d'un dispositif visuel d'engagement client combinant identité de marque raffinée, visuels sociaux, vidéo explicative (40s) et cartes cadeaux personnalisées.",
+    objectives: [
+      "Concevoir le design premium et la vidéo promotionnelle des cartes cadeaux 'Ton Bon Cadeau'",
+      "Élaborer une campagne visuelle et vidéo engageante pour les périodes de fêtes et célébrations",
+      "Valoriser l'expérience client et la fidélisation chez Ethni Beauty Market",
+      "Décliner les contenus pour le site web, les newsletters et les réseaux sociaux",
+    ],
+    heroImage: "/EBM/ton-bon-cadeau-cover.jpg",
+    heroObjectPosition: "center center",
+    galleryVariant: "editorial",
+    gallery: [],
+    videos: [{ type: 'local', src: '/EBM/ebm-ugc-s2.mp4', poster: '/EBM/poster-ebm-ugc.jpg', centered: true }],
+  },
+  {
     id: 21,
     slug: "intro-damel",
     title: "INTRO DAMEL",
     client: "DAMEL STUDIO",
     year: "2026",
-    category: "Animation · Character Design · VFX",
-    tags: ["Blender", "Unreal Engine 5", "Character Creator", "iClone", "DaVinci Resolve", "Adobe After Effects"],
+    category: "IA Générative · Animation IA · VFX · Cinéma Digital",
+    tags: ["Kling AI", "IA Générative", "Prompt Engineering", "Creative AI", "VFX", "Cinéma Digital"],
     description:
-      "INTRO DAMEL est une courte séquence cinématique réalisée pour DAMEL STUDIO, mettant en scène Lat Dior, figure emblématique de la résistance sénégalaise, monté sur son célèbre cheval Malaw.",
+      "INTRO DAMEL est une création cinématique réalisée grâce à l'Intelligence Artificielle générative (Kling AI), mettant en scène Lat Dior, figure héroïque de la résistance sénégalaise, chevauchant son légendaire destrier Malaw dans un univers visuel cinématique saisissant.",
     context:
-      "L'animation s'ouvre sur une progression calme du cavalier à travers son environnement. En quelques instants, la tension s'installe : le cheval se cabre avec puissance tandis que Lat Dior dégaine son arme dans un geste déterminé, annonçant un moment décisif. Ce projet met l'accent sur la mise en scène, le character design, les animations de personnage, les effets visuels et la création d'une atmosphère cinématographique inspirée de l'histoire et du patrimoine sénégalais.",
+      "Ce projet explore la réinvention des récits historiques et du patrimoine sénégalais à travers la puissance des outils de génération vidéo IA (Kling AI). En combinant prompt engineering technique, direction artistique soignée et compositing VFX, le film illustre la force, la sérénité et le destin d'un guerrier légendaire.",
     objectives: [
-      "Mettre en scène Lat Dior et son cheval Malaw dans une séquence cinématique",
-      "Créer une atmosphère immersive inspirée de l'histoire du Sénégal",
-      "Réaliser un character design poussé et des animations de personnages complexes",
-      "Intégrer des effets visuels (VFX) de haute qualité",
+      "Réinventer la figure historique de Lat Dior et son cheval Malaw grâce à Kling AI et l'IA générative",
+      "Développer un prompt engineering poussé pour obtenir une cohérence visuelle et cinématique",
+      "Sublimer le patrimoine historique africain à travers les nouvelles technologies numériques",
+      "Intégrer des effets visuels (VFX) et un étalonnage cinématique sur une base vidéo générée par IA",
     ],
     heroImage: "/LAT-DIOR1.png",
     gallery: [],
@@ -168,8 +372,8 @@ export const projects: Project[] = [
     title: "BOOSTGI-JOBS",
     client: "ENCAF · KTM ADVANCE SN",
     year: "2025",
-    category: "Game Design · EdTech · Gamification",
-    tags: ["Game Design", "EdTech", "Gamification", "Formation Professionnelle", "Mécatronique"],
+    category: "XR / VR · Game Design · EdTech · Gamification",
+    tags: ["XR", "VR", "Game Design", "EdTech", "Gamification", "Formation Professionnelle", "Mécatronique"],
     description:
       "Création de modules pédagogiques interactifs et gamifiés intégrés dans le cursus de mécatronique automobile. Une approche hybride combinant apprentissage théorique et expérience immersive pour renforcer la motivation et le développement technique des apprenants.",
     context:
@@ -560,14 +764,24 @@ export const projects: Project[] = [
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find((p) => p.slug === slug);
+  return projects.find(
+    (p) =>
+      p.slug === slug ||
+      ((slug === 'ebm' || slug === 'ethni-beauty-market') && p.slug === 'medicube-pads-deep-vita-c') ||
+      (slug === 'lhomme-qui-a-peur-de-tomber' && p.slug === 'dream')
+  );
 }
 
 export function getAdjacentProjects(slug: string): {
   prev: Project | null;
   next: Project | null;
 } {
-  const idx = projects.findIndex((p) => p.slug === slug);
+  const idx = projects.findIndex(
+    (p) =>
+      p.slug === slug ||
+      ((slug === 'ebm' || slug === 'ethni-beauty-market') && p.slug === 'medicube-pads-deep-vita-c') ||
+      (slug === 'lhomme-qui-a-peur-de-tomber' && p.slug === 'dream')
+  );
   return {
     prev: idx > 0 ? projects[idx - 1] : null,
     next: idx < projects.length - 1 ? projects[idx + 1] : null,

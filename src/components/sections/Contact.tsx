@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Send, MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react';
-import { sendContactEmail } from '../../lib/emailService';
+import { MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import './Contact.css';
 
@@ -40,13 +39,6 @@ const Contact: React.FC = () => {
   const sectionRef    = useRef<HTMLElement>(null);
   const leftRef       = useRef<HTMLDivElement>(null);
   const rightRef      = useRef<HTMLDivElement>(null);
-  const formRef       = useRef<HTMLFormElement>(null);
-
-  const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted,    setSubmitted]    = useState(false);
-  const [hasError,     setHasError]     = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
 
   const contactItems = [
     { icon: MapPin, label: t.contact.locationLabel, value: 'Dakar, Sénégal',    href: null },
@@ -167,110 +159,86 @@ const Contact: React.FC = () => {
           </div>
         </div>
 
-        {/* ── RIGHT — FORM ── */}
+        {/* ── RIGHT — DIRECT ACTIONS ── */}
         <div ref={rightRef} className="contact-right">
-          <form
-            ref={formRef}
-            className="contact-form-premium"
-            onSubmit={handleSubmit}
-            noValidate
-          >
+          <div className="contact-actions-panel">
             <div className="form-accent-line" aria-hidden="true" />
 
-            {submitted ? (
-              <div className="form-success">
-                <div className="success-ring">
-                  <div className="success-check">✓</div>
-                </div>
-                <h3>{t.contact.successTitle}</h3>
-                <p>{t.contact.successMsg}</p>
+            <div className="actions-header">
+              <div className="actions-header-title">
+                <h3 className="actions-title">Démarrer un Projet</h3>
+                <span className="actions-subtitle">Sélectionnez votre canal de communication préféré</span>
               </div>
-            ) : (
-              <>
-                <div className="form-title-row">
-                  <h3 className="form-title">{t.contact.formTitle}</h3>
-                  <span className="form-badge">{t.contact.badge}</span>
+              <div className="actions-status-badge">
+                <span className="status-ping" />
+                <span className="status-text">DISPONIBLE</span>
+              </div>
+            </div>
+
+            <div className="contact-cards-grid">
+              {/* ── CARD 1: EMAIL DIRECT ── */}
+              <a
+                href="mailto:obiity1@gmail.com?subject=Message%20pour%20Obiity&body=Bonjour%20Ousmane%2C%0A%0AJe%20souhaite%20vous%20contacter%20au%20sujet%20d%27un%20projet."
+                className="contact-action-card contact-action-card--email"
+              >
+                <div className="action-card-glow" />
+                <div className="action-card-header">
+                  <div className="action-icon-wrapper action-icon-wrapper--email">
+                    <Mail size={22} />
+                  </div>
+                  <span className="action-badge action-badge--email">Mail Direct</span>
                 </div>
 
-                {hasError && (
-                  <div className="form-error-msg" role="alert">
-                    {errorMessage ? `${errorMessage}. ` : `${t.contact.errorMsg} `}
-                    <a href={`mailto:${t.contact.errorEmail}`}>{t.contact.errorEmail}</a>.
-                  </div>
-                )}
+                <div className="action-card-body">
+                  <h4 className="action-card-title">Message par Email</h4>
+                  <span className="action-card-detail">obiity1@gmail.com</span>
+                  <p className="action-card-desc">
+                    Idéal pour transmettre un cahier des charges, demander un devis ou partager un brief détaillé.
+                  </p>
+                </div>
 
-                <div className="form-row-duo">
-                  <div className="form-field">
-                    <label htmlFor="c-name">{t.contact.nameLabel}</label>
-                    <input
-                      id="c-name"
-                      type="text"
-                      value={formState.name}
-                      onChange={e => setFormState({ ...formState, name: e.target.value })}
-                      placeholder={t.contact.namePlaceholder}
-                      required
-                      autoComplete="name"
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="c-email">{t.contact.emailFieldLabel}</label>
-                    <input
-                      id="c-email"
-                      type="email"
-                      value={formState.email}
-                      onChange={e => setFormState({ ...formState, email: e.target.value })}
-                      placeholder={t.contact.emailPlaceholder}
-                      required
-                      autoComplete="email"
-                    />
+                <div className="action-card-footer">
+                  <span className="action-cta-text">Envoyer un Email</span>
+                  <div className="action-arrow-btn action-arrow-btn--email">
+                    <ArrowUpRight size={18} />
                   </div>
                 </div>
+              </a>
 
-                <div className="form-field">
-                  <label htmlFor="c-subject">{t.contact.subjectLabel}</label>
-                  <input
-                    id="c-subject"
-                    type="text"
-                    value={formState.subject}
-                    onChange={e => setFormState({ ...formState, subject: e.target.value })}
-                    placeholder={t.contact.subjectPlaceholder}
-                    required
-                  />
+              {/* ── CARD 2: WHATSAPP DIRECT ── */}
+              <a
+                href="https://wa.me/221773743356?text=Bonjour%20Ousmane%2C%20je%20souhaite%20discuter%20d%27un%20projet."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-action-card contact-action-card--whatsapp"
+              >
+                <div className="action-card-glow" />
+                <div className="action-card-header">
+                  <div className="action-icon-wrapper action-icon-wrapper--whatsapp">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c-.001 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                  </div>
+                  <span className="action-badge action-badge--whatsapp">Instantus</span>
                 </div>
 
-                <div className="form-field">
-                  <label htmlFor="c-message">{t.contact.messageLabel}</label>
-                  <textarea
-                    id="c-message"
-                    rows={5}
-                    value={formState.message}
-                    onChange={e => setFormState({ ...formState, message: e.target.value })}
-                    placeholder={t.contact.messagePlaceholder}
-                    required
-                  />
+                <div className="action-card-body">
+                  <h4 className="action-card-title">Discussion WhatsApp</h4>
+                  <span className="action-card-detail">+221 77 374 33 56</span>
+                  <p className="action-card-desc">
+                    Pour un échange instantané, réactif et direct concernant vos besoins visuels et 3D/VFX.
+                  </p>
                 </div>
 
-                <button
-                  type="submit"
-                  className="form-cta-btn"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <span className="form-cta-loading">
-                      <span className="form-cta-spinner" />
-                      {t.contact.sending}
-                    </span>
-                  ) : (
-                    <>
-                      <Send size={17} />
-                      <span>{t.contact.send}</span>
-                      <ArrowUpRight size={15} className="form-cta-arrow" />
-                    </>
-                  )}
-                </button>
-              </>
-            )}
-          </form>
+                <div className="action-card-footer">
+                  <span className="action-cta-text">Ouvrir WhatsApp</span>
+                  <div className="action-arrow-btn action-arrow-btn--whatsapp">
+                    <ArrowUpRight size={18} />
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
