@@ -17,14 +17,14 @@ const projects = [
   { id: 27, title: "Sunny Isle Rosemary Mint",              client: 'ETHNI BEAUTY MARKET',location: 'Dakar - 2026', image: '/EBM/sunny-isle-cover.png',                slug: 'sunny-isle-rosemary-mint', categories: ['IA', 'Motion Design'] },
   { id: 28, title: "Ton Bon Cadeau",                        client: 'ETHNI BEAUTY MARKET',location: 'Dakar - 2026', image: '/EBM/ton-bon-cadeau-cover.jpg',            slug: 'ton-bon-cadeau',           categories: ['IA', 'Motion Design'] },
   { id: 1,  title: 'Publicité pour les climatiseurs Airton', client: 'AIRTON',            location: 'Dakar - 2026', image: '/airton-cover.jpg',                          slug: 'airton-climatiseurs',       categories: ['3D', 'VFX', 'Motion Design', 'Vidéo'] },
-  { id: 2,  title: 'Lancer Javelot - Jeu VR',               client: 'OBIITY',             location: 'Dakar - 2026', image: '/Lancer Javelot.png',                         slug: 'lancer-javelot-vr',         categories: ['3D', 'XR'] },
+  { id: 2,  title: 'Lancer Javelot - Jeu VR',               client: 'OBIITY',             location: 'Dakar - 2026', image: '/Lancer Javelot.png',                         slug: 'lancer-javelot-vr',         categories: ['3D', 'XR', 'Jeux'] },
   { id: 21, title: 'INTRO DAMEL',                           client: 'DAMEL STUDIO',       location: 'Dakar - 2026', image: '/LAT-DIOR1.png',                              slug: 'intro-damel',               categories: ['IA', '3D', 'Motion Design', 'Vidéo'] },
   { id: 4,  title: 'ARCHI 3D',                              client: 'OBIITY',             location: 'Dakar - 2026', image: '/PLAN ARCHI 3D.png',                          slug: 'archi-3d',                  categories: ['3D'] },
-  { id: 5,  title: 'DEVENIR AGRI-ENTREPRENEUR',             client: 'KTM ACADEMY',        location: 'Dakar - 2026', image: '/devenir-agri-entrepreneur.jpg',              slug: 'devenir-agri-entrepreneur', categories: ['3D', 'Serious Game'] },
-  { id: 6,  title: 'BOOSTGI-JOBS',                          client: 'ENCAF · KTM ADVANCE',location: 'Dakar - 2025', image: '/BOOSTGI-JOBS.jpeg',                          slug: 'boostgi-jobs',              categories: ['3D', 'XR', 'Serious Game'] },
-  { id: 7,  title: 'PROJET DE DIGITALISATION',              client: 'DER · KTM ADVANCE',  location: 'Dakar - 2025', image: '/PROJET DE DIGITALISATION.png',               slug: 'digitalisation',            categories: ['3D', 'Serious Game'] },
+  { id: 5,  title: 'DEVENIR AGRI-ENTREPRENEUR',             client: 'KTM ACADEMY',        location: 'Dakar - 2026', image: '/devenir-agri-entrepreneur.jpg',              slug: 'devenir-agri-entrepreneur', categories: ['3D', 'Jeux'] },
+  { id: 6,  title: 'BOOSTGI-JOBS',                          client: 'ENCAF · KTM ADVANCE',location: 'Dakar - 2025', image: '/BOOSTGI-JOBS.jpeg',                          slug: 'boostgi-jobs',              categories: ['3D', 'XR', 'Jeux'] },
+  { id: 7,  title: 'PROJET DE DIGITALISATION',              client: 'DER · KTM ADVANCE',  location: 'Dakar - 2025', image: '/PROJET DE DIGITALISATION.png',               slug: 'digitalisation',            categories: ['3D', 'Jeux'] },
   { id: 8,  title: 'ERROR 404',                             client: 'OBIITY',             location: 'Dakar - 2025', image: '/ERROR 404.png',                              slug: 'error-404',                 categories: ['3D', 'VFX', 'Vidéo'] },
-  { id: 9,  title: 'KING OF ARENA',                         client: 'DAMEL STUDIO',       location: 'Dakar - 2025', image: '/KING OF ARENA V2.png',                       slug: 'king-of-arena',             categories: ['3D', 'VFX', 'Vidéo'] },
+  { id: 9,  title: 'KING OF ARENA',                         client: 'DAMEL STUDIO',       location: 'Dakar - 2025', image: '/KING OF ARENA V2.png',                       slug: 'king-of-arena',             categories: ['3D', 'VFX', 'Jeux'] },
   { id: 20, title: 'Accès au financement aux producteurs de FA', client: 'ENDEV',          location: 'Dakar - 2025', image: '/acces-financement-producteurs.png',          slug: 'endev-acces-financement',   categories: ['Vidéo'] },
   { id: 10, title: 'FULANI',                                client: 'DAMEL STUDIO',       location: 'Dakar - 2023', image: '/FULANI.png',                                 slug: 'fulani',                    categories: ['3D', 'VFX', 'Vidéo'] },
   { id: 11, title: 'LAST LOADOUT - SURF SCOP',              client: 'SAIPEM',             location: 'Dakar - 2024', image: '/LAST LOADOUT - SURF SCOP.png',               slug: 'last-loadout',              categories: ['Vidéo'] },
@@ -38,7 +38,7 @@ const projects = [
   { id: 19, title: 'CORNICHE',                              client: 'OBIITY',             location: 'Dakar - 2023', image: '/CORNICHE.png',                               slug: 'corniche',                  categories: ['Vidéo'] },
 ];
 
-const CATEGORIES = ['Tous', '3D', 'IA', 'VFX', 'XR', 'Vidéo', 'Serious Game'];
+const CATEGORIES = ['Tous', '3D', 'IA', 'VFX', 'XR', 'Vidéo', 'Jeux'];
 const CLONE_COUNT = 2;
 const DRAG_THRESHOLD = 28;
 
