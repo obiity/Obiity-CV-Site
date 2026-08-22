@@ -38,7 +38,7 @@ const projects = [
   { id: 19, title: 'CORNICHE',                              client: 'OBIITY',             location: 'Dakar - 2023', image: '/CORNICHE.png',                               slug: 'corniche',                  categories: ['Vidéo'] },
 ];
 
-const CATEGORIES = ['Tous', '3D', 'IA', 'VFX', 'XR', 'Vidéo', 'Motion Design', 'Serious Game'];
+const CATEGORIES = ['Tous', '3D', 'IA', 'VFX', 'XR', 'Vidéo', 'Serious Game'];
 const CLONE_COUNT = 2;
 const DRAG_THRESHOLD = 28;
 
