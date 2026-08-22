@@ -84,25 +84,7 @@ const Contact: React.FC = () => {
     return () => clearTimeout(setupTimeout);
   }, []);
 
-  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setHasError(false);
-    setErrorMessage('');
-    try {
-      await sendContactEmail(formState);
-      setSubmitted(true);
-      setFormState({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitted(false), 7000);
-    } catch (err: any) {
-      setHasError(true);
-      setErrorMessage(err.message || '');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleEmailClick = () => {
     // Open Gmail web compose interface directly in a new tab (works even without desktop email app)
     const subject = encodeURIComponent("Demande de projet — Obiity");
     const body = encodeURIComponent(
