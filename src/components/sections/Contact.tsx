@@ -178,7 +178,7 @@ const Contact: React.FC = () => {
             <div className="contact-cards-grid">
               {/* ── CARD 1: EMAIL DIRECT ── */}
               <a
-                href="mailto:obiity1@gmail.com?subject=Message%20pour%20Obiity&body=Bonjour%20Ousmane%2C%0A%0AJe%20souhaite%20vous%20contacter%20au%20sujet%20d%27un%20projet."
+                href="mailto:obiity1@gmail.com?subject=Demande%20de%20projet%20%E2%80%94%20Obiity&body=Bonjour%20Ousmane%2C%0A%0AJe%20vous%20contacte%20suite%20%C3%A0%20la%20d%C3%A9couverte%20de%20votre%20portfolio.%0A%0AJ%27aimerais%20%C3%A9changer%20avec%20vous%20concernant%20un%20projet%20%3A%0A%0A%E2%80%A2%20Type%20de%20projet%20%283D%2C%20VFX%2C%20Motion%2C%20IA%2C%20XR%2C%20Web%29%20%3A%0A%E2%80%A2%20Description%20%2F%20Objectifs%20%3A%0A%E2%80%A2%20%C3%89ch%C3%A9ance%20souhait%C3%A9e%20%3A%0A%0ABien%20cordialement%2C"
                 className="contact-action-card contact-action-card--email"
               >
                 <div className="action-card-glow" />
