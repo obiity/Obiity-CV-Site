@@ -109,6 +109,32 @@ export const projects: Project[] = [
     videos: [{ type: 'local', src: '/lhomme-qui-a-peur-de-tomber.mp4?v=1' }],
   },
   {
+    id: 8,
+    slug: "error-404",
+    title: "ERROR 404",
+    client: "OBIITY",
+    year: "2025",
+    category: "Court Métrage · Réalisation · Thriller",
+    tags: ["Court Métrage", "Réalisation", "VFX", "Montage", "Storytelling"],
+    description:
+      "Un court métrage de tension atmosphérique mettant en scène un designer travaillant seul tard dans un bureau sombre, qui découvre un fichier au nom suspect. En l'ouvrant, il déclenche une série d'événements de plus en plus étranges — l'écran devient un miroir trompeur révélant une présence qui ne devrait pas exister.",
+    context:
+      "ERROR 404 explore la frontière entre l'humanité et la technologie numérique à travers une atmosphère minimaliste et inquiétante. La tension progressive est construite via le silence, la lumière des écrans et des perturbations visuelles subtiles, créant un crescendo psychologique jusqu'au dénouement.",
+    objectives: [
+      "Explorer la tension entre humanité et technologie numérique",
+      "Construire une montée en suspens via le minimalisme visuel",
+      "Travailler la direction artistique sombre et atmosphérique",
+      "Livrer une expérience cinématique courte et percutante",
+    ],
+    heroImage: "/ERROR 404.png",
+    gallery: [
+      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,h=1080,fit=crop/b2ne8m116DM5kp91/capture-daa-c-cran-123-6N4dmR42QKKxN7gi.png", alt: "ERROR 404 — scène 1" },
+      { src: CDN + "capture-daa-c-cran-122-oDAwZKZy7NOdLcFJ.png", alt: "ERROR 404 — scène 2" },
+      { src: CDN + "capture-daa-c-cran-120-1fcYN0s2CQ4tdmBV.png", alt: "ERROR 404 — scène 3" },
+    ],
+    videos: [{ type: 'local', src: '/error-404.mp4?v=3' }],
+  },
+  {
     id: 21,
     slug: "intro-damel",
     title: "INTRO DAMEL",
@@ -289,32 +315,6 @@ export const projects: Project[] = [
       { src: CDN + "capture-daa-c-cran-97-xgGO2MQ7xTEcY7QJ.png", alt: "Digitalisation DER — module 1" },
       { src: CDN + "screenshot-247-14nGDbfGtOsly3my.png", alt: "Digitalisation DER — module 2" },
     ],
-  },
-  {
-    id: 8,
-    slug: "error-404",
-    title: "ERROR 404",
-    client: "OBIITY",
-    year: "2025",
-    category: "Court Métrage · Réalisation · Thriller",
-    tags: ["Court Métrage", "Réalisation", "VFX", "Montage", "Storytelling"],
-    description:
-      "Un court métrage de tension atmosphérique mettant en scène un designer travaillant seul tard dans un bureau sombre, qui découvre un fichier au nom suspect. En l'ouvrant, il déclenche une série d'événements de plus en plus étranges — l'écran devient un miroir trompeur révélant une présence qui ne devrait pas exister.",
-    context:
-      "ERROR 404 explore la frontière entre l'humanité et la technologie numérique à travers une atmosphère minimaliste et inquiétante. La tension progressive est construite via le silence, la lumière des écrans et des perturbations visuelles subtiles, créant un crescendo psychologique jusqu'au dénouement.",
-    objectives: [
-      "Explorer la tension entre humanité et technologie numérique",
-      "Construire une montée en suspens via le minimalisme visuel",
-      "Travailler la direction artistique sombre et atmosphérique",
-      "Livrer une expérience cinématique courte et percutante",
-    ],
-    heroImage: "/ERROR 404.png",
-    gallery: [
-      { src: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,h=1080,fit=crop/b2ne8m116DM5kp91/capture-daa-c-cran-123-6N4dmR42QKKxN7gi.png", alt: "ERROR 404 — scène 1" },
-      { src: CDN + "capture-daa-c-cran-122-oDAwZKZy7NOdLcFJ.png", alt: "ERROR 404 — scène 2" },
-      { src: CDN + "capture-daa-c-cran-120-1fcYN0s2CQ4tdmBV.png", alt: "ERROR 404 — scène 3" },
-    ],
-    videos: [{ type: 'local', src: '/error-404.mp4?v=3' }],
   },
   {
     id: 9,

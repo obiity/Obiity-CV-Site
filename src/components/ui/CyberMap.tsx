@@ -32,9 +32,10 @@ const CyberMap: React.FC = () => {
 
     mapRef.current = map;
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 12,
       minZoom: 2,
+      attribution: 'Tiles &copy; Esri',
     }).addTo(map);
 
     const senegalCoords: [number, number][] = [
