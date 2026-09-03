@@ -1,6 +1,5 @@
 .services-section {
-  padding: 100px 5vw;
-  min-height: calc(var(--vh, 1vh) * 100);
+  padding: 45px 5vw;
 }
 
 .text-center {
@@ -65,16 +64,23 @@
   opacity: 1;
 }
 
+.service-header-row {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-bottom: 1.1rem;
+}
+
 .service-icon-wrapper {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.03);
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(255, 122, 47, 0.08);
+  border: 1px solid rgba(255, 122, 47, 0.12);
   transition: all 0.35s ease;
 }
 
@@ -84,9 +90,9 @@
 }
 
 .service-card:hover .service-icon-wrapper {
-  background: rgba(255, 122, 47, 0.1);
-  border-color: rgba(255, 122, 47, 0.25);
-  box-shadow: 0 0 20px rgba(255, 122, 47, 0.15);
+  background: rgba(255, 122, 47, 0.12);
+  border-color: rgba(255, 122, 47, 0.3);
+  box-shadow: 0 0 20px rgba(255, 122, 47, 0.18);
 }
 
 .service-card:hover .service-icon {
@@ -96,9 +102,11 @@
 }
 
 .service-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  margin-bottom: 0;
   font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.25;
   transition: color 0.3s ease;
 }
 
@@ -108,8 +116,9 @@
 
 .service-desc {
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
   font-size: 0.95rem;
+  margin: 0;
 }
 
 /* On touch devices, disable hover transforms to avoid sticky states */

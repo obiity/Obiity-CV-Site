@@ -4,7 +4,7 @@
 
 .contact-section {
   position: relative;
-  padding: 140px 0 0;
+  padding: 70px 0 0;
   overflow: hidden;
 }
 
@@ -206,17 +206,10 @@
 
 .contact-actions-panel {
   position: relative;
-  background: rgba(12, 12, 15, 0.65);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 28px;
-  padding: 40px;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6),
-              0 0 0 1px rgba(255, 255, 255, 0.03) inset;
   overflow: hidden;
 }
 
@@ -230,12 +223,15 @@
   background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-tertiary), transparent);
 }
 
-/* Header */
+/* Header — Matched to .cv-subtitle style */
 .actions-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .actions-header-title {
@@ -246,7 +242,7 @@
 
 .actions-title {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--text-light);
   letter-spacing: -0.01em;
@@ -254,9 +250,9 @@
 
 .actions-subtitle {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .actions-status-badge {

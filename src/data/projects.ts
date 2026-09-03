@@ -299,12 +299,12 @@ export const projects: Project[] = [
     category: "Animation · Vidéo · Formation Digitale",
     tags: ["Animation", "Vidéo Pédagogique", "Digitalisation", "E-Learning", "Motion Design"],
     description:
-      "Participation à un projet de digitalisation pour la DER en travaillant sur la création d'animations pédagogiques et de vidéos explicatives pour des modules de formation. Des contenus visuels engageants conçus pour faciliter l'apprentissage et maintenir les standards d'identité visuelle.",
+      "Participation à un projet de digitalisation pour la DER en travaillant sur la création d'animations pédagogiques et de vidéos explicatives pour des formations. Des contenus visuels engageants conçus pour faciliter l'apprentissage et maintenir les standards d'identité visuelle.",
     context:
       "Ce projet s'inscrit dans une démarche de modernisation des outils de formation de la Délégation Générale à l'Entrepreneuriat Rapide (DER). Il vise à numériser le parcours d'apprentissage en remplaçant les supports statiques par des contenus animés dynamiques et compréhensibles pour tous.",
     objectives: [
       "Créer des animations pédagogiques claires et impactantes",
-      "Développer des vidéos explicatives pour chaque module de formation",
+      "Développer des vidéos explicatives pour chaque formation",
       "Respecter l'identité visuelle institutionnelle de la DER",
       "Moderniser l'expérience d'apprentissage via le contenu digital",
     ],

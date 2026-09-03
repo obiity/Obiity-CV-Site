@@ -64,10 +64,12 @@ const Services = () => {
               ref={el => { cardsRef.current[idx] = el; }}
               className="service-card glass-panel"
             >
-              <div className="service-icon-wrapper">
-                <Icon size={32} className="service-icon" />
+              <div className="service-header-row">
+                <div className="service-icon-wrapper">
+                  <Icon size={26} className="service-icon" />
+                </div>
+                <h3 className="service-title">{srv.title}</h3>
               </div>
-              <h3 className="service-title">{srv.title}</h3>
               <p className="service-desc">{srv.desc}</p>
             </div>
           );

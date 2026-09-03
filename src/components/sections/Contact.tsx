@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react';
@@ -46,43 +46,7 @@ const Contact: React.FC = () => {
     { icon: Mail,   label: t.contact.emailLabel,    value: 'obiity1@gmail.com', href: 'mailto:obiity1@gmail.com' },
   ];
 
-  useEffect(() => {
-    const left  = leftRef.current;
-    const right = rightRef.current;
-    if (!left || !right) return;
 
-    const setupTimeout = setTimeout(() => {
-      gsap.fromTo(
-        left.querySelectorAll('.c-anim'),
-        { x: -50, opacity: 0 },
-        {
-          x: 0, opacity: 1, stagger: 0.12, duration: 0.9, ease: 'power3.out',
-          scrollTrigger: {
-            trigger: left,
-            start: 'top 88%',
-            toggleActions: 'play none none reverse',
-            invalidateOnRefresh: true,
-          }
-        }
-      );
-
-      gsap.fromTo(
-        right,
-        { x: 60, opacity: 0 },
-        {
-          x: 0, opacity: 1, duration: 1.1, ease: 'power3.out',
-          scrollTrigger: {
-            trigger: right,
-            start: 'top 88%',
-            toggleActions: 'play none none reverse',
-            invalidateOnRefresh: true,
-          }
-        }
-      );
-    }, 100);
-
-    return () => clearTimeout(setupTimeout);
-  }, []);
 
   const handleEmailClick = () => {
     // Open Gmail web compose interface directly in a new tab (works even without desktop email app)
@@ -153,7 +117,7 @@ const Contact: React.FC = () => {
 
         {/* ── RIGHT — DIRECT ACTIONS ── */}
         <div ref={rightRef} className="contact-right">
-          <div className="contact-actions-panel">
+          <div className="contact-actions-panel glass-panel">
             <div className="form-accent-line" aria-hidden="true" />
 
             <div className="actions-header">
