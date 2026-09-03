@@ -63,6 +63,13 @@ function MainLayout() {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         ScrollTrigger.refresh(true);
+        if (window.location.hash) {
+          const id = window.location.hash.replace('#', '');
+          const el = document.getElementById(id);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
       });
     });
   }, [isMounted]);

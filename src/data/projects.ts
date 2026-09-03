@@ -764,11 +764,12 @@ export const projects: Project[] = [
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
+  const normalized = slug.toLowerCase().trim().replace(/\/+$/, '');
   return projects.find(
     (p) =>
-      p.slug === slug ||
-      ((slug === 'ebm' || slug === 'ethni-beauty-market') && p.slug === 'medicube-pads-deep-vita-c') ||
-      (slug === 'lhomme-qui-a-peur-de-tomber' && p.slug === 'dream')
+      p.slug === normalized ||
+      ((normalized === 'ebm' || normalized === 'ethni-beauty-market') && p.slug === 'medicube-pads-deep-vita-c') ||
+      (normalized === 'lhomme-qui-a-peur-de-tomber' && p.slug === 'dream')
   );
 }
 
@@ -776,11 +777,12 @@ export function getAdjacentProjects(slug: string): {
   prev: Project | null;
   next: Project | null;
 } {
+  const normalized = slug.toLowerCase().trim().replace(/\/+$/, '');
   const idx = projects.findIndex(
     (p) =>
-      p.slug === slug ||
-      ((slug === 'ebm' || slug === 'ethni-beauty-market') && p.slug === 'medicube-pads-deep-vita-c') ||
-      (slug === 'lhomme-qui-a-peur-de-tomber' && p.slug === 'dream')
+      p.slug === normalized ||
+      ((normalized === 'ebm' || normalized === 'ethni-beauty-market') && p.slug === 'medicube-pads-deep-vita-c') ||
+      (normalized === 'lhomme-qui-a-peur-de-tomber' && p.slug === 'dream')
   );
   return {
     prev: idx > 0 ? projects[idx - 1] : null,
