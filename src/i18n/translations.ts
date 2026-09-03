@@ -100,7 +100,7 @@ export const fr: Translations = {
       { title: 'VR / AR / MR',         desc: 'Expériences immersives temps réel' },
       { title: 'IA Générative',        desc: 'Creative AI, génération visuelle augmentée' },
       { title: 'Développement Web',    desc: 'Sites interactifs, Three.js, WebGL' },
-      { title: 'Serious & E-Learning', desc: 'Jeux pédagogiques, simulations et modules de formation' },
+      { title: 'Serious & E-Learning', desc: 'Jeux pédagogiques, simulations et formations' },
       { title: 'Design Graphique',     desc: 'Identité visuelle, UI/UX, print & digital' },
     ],
   },
