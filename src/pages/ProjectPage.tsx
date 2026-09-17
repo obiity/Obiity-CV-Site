@@ -294,9 +294,8 @@ const ProjectPage = () => {
             <div className="pp-videos">
               {project.videos!.map((vid, i) => {
                 if (vid.type === 'local' && vid.src) {
-                  const cleanSrc = vid.src.split('?')[0];
-                  const ext = cleanSrc.split('.').pop()?.toLowerCase();
-                  const mimeType = ext === 'mov' ? 'video/quicktime' : 'video/mp4';
+                  const [basePath, query] = vid.src.split('?');
+                  const encodedSrc = basePath.split('/').map(segment => encodeURIComponent(segment)).join('/') + (query ? '?' + query : '');
                   const handleVideoPlay = (e: React.SyntheticEvent<HTMLVideoElement>) => {
                     const currentVid = e.currentTarget;
                     const allVids = document.querySelectorAll<HTMLVideoElement>('.pp-video-local');
@@ -317,7 +316,9 @@ const ProjectPage = () => {
                         onPlay={handleVideoPlay}
                         title={`${project.title} — vidéo ${i + 1}`}
                       >
-                        <source src={vid.src} type={mimeType} />
+                        <source src={encodedSrc} type="video/mp4" />
+                        <source src={encodedSrc} type="video/quicktime" />
+                        <source src={encodedSrc} />
                       </video>
                     </div>
                   );
@@ -392,7 +393,7 @@ const ProjectPage = () => {
             onClick={closeLightbox}
             aria-label="Fermer"
           >
-            <X size={22} />
+            <X size={22} strokeWidth={2.4} />
           </button>
 
           {/* Prev */}
@@ -402,7 +403,7 @@ const ProjectPage = () => {
               onClick={(e) => { e.stopPropagation(); prevLightbox(); }}
               aria-label="Image précédente"
             >
-              <ArrowLeft size={24} />
+              <ArrowLeft size={24} strokeWidth={2.4} />
             </button>
           )}
 
@@ -421,7 +422,7 @@ const ProjectPage = () => {
               onClick={(e) => { e.stopPropagation(); nextLightbox(); }}
               aria-label="Image suivante"
             >
-              <ArrowRight size={24} />
+              <ArrowRight size={24} strokeWidth={2.4} />
             </button>
           )}
 

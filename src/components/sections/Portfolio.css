@@ -73,33 +73,52 @@
   position: relative;
 }
 
-/* ── Prev / Next arrows — flat minimal ───── */
+/* ── Prev / Next arrows ──────────────────── */
 .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 20;
+  width: 52px;
+  height: 52px;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
-  background: none;
-  border: none;
-  color: rgba(245, 240, 235, 0.4);
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 122, 47, 0.35);
+  border-radius: 50%;
+  color: #FFFFFF;
   cursor: pointer;
-  transition:
-    color     0.25s ease,
-    opacity   0.25s ease,
-    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 122, 47, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .carousel-arrow:hover {
-  color: var(--accent-primary);
-  transform: translateY(-50%) scale(1.18);
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #000000;
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 0 25px rgba(255, 122, 47, 0.6);
 }
 
 .carousel-arrow:active {
-  transform: translateY(-50%) scale(0.9);
+  transform: translateY(-50%) scale(0.92);
+}
+
+.carousel-arrow svg {
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+  stroke-width: 2.2px;
+  display: block;
+  flex-shrink: 0;
 }
 
 .carousel-arrow--prev { left:  1.2vw; }

@@ -38,6 +38,40 @@ const CDN = "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=cro
 
 export const projects: Project[] = [
   {
+    id: 29,
+    slug: "ndar-groove",
+    title: "NDAR GROOVE",
+    client: "OBIITY",
+    year: "2026",
+    category: "IA Générative · Animation 3D · VFX · Musique & Culture",
+    tags: ["NDAR GROOVE", "IA Générative", "Prompt Engineering", "VFX", "3D", "Saint-Louis", "Direction Artistique"],
+    description:
+      "NDAR GROOVE est une création cinématique et visuelle célébrant l'âme musicale et l'héritage culturel de Saint-Louis (Ndar), haut lieu du jazz, du rythme et de la culture en Afrique de l'Ouest. Le projet fusionne esthétique afro-futuriste, IA générative avancée et direction artistique 3D pour plonger l'observateur dans un univers vibrant de néons, d'élégance et de grooves envoûtants.",
+    context:
+      "Entre architecture coloniale réinventée, éléments iconiques de la culture sénégalaise et scénographie nocturne futuriste, NDAR GROOVE rend hommage à la vitalité créative sénégalaise à travers un univers graphique sophistiqué et immersif.",
+    objectives: [
+      "Sublimer l'héritage musical et culturel de Saint-Louis (Ndar) via une direction artistique afro-futuriste",
+      "Fusionner IA générative, Prompt Engineering, 3D et VFX dans une série visuelle premium",
+      "Développer un univers esthétique vibrant, rythmé par la musique, la couleur et la lumière néon",
+      "Composer une galerie narrative et cinématique reflétant la vision créative Obiity",
+    ],
+    heroImage: "/NDAR GROOVE4.png",
+    heroObjectPosition: "center center",
+    galleryVariant: "editorial",
+    gallery: [
+      { src: "/NDAR GROOVE1.png", alt: "NDAR GROOVE — Visuel 1" },
+      { src: "/NDAR GROOVE2.png", alt: "NDAR GROOVE — Visuel 2" },
+      { src: "/NDAR GROOVE3.png", alt: "NDAR GROOVE — Visuel 3" },
+      { src: "/NDAR GROOVE4.png", alt: "NDAR GROOVE — Visuel 4" },
+      { src: "/NDAR GROOVE5.png", alt: "NDAR GROOVE — Visuel 5" },
+      { src: "/NDAR GROOVE6.png", alt: "NDAR GROOVE — Visuel 6" },
+      { src: "/NDAR GROOVE7.png", alt: "NDAR GROOVE — Visuel 7" },
+      { src: "/NDAR GROOVE8.png", alt: "NDAR GROOVE — Visuel 8" },
+      { src: "/NDAR GROOVE10.png", alt: "NDAR GROOVE — Visuel 10" },
+    ],
+    videos: [{ type: 'local', src: '/NDAR GROOVE.mov?v=1', centered: true }],
+  },
+  {
     id: 24,
     slug: "signal",
     title: "SIGNAL",
