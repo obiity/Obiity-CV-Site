@@ -44,7 +44,7 @@ export const projects: Project[] = [
     client: "OBIITY",
     year: "2026",
     category: "IA Générative · Animation 3D · VFX · Hommage Musical",
-    tags: ["Hommage Musical", "Orchestra Baobab", "Rituel du Vinyle", "Coucher de Soleil", "IA Générative", "3D & VFX", "Direction Artistique"],
+    tags: ["IA Générative", "Prompt Engineering", "VFX", "3D", "Animation 3D", "Direction Artistique"],
     description:
       "NDAR GROOVE est une œuvre cinématique et numérique conçue comme un hommage vibrant à l'âge d'or de la musique sénégalaise et au rituel sacré du disque vinyle. Dans le cadre chaleureux et poétique d'un disquaire intimiste à Saint-Louis au coucher du soleil, le projet capture l'émotion intemporelle des mélodies d'Orchestra Baobab, où la texture des sillons de cire croise la lumière dorée du crépuscule.",
     context:
