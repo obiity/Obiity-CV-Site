@@ -100,7 +100,7 @@ const About = () => {
           <div className="identity-portrait-card glass-panel">
             <div className="portrait-wrapper">
               <div className="portrait-glow"></div>
-              <img src="/OBT.jpeg" alt="Ousmane Biteye" className="portrait-img" />
+              <img src="/PP OBT.jpeg" alt="Ousmane Biteye" className="portrait-img" />
               <div className="portrait-scanline"></div>
               <div className="portrait-borders">
                 <span className="corner tl"></span>
