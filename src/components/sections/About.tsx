@@ -46,7 +46,7 @@ const About = () => {
     <section ref={sectionRef} className="about-section container" id="about">
       <div ref={contentRef} className="about-content-grid">
 
-        {/* Left column: title → bio → stats → map */}
+        {/* Left column: title → bio → map */}
         <div className="about-left-col">
 
           <div className="about-header-area anim-child">
@@ -58,25 +58,7 @@ const About = () => {
             </p>
           </div>
 
-          {/* Stats horizontaux — juste sous le paragraphe */}
-          <div className="about-stats-area anim-child">
-            <div className="about-stats">
-              <div className="stat-item">
-                <span className="stat-value text-gradient">6+</span>
-                <span className="stat-label">{t.about.stat1Label}</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-value text-gradient">150+</span>
-                <span className="stat-label">{t.about.stat2Label}</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-value text-gradient">15+</span>
-                <span className="stat-label">{t.about.stat3Label}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Carte — juste sous les stats */}
+          {/* Carte — remontée juste sous le paragraphe */}
           <div className="about-map-area anim-child">
             <div className="about-map-card">
               <CyberMap />
@@ -95,9 +77,9 @@ const About = () => {
 
         </div>
 
-        {/* Right column: portrait */}
-        <div className="about-portrait-area anim-child">
-          <div className="identity-portrait-card glass-panel">
+        {/* Right column: portrait → stats */}
+        <div className="about-portrait-area">
+          <div className="identity-portrait-card glass-panel anim-child">
             <div className="portrait-wrapper">
               <div className="portrait-glow"></div>
               <img src="/PP OBT.jpeg?v=3" alt="Ousmane Biteye" className="portrait-img" />
@@ -126,6 +108,24 @@ const About = () => {
                   <Globe size={15} className="meta-icon" />
                   <span>{t.about.remote}</span>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats — placées sous la photo de profil */}
+          <div className="about-stats-area anim-child">
+            <div className="about-stats">
+              <div className="stat-item">
+                <span className="stat-value text-gradient">6+</span>
+                <span className="stat-label">{t.about.stat1Label}</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-value text-gradient">150+</span>
+                <span className="stat-label">{t.about.stat2Label}</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-value text-gradient">15+</span>
+                <span className="stat-label">{t.about.stat3Label}</span>
               </div>
             </div>
           </div>

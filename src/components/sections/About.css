@@ -109,7 +109,13 @@
   flex-shrink: 0;
 }
 
-/* --- PORTRAIT AREA --- */
+/* --- PORTRAIT AREA & STATS --- */
+
+.about-portrait-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
 
 .identity-portrait-card {
   padding: 1.5rem;
@@ -245,9 +251,18 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: flex-start;
-  padding: 1.8rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.5rem 1rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-stats:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 8px 32px rgba(255, 122, 47, 0.08);
 }
 
 .stat-item {
