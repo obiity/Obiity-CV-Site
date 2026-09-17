@@ -69,7 +69,7 @@ export const projects: Project[] = [
       { src: "/NDAR GROOVE8.png", alt: "NDAR GROOVE — Visuel 8" },
       { src: "/NDAR GROOVE10.png", alt: "NDAR GROOVE — Visuel 10" },
     ],
-    videos: [{ type: 'local', src: '/NDAR GROOVE.mov?v=1', centered: true }],
+    videos: [{ type: 'local', src: '/NDAR GROOVE.mov?v=2', centered: true }],
   },
   {
     id: 24,
