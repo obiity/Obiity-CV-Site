@@ -46,7 +46,7 @@ const Loader: React.FC = () => {
             className="loader-logo-img"
           />
         </div>
-        <p ref={subtitleRef} className="loader-subtitle">CHARGEMENT DE L'EXPÉRIENCE</p>
+        <p ref={subtitleRef} className="loader-subtitle">BIENVENUE</p>
         <div className="loader-bar-track">
           <div ref={barRef} className="loader-bar-fill" />
         </div>
