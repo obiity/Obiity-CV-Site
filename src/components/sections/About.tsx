@@ -101,7 +101,6 @@ const About = () => {
             <div className="portrait-wrapper">
               <div className="portrait-glow"></div>
               <img src="/PP OBT.jpeg?v=3" alt="Ousmane Biteye" className="portrait-img" />
-              <div className="portrait-scanline"></div>
               <div className="portrait-borders">
                 <span className="corner tl"></span>
                 <span className="corner tr"></span>
