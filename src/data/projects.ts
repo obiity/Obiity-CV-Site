@@ -46,13 +46,13 @@ export const projects: Project[] = [
     category: "IA Générative · Animation 3D · VFX · Musique & Culture",
     tags: ["IA Générative", "Prompt Engineering", "VFX", "3D", "Animation 3D", "Direction Artistique"],
     description:
-      "NDAR GROOVE est une œuvre numérique et cinématique immersive qui réinvente l'effervescence culturelle et l'élégance légendaire de Saint-Louis. À travers une alliance audacieuse entre IA générative avancée, modélisation 3D, animation et compositing VFX, le projet met en scène des silhouettes charismatiques et des ambiances nocturnes où le jazz, la mode sénégalaise et les lumières néon s'entremêlent dans un univers afro-futuriste vibrant.",
+      "NDAR GROOVE est une œuvre numérique et cinématique immersive qui réinvente l'effervescence culturelle et l'élégance solaire de Saint-Louis. À travers une alliance audacieuse entre IA générative avancée, modélisation 3D, animation et compositing VFX, le projet met en scène des silhouettes charismatiques baignées dans une lumière chaude et lumineuse, où le jazz, la mode sénégalaise et la richesse des couleurs s'entremêlent dans un univers afro-futuriste vibrant.",
     context:
-      "Conçu comme une exploration esthétique et narrative sous la direction artistique Obiity, NDAR GROOVE capture l'énergie brute de la nuit saint-louisienne en fusionnant tradition vestimentaire, rythme musical et scénographie cyberpunk. Le projet illustre le potentiel des nouvelles technologies numériques pour sublimer la culture africaine et offrir une expérience visuelle d'une rare élégance.",
+      "Conçu comme une exploration esthétique et narrative sous la direction artistique Obiity, NDAR GROOVE capture l'énergie vibrante et la poésie diurne de la cité saint-louisienne en fusionnant tradition vestimentaire, rythme musical et esthétique contemporaine. Le projet illustre le potentiel des nouvelles technologies numériques pour sublimer la culture africaine sous une lumière éclatante et d'une rare élégance.",
     objectives: [
-      "Réinventer l'élégance et l'effervescence musicale de Saint-Louis à travers un univers afro-futuriste nocturne",
+      "Réinventer l'élégance et l'effervescence musicale de Saint-Louis à travers un univers afro-futuriste lumineux et solaire",
       "Combiner IA générative avancée, Prompt Engineering, animation 3D et compositing VFX dans un flux créatif innovant",
-      "Mettre en valeur le stylisme, le mouvement et la lumière néon à travers une direction artistique cinématographique",
+      "Mettre en valeur le stylisme, le mouvement et la lumière naturelle à travers une direction artistique cinématographique",
       "Produire une capsule audiovisuelle et une galerie d'art numérique aux standards visuels internationaux",
     ],
     heroImage: "/NDAR GROOVE4.png",
