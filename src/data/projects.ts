@@ -44,16 +44,16 @@ export const projects: Project[] = [
     client: "OBIITY",
     year: "2026",
     category: "IA Générative · Animation 3D · VFX · Musique & Culture",
-    tags: ["NDAR GROOVE", "IA Générative", "Prompt Engineering", "VFX", "3D", "Saint-Louis", "Direction Artistique"],
+    tags: ["IA Générative", "Prompt Engineering", "VFX", "3D", "Animation 3D", "Direction Artistique"],
     description:
-      "NDAR GROOVE est une création cinématique et visuelle célébrant l'âme musicale et l'héritage culturel de Saint-Louis (Ndar), haut lieu du jazz, du rythme et de la culture en Afrique de l'Ouest. Le projet fusionne esthétique afro-futuriste, IA générative avancée et direction artistique 3D pour plonger l'observateur dans un univers vibrant de néons, d'élégance et de grooves envoûtants.",
+      "NDAR GROOVE est une œuvre numérique et cinématique immersive qui réinvente l'effervescence culturelle et l'élégance légendaire de Saint-Louis. À travers une alliance audacieuse entre IA générative avancée, modélisation 3D, animation et compositing VFX, le projet met en scène des silhouettes charismatiques et des ambiances nocturnes où le jazz, la mode sénégalaise et les lumières néon s'entremêlent dans un univers afro-futuriste vibrant.",
     context:
-      "Entre architecture coloniale réinventée, éléments iconiques de la culture sénégalaise et scénographie nocturne futuriste, NDAR GROOVE rend hommage à la vitalité créative sénégalaise à travers un univers graphique sophistiqué et immersif.",
+      "Conçu comme une exploration esthétique et narrative sous la direction artistique Obiity, NDAR GROOVE capture l'énergie brute de la nuit saint-louisienne en fusionnant tradition vestimentaire, rythme musical et scénographie cyberpunk. Le projet illustre le potentiel des nouvelles technologies numériques pour sublimer la culture africaine et offrir une expérience visuelle d'une rare élégance.",
     objectives: [
-      "Sublimer l'héritage musical et culturel de Saint-Louis (Ndar) via une direction artistique afro-futuriste",
-      "Fusionner IA générative, Prompt Engineering, 3D et VFX dans une série visuelle premium",
-      "Développer un univers esthétique vibrant, rythmé par la musique, la couleur et la lumière néon",
-      "Composer une galerie narrative et cinématique reflétant la vision créative Obiity",
+      "Réinventer l'élégance et l'effervescence musicale de Saint-Louis à travers un univers afro-futuriste nocturne",
+      "Combiner IA générative avancée, Prompt Engineering, animation 3D et compositing VFX dans un flux créatif innovant",
+      "Mettre en valeur le stylisme, le mouvement et la lumière néon à travers une direction artistique cinématographique",
+      "Produire une capsule audiovisuelle et une galerie d'art numérique aux standards visuels internationaux",
     ],
     heroImage: "/NDAR GROOVE4.png",
     heroObjectPosition: "center center",
