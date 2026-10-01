@@ -38,6 +38,41 @@ const CDN = "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=cro
 
 export const projects: Project[] = [
   {
+    id: 30,
+    slug: "cest-toujours-moi",
+    title: "C'EST TOUJOURS MOI",
+    client: "SAMBA PEUZZI",
+    year: "2026",
+    category: "IA Générative · Animation 3D · Clip Musical · Fan Art",
+    tags: ["Seedance 2.5", "IA Générative", "Animation 3D", "Stylized 3D", "Character Design", "Lip Sync", "VFX", "Direction Artistique"],
+    description:
+      "Réimagination de l'univers du clip de Samba Peuzzi en animation 3D stylisée : le désert au coucher du soleil, le boubou et l'écharpe bleue, la fastback des années 60… et ce flow unique, en selfie, au milieu des dunes.\n\nDe la character sheet au lip sync, chaque plan a été pensé, retravaillé et calé sur le beat.",
+    context:
+      "Fan art non officiel, réalisé par passion pour la culture urbaine sénégalaise et la musique de Samba Peuzzi.\n\n🎬 Direction artistique & animation : Obiity\n🛠️ Outils : Seedance 2.5 + IA générative\n🎵 Son : Samba Peuzzi — C'est toujours moi",
+    objectives: [
+      "Réimaginer l'univers du clip de Samba Peuzzi en animation 3D stylisée à facettes gem-cut",
+      "Développer le character design complet, de la character sheet au lip sync précis calé sur le beat",
+      "Sublimer la fusion entre culture urbaine sénégalaise, tenue traditionnelle et imagerie rétro (Fastback 60s)",
+      "Pousser les capacités narratives et techniques de Seedance 2.5 associées à l'IA générative",
+      "Rendre un hommage vibrant et passionné à la culture urbaine et musicale dakaroise",
+    ],
+    heroImage: "/C'est toujours moi 6.webp",
+    heroObjectPosition: "center center",
+    galleryVariant: "editorial",
+    gallery: [
+      { src: "/C'est toujours moi 1.webp", alt: "C'est toujours moi — Selfie flow dans les dunes" },
+      { src: "/C'est toujours moi 2.webp", alt: "C'est toujours moi — Samba Peuzzi devant la Fastback 60s au crépuscule" },
+      { src: "/C'est toujours moi 3.webp", alt: "C'est toujours moi — Portrait stylisé et grillz étincelants" },
+      { src: "/C'est toujours moi 4.webp", alt: "C'est toujours moi — Au volant de la Fastback dans le désert" },
+      { src: "/C'est toujours moi 5.webp", alt: "C'est toujours moi — Gros plan & attitude" },
+      { src: "/C'est toujours moi 6.webp", alt: "C'est toujours moi — Samba Peuzzi assis dans le véhicule" },
+      { src: "/C'est toujours moi 7.webp", alt: "C'est toujours moi — Panorama crépusculaire sur la dune" },
+      { src: "/C'est toujours moi 8.webp", alt: "C'est toujours moi — Coucher de soleil et horizon saharien" },
+      { src: "/C'est toujours moi 9.webp", alt: "C'est toujours moi — Mouvement dynamique de sable et VFX" },
+    ],
+    videos: [{ type: 'local', src: "/C'est toujours moi.MOV?v=1", poster: "/C'est toujours moi 6.webp", centered: true }],
+  },
+  {
     id: 29,
     slug: "ndar-groove",
     title: "NDAR GROOVE",
@@ -802,6 +837,7 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find(
     (p) =>
       p.slug === normalized ||
+      ((normalized === 'samba-peuzzi' || normalized === 'samba-peuzzi-cest-toujours-moi') && p.slug === 'cest-toujours-moi') ||
       ((normalized === 'ebm' || normalized === 'ethni-beauty-market') && p.slug === 'medicube-pads-deep-vita-c') ||
       (normalized === 'lhomme-qui-a-peur-de-tomber' && p.slug === 'dream')
   );
@@ -815,6 +851,7 @@ export function getAdjacentProjects(slug: string): {
   const idx = projects.findIndex(
     (p) =>
       p.slug === normalized ||
+      ((normalized === 'samba-peuzzi' || normalized === 'samba-peuzzi-cest-toujours-moi') && p.slug === 'cest-toujours-moi') ||
       ((normalized === 'ebm' || normalized === 'ethni-beauty-market') && p.slug === 'medicube-pads-deep-vita-c') ||
       (normalized === 'lhomme-qui-a-peur-de-tomber' && p.slug === 'dream')
   );
