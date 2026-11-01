@@ -38,34 +38,6 @@ const CDN = "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=cro
 
 export const projects: Project[] = [
   {
-    id: 31,
-    slug: "musheis-back",
-    title: "MUSHEI'S BACK",
-    client: "MUSHEI · DJIGUEUL",
-    year: "2026",
-    category: "VFX · Simulation 3D · Compositing · Vidéo Lancement",
-    tags: ["VFX", "Destruction 3D", "Simulation Volumétrique", "Compositing", "Matchmoving", "3D", "Vidéo Lancement"],
-    description:
-      "Vidéo annonçant le grand retour de Mushei, réalisée en collaboration avec Djigueul. J'ai assuré l'intégralité de la partie VFX du film : de la fissuration progressive de la devanture à l'effondrement spectaculaire de l'immeuble en pleine rue, jusqu'à la propagation d'un épais nuage de poussière enveloppant la scène.",
-    context:
-      "Conçue pour créer un impact visuel fort à l'occasion du retour de Mushei, cette production hybride mêle prise de vue réelle et effets spéciaux cinématographiques.\n\n🎬 En collaboration avec : Djigueul\n💥 Supervision & Production VFX : Obiity",
-    objectives: [
-      "Assurer l'intégralité de la production VFX de la vidéo de lancement en collaboration avec Djigueul",
-      "Simuler de manière photoréaliste la fissuration et l'effondrement structurel du bâtiment Mushei",
-      "Générer des simulations dynamiques de débris et de poussière volumétrique réalistes",
-      "Réaliser un tracking caméra (matchmoving), un rotoscoping et un compositing précis avec les personnages au premier plan",
-    ],
-    heroImage: "/Mushei2.webp",
-    heroObjectPosition: "center center",
-    gallery: [
-      { src: "/Mushei1.webp", alt: "MUSHEI'S BACK — Fissuration de la devanture Mushei et réaction dans la rue" },
-      { src: "/Mushei2.webp", alt: "MUSHEI'S BACK — Début de l'effondrement structurel de l'immeuble" },
-      { src: "/Mushei3.webp", alt: "MUSHEI'S BACK — Simulation VFX de destruction et chute de la façade" },
-      { src: "/Mushei4.webp", alt: "MUSHEI'S BACK — Nuage volumétrique de poussière après l'effondrement" },
-    ],
-    videos: [{ type: 'local', src: "/mushei-final.mp4?v=1", poster: "/Mushei1.webp", centered: true }],
-  },
-  {
     id: 30,
     slug: "cest-toujours-moi",
     title: "C'EST TOUJOURS MOI",
@@ -173,6 +145,34 @@ export const projects: Project[] = [
       { src: "/Signal15.png", alt: "SIGNAL — Plan 15" },
     ],
     videos: [{ type: 'local', src: '/signal.mp4?v=1', poster: '/poster-signal.jpg', centered: true }],
+  },
+  {
+    id: 31,
+    slug: "musheis-back",
+    title: "MUSHEI'S BACK",
+    client: "MUSHEI · DJIGUEUL",
+    year: "2026",
+    category: "VFX · Simulation 3D · Compositing · Vidéo Lancement",
+    tags: ["VFX", "Destruction 3D", "Simulation Volumétrique", "Compositing", "Matchmoving", "3D", "Vidéo Lancement"],
+    description:
+      "Vidéo annonçant le grand retour de Mushei, réalisée en collaboration avec Djigueul. J'ai assuré l'intégralité de la partie VFX du film : de la fissuration progressive de la devanture à l'effondrement spectaculaire de l'immeuble en pleine rue, jusqu'à la propagation d'un épais nuage de poussière enveloppant la scène.",
+    context:
+      "Conçue pour créer un impact visuel fort à l'occasion du retour de Mushei, cette production hybride mêle prise de vue réelle et effets spéciaux cinématographiques.\n\n🎬 En collaboration avec : Djigueul\n💥 Supervision & Production VFX : Obiity",
+    objectives: [
+      "Assurer l'intégralité de la production VFX de la vidéo de lancement en collaboration avec Djigueul",
+      "Simuler de manière photoréaliste la fissuration et l'effondrement structurel du bâtiment Mushei",
+      "Générer des simulations dynamiques de débris et de poussière volumétrique réalistes",
+      "Réaliser un tracking caméra (matchmoving), un rotoscoping et un compositing précis avec les personnages au premier plan",
+    ],
+    heroImage: "/Mushei2.webp",
+    heroObjectPosition: "center center",
+    gallery: [
+      { src: "/Mushei1.webp", alt: "MUSHEI'S BACK — Fissuration de la devanture Mushei et réaction dans la rue" },
+      { src: "/Mushei2.webp", alt: "MUSHEI'S BACK — Début de l'effondrement structurel de l'immeuble" },
+      { src: "/Mushei3.webp", alt: "MUSHEI'S BACK — Simulation VFX de destruction et chute de la façade" },
+      { src: "/Mushei4.webp", alt: "MUSHEI'S BACK — Nuage volumétrique de poussière après l'effondrement" },
+    ],
+    videos: [{ type: 'local', src: "/mushei-final.mp4?v=1", poster: "/Mushei1.webp", centered: true }],
   },
   {
     id: 22,

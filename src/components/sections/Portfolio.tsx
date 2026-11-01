@@ -9,10 +9,10 @@ import './Portfolio.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { id: 31, title: "MUSHEI'S BACK",                         client: 'MUSHEI · DJIGUEUL',  location: 'Dakar - 2026', image: '/Mushei2.webp',                                 slug: 'musheis-back',              categories: ['3D & VFX', 'Vidéos'] },
   { id: 30, title: "C'EST TOUJOURS MOI",                    client: 'SAMBA PEUZZI',       location: 'Dakar - 2026', image: "/C'est toujours moi 6.webp",                    slug: 'cest-toujours-moi',         categories: ['3D & VFX', 'IA', 'Vidéos'] },
   { id: 29, title: "NDAR GROOVE",                           client: 'OBIITY',             location: 'Dakar - 2026', image: '/NDAR GROOVE4.png',                           slug: 'ndar-groove',               categories: ['3D & VFX', 'IA', 'Vidéos'] },
   { id: 24, title: "SIGNAL",                                client: 'OBIITY',             location: 'Dakar - 2026', image: '/Signal10.png',                              slug: 'signal',                    categories: ['3D & VFX', 'IA', 'Vidéos'] },
+  { id: 31, title: "MUSHEI'S BACK",                         client: 'MUSHEI · DJIGUEUL',  location: 'Dakar - 2026', image: '/Mushei2.webp',                                 slug: 'musheis-back',              categories: ['3D & VFX', 'Vidéos'] },
   { id: 22, title: "DREAM",                                 client: 'OBIITY',             location: 'Dakar - 2026', image: "/L'homme qui a peur de tombe2.png",           slug: 'dream',                     categories: ['3D & VFX', 'IA', 'Vidéos'] },
   { id: 8,  title: 'ERROR 404',                             client: 'OBIITY',             location: 'Dakar - 2025', image: '/ERROR 404.png',                              slug: 'error-404',                 categories: ['3D & VFX', 'Vidéos'] },
   { id: 1,  title: 'Publicité pour les climatiseurs Airton', client: 'AIRTON',            location: 'Dakar - 2026', image: '/airton-cover.jpg',                          slug: 'airton-climatiseurs',       categories: ['3D & VFX', 'Vidéos'] },
